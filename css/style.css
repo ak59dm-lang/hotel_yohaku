@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+/* ==========================
+Hero
+========================== */
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* ==========================
+Hero Slider
+========================== */
+.hero__slider {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.heroSwiper,
+.swiper-wrapper,
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+/* Hero Overlay */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.18);
+    z-index:2;
+}
+
+/* Hero Content */
+.hero__content {
+    position: relative;
+    z-index: 10;
+
+    width: min(1200px, 90%);
+    height: 100%;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Hero Typography */
+.hero__label {
+    color: #fff;
+
+    font-size: clamp(2rem, 2vw, 2.6rem);
+
+    letter-spacing: 0.3em;
+
+    margin-bottom: 1rem;
+}
+.hero__typing {
+    color: #fff;
+
+    font-size: clamp(4rem, 5vw, 7rem);
+
+    font-family: var(--font-serif);
+
+    letter-spacing: 0.2em;
+}
+
+/* Hero Copy */
+.hero__copy {
+    margin-top: 8vh;
+}
+
+/* Hero Scroll */
+.hero__scroll {
+    position: absolute;
+
+    bottom: 4rem;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: #fff;
+
+    letter-spacing: 0.3em;
+
+    font-size: 1.2rem;
+
+    opacity: 0.8;
+}

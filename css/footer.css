@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+/* 背景 */
+.footer {
+    position: relative;
+    height: 120vh;
+    overflow: hidden;
+    background: linear-gradient(
+        to bottom,
+        #d9eef8 0%,
+        #b8d8eb 35%,
+        #4f759b 70%,
+        #18344d 100%
+    );
+}
+
+/* 空 */
+.footer__sky {
+    position: absolute;
+    inset: 0;
+}
+
+/* 太陽 */
+.footer__sun {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: #ffd97d;
+    left: 50%;
+    top: 18%;
+    transform: translateX(-50%);
+}
+
+/* 湖 */
+.footer__reflection{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:45%;
+    background:linear-gradient(
+        to top,
+        rgba(44,79,108,.9),
+        rgba(72,125,170,.2)
+    );
+}
+
+/* 星 */
+.footer__stars{
+    position:absolute;
+    inset:0;
+    opacity:0;
+}

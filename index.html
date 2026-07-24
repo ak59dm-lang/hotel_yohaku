@@ -31,15 +31,102 @@
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <!-- Header -->
-        <!-- /.header -->
-        <!-- Main -->
-        <!-- /.main -->
+        <!-- main -->
+        <main>
+            <!-- ==========================
+            Hero
+            ========================== -->
+            <section class="hero">
+                <!-- Header -->
+                <header class="header">
+                    <div class="container">
+                        <div class="header__inner">
+                            <h1 class="header__logo">
+                                <a href="index.html"> YOHAKU </a>
+                            </h1>
+                            <nav class="header__nav">
+                                <ul class="header__list">
+                                    <li><a href="pages/rooms.html">Rooms</a></li>
+                                    <li><a href="pages/experience.html">Experience</a></li>
+                                    <li><a href="pages/dining.html">Dining</a></li>
+                                    <li><a href="pages/access.html">Access</a></li>
+                                    <li><a href="pages/reservation.html">Reserve</a></li>
+                                </ul>
+                            </nav>
+                            <button class="header__hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+                <!-- /Header -->
+                <!-- Hero Content -->
+                <div class="hero__content">
+                    <div class="hero__copy">
+                        <p class="hero__label">予定：</p>
+                        <h2 class="hero__typing">
+                            <span id="typing-text"></span>
+                        </h2>
+                    </div>
+                    <div class="hero__scroll">
+                        <span>Scroll</span>
+                    </div>
+                </div>
+                <!-- Swiper -->
+                <div class="hero__slider">
+                    <div class="swiper heroSwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="images/hero-01.webp" alt="朝の湖畔" />
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="images/hero-02.webp" alt="客室での何もしない時間" />
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="images/hero-03.webp" alt="サウナの熱と静寂" />
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="images/hero-04.webp" alt="夕方の雨音と読書" />
+                            </div>
+
+                            <div class="swiper-slide">
+                                <img src="images/hero-05.webp" alt="雨上がりの星空" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.main -->
+        </main>
         <!-- Footer -->
+        <footer class="footer">
+            <div class="footer__sky"></div>
+            <div class="footer__sun"></div>
+            <div class="footer__reflection"></div>
+            <div class="footer__stars"></div>
+            <div class="footer__content">
+                <h2 class="footer__logo">YOHAKU</h2>
+                <p>予定：何もしない。</p>
+                <small> ©2026 YOHAKU </small>
+            </div>
+        </footer>
         <!-- /.footer -->
         <!-- Swiper JS -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-        <!-- main.js -->
+
+        <!-- GSAP -->
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+        <!-- ScrollTrigger -->
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+        <!-- 自分のJavaScript -->
         <script src="js/main.js"></script>
+        <script src="js/footer.js"></script>
     </body>
 </html>

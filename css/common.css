@@ -92,3 +92,30 @@ h3 {
 section {
     padding-block: var(--section-space);
 }
+
+/* ヘッダー設定 */
+.header {
+    position: absolute;
+    inset: 0 0 auto 0;
+    width: 100%;
+    z-index: 100;
+    padding: 2rem 0;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__list {
+    display: flex;
+    gap: 3rem;
+}
+
+/* ヘッダースクロール後 */
+.header.is-scrolled {
+    position: fixed;
+    backdrop-filter: blur(16px);
+    background: rgba(255,255,255,.08);
+}
