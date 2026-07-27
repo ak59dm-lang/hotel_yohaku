@@ -1,22 +1,22 @@
 @charset "UTF-8";
 
-/* ==========================
-Hero
-========================== */
+/* ========================================
+   Hero
+======================================== */
 
+/* Hero本体 */
 .hero {
     position: relative;
-    width: 100%;
     height: 100vh;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    padding: 0;
+    overflow: hidden;
 }
 
-/* ==========================
-Hero Slider
-========================== */
-.hero__slider {
+/* ========================================
+   Hero Swiper
+======================================== */
+
+.hero__swiper {
     position: absolute;
     inset: 0;
     z-index: 1;
@@ -30,76 +30,205 @@ Hero Slider
 }
 
 .swiper-slide img {
+    display: block;
     width: 100%;
     height: 100%;
-
     object-fit: cover;
 }
 
-/* Hero Overlay */
+/* ========================================
+   Hero Overlay
+======================================== */
+
 .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.18);
-    z-index:2;
+    background: rgb(0 0 0 / 18%);
+    z-index: 2;
 }
 
-/* Hero Content */
+/* ========================================
+Hero Content
+======================================== */
+
 .hero__content {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 10;
-
-    width: min(1200px, 90%);
-    height: 100%;
-
-    margin: 0 auto;
-
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: center; /* ← 中央配置 */
+    align-items: center;
+    pointer-events: none;
 }
 
-/* Hero Typography */
-.hero__label {
-    color: #fff;
+/* ========================================
+Hero Copy
+======================================== */
 
-    font-size: clamp(2rem, 2vw, 2.6rem);
-
-    letter-spacing: 0.3em;
-
-    margin-bottom: 1rem;
-}
-.hero__typing {
-    color: #fff;
-
-    font-size: clamp(4rem, 5vw, 7rem);
-
-    font-family: var(--font-serif);
-
-    letter-spacing: 0.2em;
-}
-
-/* Hero Copy */
 .hero__copy {
-    margin-top: 8vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-s);
+
+    margin-bottom: var(--space-xl);
 }
 
-/* Hero Scroll */
+/* 「予定：」 */
+.hero__lead {
+    font-size: clamp(1.4rem, 1.2rem + 0.4vw, 1.8rem);
+    letter-spacing: 0.4em;
+    color: var(--color-base);
+}
+
+/* 「何もしない」 */
+.hero__title {
+    font-family: "Noto Serif JP", serif;
+    font-size: clamp(3.6rem, 2.8rem + 2vw, 6rem);
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--color-base);
+    text-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+}
+
+/* ========================================
+   Hero Scroll
+======================================== */
+
 .hero__scroll {
     position: absolute;
-
-    bottom: 4rem;
+    bottom: var(--space-l);
     left: 50%;
 
     transform: translateX(-50%);
 
-    color: #fff;
-
+    color: var(--color-base);
+    font-size: 1.2rem;
     letter-spacing: 0.3em;
 
-    font-size: 1.2rem;
-
     opacity: 0.8;
+}
+
+/* ========================================
+   Concept
+======================================== */
+
+/* Concept本体 */
+.concept {
+    background: var(--color-base);
+}
+
+/* レイアウト */
+.concept__inner {
+    max-width: 720px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+/* テキスト */
+.concept__txt {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+
+    margin-top: var(--space-xl);
+
+    line-height: 2.4;
+}
+
+/* ========================================
+Rooms
+======================================== */
+
+.rooms {
+    overflow: hidden;
+}
+
+.rooms__list {
+    display: grid;
+    gap: clamp(8rem, 10vw, 14rem);
+    margin-top: var(--space-xl);
+}
+
+/* .card:nth-child(even) {
+    margin-left: clamp(6rem, 10vw, 16rem);
+} */
+
+.rooms__btn {
+    margin-top: var(--space-xxl);
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .card:nth-child(even) {
+        margin-left: 0;
+    }
+
+    .rooms__list {
+        gap: var(--space-xxl);
+    }
+}
+
+/* ========================================
+Experience
+======================================== */
+
+.experience {
+    overflow: hidden;
+}
+
+.experience__visual {
+    margin-top: var(--space-xl);
+    overflow: hidden;
+    border-radius: var(--radius-l);
+}
+
+.experience__visual img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 1.6s ease;
+}
+
+.experience__visual:hover img {
+    transform: scale(1.02);
+}
+
+.experience__btn {
+    margin-top: var(--space-xl);
+    text-align: center;
+}
+
+/* ========================================
+   Dining
+======================================== */
+
+.dining {
+    overflow: hidden;
+}
+
+.dining__visual {
+    overflow: hidden;
+    border-radius: var(--radius-l);
+}
+
+.dining__visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    object-fit: cover;
+    transition: transform 1.2s ease;
+}
+
+.dining__visual:hover img {
+    transform: scale(1.02);
+}
+
+.dining__btn {
+    margin-top: var(--space-xl);
+    text-align: center;
 }

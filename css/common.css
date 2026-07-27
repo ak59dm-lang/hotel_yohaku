@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+/* ========================================
+Foundation
+======================================== */
+
 :root {
     /* Colors */
     --color-base: #f4f1ea;
@@ -46,7 +50,7 @@
     --space-xxl: 9.6rem;
 }
 
-/* フォント設定 */
+/* font */
 body {
     font-family: "Noto Sans JP", sans-serif;
     font-size: var(--font-body);
@@ -55,7 +59,7 @@ body {
     line-height: 1.8;
 }
 
-/* 見出し設定 */
+/* title */
 h1,
 h2,
 h3 {
@@ -63,59 +67,276 @@ h3 {
     font-weight: 500;
 }
 
-/* ロゴ設定 */
-.logo {
-    font-family: "Cormorant Garamond", serif;
-}
+/* ========================================
+   Button
+======================================== */
 
-/* ボタンルール */
-/* 通常時 */
-.button {
+/* normal */
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 22rem;
+    min-height: 5.6rem;
+    padding: 0 3.2rem;
     background: var(--color-sub);
     color: var(--color-base);
+    font-size: 1.4rem;
+    letter-spacing: 0.18em;
+    text-decoration: none;
     border-radius: 999px;
-    transition: var(--transition);
-}
-/* ホバー時 */
-.button:hover {
-    background: var(--color-accent);
-    color: var(--color-text);
+    transition:
+        background var(--transition),
+        transform var(--transition);
 }
 
-/* コンテナ設定 */
+/* hover */
+.btn:hover {
+    background: var(--color-accent);
+    color: var(--color-text);
+    transform: translateY(-2px);
+}
+
+/* ========================================
+Layout
+======================================== */
+
+/* container */
 .container {
     width: var(--content-width);
     margin-inline: auto;
 }
 
-/* セクション余白設定 */
+/* section padding */
 section {
     padding-block: var(--section-space);
 }
 
-/* ヘッダー設定 */
+/* ========================================
+Header
+======================================== */
+
+/* Header */
 .header {
     position: absolute;
-    inset: 0 0 auto 0;
+    inset: 0 0 auto;
     width: 100%;
-    z-index: 100;
-    padding: 2rem 0;
+    padding-block: var(--space-m);
+    z-index: var(--z-header);
 }
 
-.header__inner {
+/* Header Container */
+.header__container {
+    width: min(94%, 1440px);
+    margin-inline: auto;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-.header__list {
-    display: flex;
-    gap: 3rem;
+/* Brand */
+.header__brand {
+    flex-shrink: 0;
 }
 
-/* ヘッダースクロール後 */
-.header.is-scrolled {
+.header__logo {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.8rem, 2.2rem + 1vw, 4rem);
+    font-weight: 500;
+    line-height: 1;
+}
+
+.header__logo-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Navigation */
+.header__nav {
+    margin-left: auto;
+}
+
+.header__nav-list {
+    display: flex;
+    align-items: center;
+    gap: clamp(3rem, 2vw, 5rem);
+    list-style: none;
+}
+
+.header__nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 0.5rem;
+    transition: opacity var(--transition);
+
+    &:hover {
+        opacity: 0.65;
+    }
+}
+
+.header__nav-en {
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+}
+
+.header__nav-ja {
+    font-size: 1rem;
+    color: var(--color-main);
+}
+
+/* Reservation */
+.header__reserve {
+    margin-left: clamp(3rem, 4vw, 6rem);
+}
+
+.header__reserve-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18rem;
+    height: 5.4rem;
+    border: var(--border-light);
+    border-radius: 999px;
+    text-decoration: none;
+    color: inherit;
+    letter-spacing: 0.15em;
+    transition: var(--transition);
+
+    &:hover {
+        background: rgb(255 255 255 /0.18);
+    }
+}
+
+/* ========================================
+Hamburger
+======================================== */
+.header__menu-btn {
+    display: none;
+    width: 4.8rem;
+    height: 4.8rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: calc(var(--z-drawer) + 1);
+}
+
+.header__menu-line {
+    display: block;
+    width: 2.8rem;
+    height: 1px;
+    margin: 0.7rem auto;
+    background: currentColor;
+    transition: var(--transition);
+}
+
+/* ========================================
+Drawer
+======================================== */
+
+.header__drawer {
     position: fixed;
-    backdrop-filter: blur(16px);
-    background: rgba(255,255,255,.08);
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(244, 241, 234, 0.96);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: var(--z-drawer);
+}
+
+.header__drawer.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.drawer__nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    list-style: none;
+}
+
+.drawer__nav-list a {
+    color: inherit;
+    text-decoration: none;
+    letter-spacing: 0.15em;
+}
+
+.drawer__reserve {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 18rem;
+    height: 5rem;
+    border: var(--border-light);
+    border-radius: 999px;
+}
+
+/* ========================================
+Tablet / Mobile
+======================================== */
+
+@media (max-width: 1024px) {
+    .header__nav,
+    .header__reserve {
+        display: none;
+    }
+
+    .header__menu-btn {
+        display: block;
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding-block: 2rem;
+    }
+
+    .header__logo {
+        font-size: clamp(2.6rem, 5vw, 3.4rem);
+    }
+}
+
+/* ========================================
+Card
+======================================== */
+
+.card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
+
+.card__img {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-l);
+    aspect-ratio: 4 / 3;
+}
+
+.card__img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 01.6s ease;
+}
+
+.card:hover .card__img img {
+    transform: scale(1.02);
+}
+
+.card__title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.4rem, 2rem + 0.6vw, 3.2rem);
+    font-weight: 500;
+    text-align: center;
 }
