@@ -17,7 +17,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@300;400;500;600&display=swap"
             rel="stylesheet"
         />
         <!-- Swiper CSS -->
@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/common.css" />
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/footer.css" />
     </head>
     <body>
         <!-- main -->
@@ -176,14 +177,6 @@
                                 何かをするためではなく、<br />
                                 何もしないために訪れるホテル。
                             </p>
-                            <p>
-                                時間に追われる日々から少し離れ、<br />
-                                水辺の静けさと季節の移ろいに身を委ねる。
-                            </p>
-                            <p>
-                                YOHAKUは、<br />
-                                「予定を空ける」という贅沢を お届けします。
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -195,65 +188,73 @@
             ========================== -->
             <section class="rooms">
                 <div class="container">
-                    <div class="sec-head">
-                        <p class="sec-head__en">ROOMS</p>
-                    </div>
-                    <div class="rooms__list">
-                        <article class="card">
-                            <figure class="card__img">
-                                <img src="images/libraryroom_swiper.webp" alt="Library Room" />
-                            </figure>
-                            <h3 class="card__title">Library Room</h3>
-                        </article>
-                        <article class="card">
-                            <figure class="card__img">
-                                <img src="images/saunaroom2.webp" alt="Sauna Suite" />
-                            </figure>
-                            <h3 class="card__title">Sauna Suite</h3>
-                        </article>
-                        <article class="card">
-                            <figure class="card__img">
-                                <img src="images/retreatroom_swiper.webp" alt="Retreat Room" />
-                            </figure>
-                            <h3 class="card__title">Retreat Room</h3>
-                        </article>
-                    </div>
-                    <div class="rooms__btn">
-                        <a href="pages/rooms.html" class="btn"> View Rooms </a>
-                    </div>
+                    <p class="sec-head__en">ROOMS</p>
+
+                    <a href="pages/rooms.html" class="top-link">
+                        <figure class="top-link__visual">
+                            <img src="images/libraryroom_swiper.webp" alt="Library Room" />
+                        </figure>
+                        <p class="top-link__view">View Rooms →</p>
+                    </a>
                 </div>
             </section>
+
             <!-- ==========================
             Experience
             ========================== -->
             <section class="experience">
                 <div class="container">
-                    <div class="sec-head">
-                        <p class="sec-head__en">EXPERIENCE</p>
-                    </div>
-
-                    <div class="experience__visual">
-                        <img src="images/freespace3.webp" alt="YOHAKUで過ごす時間" />
-                    </div>
-
-                    <div class="experience__btn">
-                        <a href="pages/experience.html" class="btn"> Explore </a>
-                    </div>
+                    <p class="sec-head__en">EXPERIENCE</p>
+                    <a href="pages/dining.html" class="top-link">
+                        <figure class="top-link__visual">
+                            <img src="images/freespace3.webp" alt="lounge" />
+                        </figure>
+                        <p class="top-link__view">View Dining →</p>
+                    </a>
                 </div>
             </section>
+
             <!-- ==========================
             Dining
             ========================== -->
             <section class="dining">
                 <div class="container">
-                    <div class="sec-head">
-                        <p class="sec-head__en">DINING</p>
-                    </div>
-                    <div class="dining__visual">
-                        <img src="images/dinner.webp" alt="北海道の食を味わう" />
-                    </div>
-                    <div class="dining__btn">
-                        <a href="pages/dining.html" class="btn"> View Dining </a>
+                    <p class="sec-head__en">DINING</p>
+                    <a href="pages/dining.html" class="top-link">
+                        <figure class="top-link__visual">
+                            <img src="images/dinner.webp" alt="Dining" />
+                        </figure>
+                        <p class="top-link__view">View Dining →</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- ==========================
+            Access
+            ========================== -->
+            <section class="access">
+                <div class="container">
+                    <p class="sec-head__en">ACCESS</p>
+                    <a href="pages/access.html" class="top-link">
+                        <figure class="top-link__visual">
+                            <img src="images/TOP_access.webp" alt="Access" />
+                        </figure>
+                        <p class="top-link__view">View Access →</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- ==========================
+            Reservation
+            ========================== -->
+            <section class="reservation">
+                <div class="container">
+                    <div class="reservation__inner">
+                        <div class="sec-head">
+                            <p class="sec-head__en">RESERVATION</p>
+                        </div>
+
+                        <a href="pages/reservation.html" class="reservation__btn"> Reserve → </a>
                     </div>
                 </div>
             </section>
@@ -261,14 +262,26 @@
             <!-- /.main -->
         </main>
         <!-- Footer -->
+        <!-- ========================================
+        Footer
+        ======================================== -->
         <footer class="footer">
-            <div class="footer__sky"></div>
-            <div class="footer__sun"></div>
-            <div class="footer__reflection"></div>
-            <div class="footer__stars"></div>
-            <div class="footer__content">
-                <h2 class="footer__logo">YOHAKU</h2>
-                <small> ©2026 YOHAKU </small>
+            <div class="footer__sticky">
+                <div class="footer__sky"></div>
+
+                <div class="footer__stars" id="footerStars"></div>
+
+                <div class="footer__reflection"></div>
+
+                <div class="footer__content" id="footerContent">
+                <small class="footer__copy">
+                ©2026<br>
+                Retreat Hotel
+                </small>
+                <p class="footer__logo">
+                YOHAKU
+                </p>
+                </div>
             </div>
         </footer>
         <!-- /.footer -->

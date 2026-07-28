@@ -12,6 +12,13 @@ Foundation
     --color-accent: #aebcc6;
     --color-text: #31312f;
 
+    /* ★ フッター用変数 ★ */
+    --dawn-bg: #f5f3ef; /* 朝：アイボリー */
+    --dusk-bg: #b8b2aa; /* 夕：ウォームグレー */
+    --night-bg: #222b32; /* 夜：スレートネイビー */
+    --text-light: #4a5560; /* 昼用の文字色 */
+    --text-dark: #e6e9eb; /* 夜用の文字色 */
+
     /* font */
     --font-title: clamp(2.4rem, 1.8rem + 1.5vw, 4rem);
     --font-subtitle: clamp(1.6rem, 1.2rem + 0.8vw, 2.2rem);
@@ -52,7 +59,7 @@ Foundation
 
 /* font */
 body {
-    font-family: "Noto Sans JP", sans-serif;
+    font-family: "Noto Serif JP", serif;
     font-size: var(--font-body);
     background: var(--color-base);
     color: var(--color-text);
@@ -65,6 +72,16 @@ h2,
 h3 {
     font-family: "Noto Serif JP", serif;
     font-weight: 500;
+}
+
+@media (max-width:768px){
+
+    :root{
+        --section-space:clamp(4rem,8vw,6rem);
+        --space-xl:4rem;
+        --space-xxl:6rem;
+    }
+
 }
 
 /* ========================================
@@ -178,7 +195,7 @@ Header
 
 .header__nav-en {
     font-size: 1.1rem;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.28em;
 }
 
 .header__nav-ja {
@@ -302,6 +319,33 @@ Tablet / Mobile
     .header__logo {
         font-size: clamp(2.6rem, 5vw, 3.4rem);
     }
+}
+
+/* ========================================
+   Section Heading
+======================================== */
+
+.sec-head {
+    text-align: center;
+}
+
+.sec-head__en {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.8rem, 1.5rem + 0.5vw, 2.4rem);
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--color-main);
+}
+
+.sec-head__ja {
+    margin-top: var(--space-s);
+
+    font-family: "Noto Serif JP", serif;
+    font-size: clamp(2.8rem, 2.2rem + 1vw, 4rem);
+    font-weight: 500;
+    line-height: 1.8;
+    letter-spacing: 0.08em;
 }
 
 /* ========================================
