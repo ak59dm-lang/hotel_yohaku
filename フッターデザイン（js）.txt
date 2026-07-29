@@ -1,0 +1,81 @@
+フッターデザイン（js） 
+
+
+        <!-- ========================================
+        JavaScript（制御ロジック）
+        ======================================== -->
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const wrapper = document.getElementById("footerWrapper");
+                const sticky = document.getElementById("footerSticky");
+                const starField = document.getElementById("starField");
+                const content = document.getElementById("footerContent");
+
+                if (!wrapper || !sticky || !starField || !content) return;
+
+                // 1. 星々の自動生成
+                function createStars() {
+                    starField.innerHTML = "";
+                    const starCount = 50;
+                    for (let i = 0; i < starCount; i++) {
+                        const star = document.createElement("div");
+                        const size = Math.random() * 2 + 1;
+
+                        star.style.position = "absolute";
+                        star.style.top = `${Math.random() * 65}%`;
+                        star.style.left = `${Math.random() * 100}%`;
+                        star.style.width = `${size}px`;
+                        star.style.height = `${size}px`;
+                        star.style.backgroundColor = "#FFFFFF";
+                        star.style.borderRadius = "50%";
+                        star.style.opacity = Math.random() * 0.7 + 0.3;
+                        star.style.boxShadow = "0 0 4px rgba(255,255,255,0.8)";
+                        star.style.animation = `starBlink ${Math.random() * 3 + 2}s infinite ease-in-out`;
+
+                        starField.appendChild(star);
+                    }
+                }
+                createStars();
+
+                // 2. レスポンシブ対応のスクロール監視処理
+                window.addEventListener("scroll", () => {
+                    const isPC = window.innerWidth >= 1025;
+                    let progress = 0;
+
+                    if (isPC) {
+                        // PC版：ページ全体のスクロール進捗（0.0 〜 1.0）
+                        const scrollHeight =
+                            document.documentElement.scrollHeight - window.innerHeight;
+                        const currentScroll = window.scrollY;
+                        progress =
+                            scrollHeight > 0
+                                ? Math.min(Math.max(currentScroll / scrollHeight, 0), 1)
+                                : 0;
+                    } else {
+                        // スマホ版：フッターエリアに入ってからの進捗（0.0 〜 1.0）
+                        const rect = wrapper.getBoundingClientRect();
+                        const totalScrollable = rect.height - window.innerHeight;
+                        const currentScroll = -rect.top;
+                        progress =
+                            totalScrollable > 0
+                                ? Math.min(Math.max(currentScroll / totalScrollable, 0), 1)
+                                : 0;
+                    }
+
+                    // 朝・夕・夜の切り替え
+                    if (progress < 0.35) {
+                        sticky.style.backgroundColor = "var(--dawn-bg)";
+                        content.style.color = "var(--text-light)";
+                        starField.style.opacity = "0";
+                    } else if (progress >= 0.35 && progress < 0.75) {
+                        sticky.style.backgroundColor = "var(--dusk-bg)";
+                        content.style.color = "var(--text-light)";
+                        starField.style.opacity = "0.2";
+                    } else {
+                        sticky.style.backgroundColor = "var(--night-bg)";
+                        content.style.color = "var(--text-dark)";
+                        starField.style.opacity = "1";
+                    }
+                });
+            });
+        </script>

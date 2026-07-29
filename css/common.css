@@ -12,13 +12,6 @@ Foundation
     --color-accent: #aebcc6;
     --color-text: #31312f;
 
-    /* ★ フッター用変数 ★ */
-    --dawn-bg: #f5f3ef; /* 朝：アイボリー */
-    --dusk-bg: #b8b2aa; /* 夕：ウォームグレー */
-    --night-bg: #222b32; /* 夜：スレートネイビー */
-    --text-light: #4a5560; /* 昼用の文字色 */
-    --text-dark: #e6e9eb; /* 夜用の文字色 */
-
     /* font */
     --font-title: clamp(2.4rem, 1.8rem + 1.5vw, 4rem);
     --font-subtitle: clamp(1.6rem, 1.2rem + 0.8vw, 2.2rem);
@@ -201,6 +194,7 @@ Header
 .header__nav-ja {
     font-size: 1rem;
     color: var(--color-main);
+    white-space: nowrap;
 }
 
 /* Reservation */

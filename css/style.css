@@ -78,17 +78,17 @@ Hero Copy
 
 /* 「予定：」 */
 .hero__lead {
-    font-size:clamp(1.1rem,1rem + .2vw,1.4rem);
-    letter-spacing:.45em;
+    font-size: clamp(1.1rem, 1rem + 0.2vw, 1.4rem);
+    letter-spacing: 0.45em;
     color: var(--color-base);
 }
 
 /* 「何もしない」 */
 .hero__title {
     font-family: "Noto Serif JP", serif;
-    font-size:clamp(3rem,2.6rem + 1.5vw,5rem);
+    font-size: clamp(3rem, 2.6rem + 1.5vw, 5rem);
     font-weight: 500;
-    line-height:1.2;
+    line-height: 1.2;
     color: var(--color-base);
     text-shadow: 0 4px 16px rgb(0 0 0 / 20%);
 }
@@ -214,10 +214,6 @@ Hero Copy
     width: 76%;
 }
 
-.reservation {
-    margin-top: calc(var(--space-xxl) * 1.5);
-}
-
 /* ========================================
    Rooms
 ======================================== */
@@ -276,7 +272,7 @@ Hero Copy
 
     padding-inline: 3rem;
 
-    border: 1px solid rgba(49, 49, 47, .18);
+    border: 1px solid rgba(49, 49, 47, 0.18);
     border-radius: 999px;
 
     color: var(--color-text);
@@ -284,16 +280,437 @@ Hero Copy
 
     font-family: "Cormorant Garamond", serif;
     font-size: 2rem;
-    letter-spacing: .08em;
+    letter-spacing: 0.08em;
 
     transition:
-        background .4s,
-        border-color .4s,
-        transform .4s;
+        background 0.4s,
+        border-color 0.4s,
+        transform 0.4s;
 }
 
 .reservation__btn:hover {
-    background: rgba(49, 49, 47, .05);
-    border-color: rgba(49, 49, 47, .35);
+    background: rgba(49, 49, 47, 0.05);
+    border-color: rgba(49, 49, 47, 0.35);
     transform: translateY(-2px);
 }
+
+/* ==========================================================================
+   Page: Experience (過ごし方ページ専用スタイル)
+   ========================================================================== */
+
+.experience-section {
+    padding-bottom: var(--space-xxl, 100px);
+}
+
+/* セクションタイトル */
+.section-header {
+    margin-bottom: var(--space-l, 32px);
+}
+
+.section-header__num {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.section-header__title {
+    font-family: "Noto Serif JP", serif;
+    font-size: clamp(1.5rem, 1.3rem + 0.5vw, 2.2rem);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--color-main);
+}
+
+.section-header__subtitle {
+    font-size: 0.85rem;
+    color: var(--color-sub);
+    margin-top: 6px;
+    letter-spacing: 0.05em;
+}
+
+.experience-desc {
+    font-size: 0.95rem;
+    line-height: 2.2;
+    color: var(--color-main);
+    margin-top: var(--space-l, 32px);
+    max-width: 720px;
+}
+
+/* --- 01. 湖のメインスライダー --- */
+.lake-slider-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 520px;
+    overflow: hidden;
+    border-radius: var(--radius-l, 8px);
+    background-color: var(--color-sub);
+}
+
+.lake-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.lake-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 2.5s ease-in-out;
+}
+
+.lake-slide.is-active {
+    opacity: 1;
+}
+
+.lake-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lake-slide__caption {
+    position: absolute;
+    bottom: 20px;
+    right: 24px;
+    background-color: rgba(49, 49, 47, 0.75);
+    color: var(--color-base);
+    font-size: 0.8rem;
+    padding: 6px 16px;
+    letter-spacing: 0.1em;
+    backdrop-filter: blur(4px);
+    border-radius: 2px;
+}
+
+/* --- 02 & 03. 4列ギャラリー (館内・温泉・サウナ) --- */
+.photo-grid--4col {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-m, 20px);
+}
+
+.photo-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.photo-item .popover-trigger {
+    aspect-ratio: 4 / 3;
+    overflow: hidden; /* 画像が角丸からはみ出すのを防ぐ */
+    border-radius: var(--radius-m, 8px);
+    background-color: transparent;
+    display: block;
+    width: 100%;
+
+    /* ↓↓↓ 追加・修正ポイント ↓↓↓ */
+    border: none; /* button等のデフォルト枠線を完全に消去 */
+    outline: none; /* クリック時・フォーカス時の枠線を消去 */
+    padding: 0; /* 内側の余白をゼロにする */
+    cursor: pointer; /* ポインター表示 */
+    isolation: isolate; /* 角丸トリミングのチラつき・枠チラつき防止 */
+    transform: translateZ(0); /* GPUアクセラレーションで角丸の境界を綺麗に処理 */
+}
+
+/* 画像側にも角丸のチラつき防止を追加 */
+.photo-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    will-change: transform; /* 拡大アニメーションを滑らかにする */
+}
+
+.photo-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ← 枠いっぱいに綺麗に画像を切り抜いてフィットさせる */
+    transition: transform 0.6s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.04);
+}
+
+.photo-item__caption {
+    font-size: 0.78rem;
+    color: var(--color-sub);
+    margin-top: 12px;
+    letter-spacing: 0.05em;
+}
+
+/* --- 04. 食事カード  --- */
+.dining-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-l, 32px);
+}
+
+.dining-card {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(49, 49, 47, 0.1);
+    border-radius: var(--radius-m, 8px);
+    padding: var(--space-l, 28px);
+}
+
+/* 画像を囲むエリア */
+.dining-card__image,
+.dining-card__image .popover-trigger,
+.dining-card__image button {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: var(--radius-s, 8px);
+    margin-bottom: var(--space-m, 20px);
+    
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    cursor: pointer;
+    
+    isolation: isolate;
+    transform: translateZ(0);
+}
+
+.dining-card__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none !important;
+    border-radius: inherit;
+    transition: transform 0.6s ease;
+}
+
+.dining-card__image:hover img,
+.dining-card__image .popover-trigger:hover img {
+    transform: scale(1.04);
+}
+
+/* タイトル（下部にゆったりとした余白を確保） */
+.dining-card__title {
+    font-family: "Noto Serif JP", serif;
+    font-size: clamp(1.1rem, 1rem + 0.3vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    color: var(--color-main);
+    
+    /* ↓ 2カラム時でも改行や説明文との詰まりを防ぐ余白設定 */
+    margin-top: 0;
+    margin-bottom: var(--space-m, 20px); /* 12px → 20px に広げてしっかり確保 */
+}
+
+/* 説明文（文字サイズを小さく、可読性を維持） */
+.dining-card__desc {
+    font-size: 0.82rem; /* 0.88rem → 0.82rem に少し小さく */
+    line-height: 1.95;
+    color: var(--color-main);
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+}
+
+/* タグ（文字サイズとパディングを少し控えめに） */
+.dining-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    margin-top: auto; /* カード最下部にタグを揃える設定 */
+    padding: 0;
+}
+
+.dining-card__tags li {
+    font-size: 0.7rem; /* 0.75rem → 0.7rem に少し小さく */
+    background-color: var(--color-base);
+    color: var(--color-accent);
+    padding: 3px 10px; /* パディングも少し抑えてすっきり */
+    border: 1px solid var(--color-accent);
+    border-radius: 999px;
+    letter-spacing: 0.03em;
+}
+
+/* --- 05. 雨の日サービス (修正版) --- */
+.rainy-service {
+    background-color: rgba(126, 149, 168, 0.08); /* 青銀色のうっすらとした背景 */
+    border-left: 4px solid var(--color-accent);
+    padding: var(--space-xl, 40px);
+    border-radius: 0 var(--radius-m, 4px) var(--radius-m, 4px) 0;
+}
+
+.rainy-service__desc {
+    font-size: 0.95rem;
+    line-height: 2.1;
+    margin-bottom: 32px;
+    color: var(--color-main);
+}
+
+.rainy-service__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0;
+}
+
+.rainy-service__list li {
+    display: flex;
+    flex-direction: column;
+}
+
+.rainy-service__list strong {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-main);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.rainy-service__list strong::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+}
+
+.rainy-service__list span {
+    font-size: 0.88rem;
+    color: var(--color-sub);
+    padding-left: 18px;
+    line-height: 1.8;
+}
+
+/* --- 雨の日の画像ギャラリー（Flex） --- */
+.rainy-service__images {
+    display: flex;
+    gap: var(--space-m, 20px);
+    margin-bottom: var(--space-l, 32px);
+}
+
+.rainy-image-item {
+    flex: 1; /* 3枚を均等な幅にする */
+    min-width: 0; /* フレックスアイテムのはみ出し防止 */
+}
+
+.rainy-image-item .popover-trigger {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-m, 8px);
+    background-color: transparent;
+    display: block;
+    width: 100%;
+
+    /* ↓↓↓ 余計な枠線・フォーカス線・ちらつきの解消を追加 ↓↓↓ */
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+    isolation: isolate;
+    transform: translateZ(0);
+}
+
+.rainy-image-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    will-change: transform;
+}
+
+.rainy-image-item:hover img {
+    transform: scale(1.04);
+}
+
+/* スマホ対応（画面が狭いときは縦並びまたは2列にする） */
+@media (max-width: 768px) {
+    .rainy-service__images {
+        flex-direction: column; /* スマホでは縦に並べる場合 */
+        gap: 12px;
+    }
+}
+
+/* スライダー表示制御 */
+.lake-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.lake-slide.is-active {
+    opacity: 1;
+}
+
+/* --- 下部コンバージョン (CTA) --- */
+.experience-cta {
+    background-color: rgba(49, 49, 47, 0.03);
+    padding: var(--space-xxl, 80px) var(--space-m, 20px);
+    text-align: center;
+    margin-bottom: var(--space-xl, 60px);
+    border-radius: var(--radius-l, 8px);
+}
+
+.experience-cta__title {
+    font-family: "Noto Serif JP", serif;
+    font-size: clamp(1.3rem, 1.1rem + 0.4vw, 1.8rem);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+}
+
+.experience-cta__text {
+    font-size: 0.9rem;
+    color: var(--color-sub);
+    margin-bottom: 32px;
+}
+
+/* --- スマホ対応 (レスポンシブ) --- */
+@media (max-width: 768px) {
+    .photo-grid--4col {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .dining-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .rainy-service {
+        padding: 24px 20px;
+    }
+
+    .rainy-service__desc {
+        font-size: 0.88rem;
+    }
+
+    .rainy-service__list strong {
+        font-size: 0.95rem;
+    }
+
+    .lake-slide__caption {
+        font-size: 0.72rem;
+        padding: 4px 10px;
+        bottom: 12px;
+        right: 12px;
+    }
+}
+
+/* ==========================================
+experience ここまで
+========================================== */

@@ -57,7 +57,7 @@
                                 <li>
                                     <a href="index.html" class="header__nav-link">
                                         <span class="header__nav-en">CONCEPT</span>
-                                        <span class="header__nav-ja"> 余白という過ごし方 </span>
+                                        <span class="header__nav-ja"> 余白とは </span>
                                     </a>
                                 </li>
 
@@ -262,25 +262,33 @@
             <!-- /.main -->
         </main>
         <!-- Footer -->
-        <!-- ========================================
+        <!-- ==========================
         Footer
-        ======================================== -->
-        <footer class="footer">
-            <div class="footer__sticky">
-                <div class="footer__sky"></div>
+        ========================== -->
 
-                <div class="footer__stars" id="footerStars"></div>
+        <!-- スクロール駆動フッター（FIX表示） -->
+        <footer id="footerWrapper" class="footer-wrapper">
+            <div id="footerSticky" class="footer-sticky">
+                <!-- 水面反射エフェクト -->
+                <div class="lake-reflection"></div>
 
-                <div class="footer__reflection"></div>
+                <!-- 星々が描画されるレイヤー -->
+                <div id="starField" class="star-field"></div>
 
-                <div class="footer__content" id="footerContent">
-                <small class="footer__copy">
-                ©2026<br>
-                Retreat Hotel
-                </small>
-                <p class="footer__logo">
-                YOHAKU
-                </p>
+                <!-- フッターコンテンツ（コンパクト版） -->
+                <div id="footerContent" class="footer-content">
+                    <!-- ロゴアイコン / シンボル -->
+                    <div class="footer-brand">
+                        <a href="#top" class="footer-logo">YOHAKU</a>
+                    </div>
+
+                    <!-- 予約ボタン -->
+                    <div class="footer-action">
+                        <a href="#reservation" class="footer-btn">RESERVATION</a>
+                    </div>
+
+                    <!-- コピーライト -->
+                    <p class="copyright">© YOHAKU All Rights Reserved.</p>
                 </div>
             </div>
         </footer>

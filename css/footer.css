@@ -1,134 +1,130 @@
 @charset "UTF-8";
 
-/* 背景 */
-.footer{
-    position:relative;
-    height:120vh;
-    overflow:hidden;
-    background:var(--dawn-bg);
-    transition:background-color 1.4s ease;
+/* ----------------------------------
+   スクロール駆動フッター（FIX表示）
+---------------------------------- */
+
+#footerWrapper,
+.footer-wrapper {
+    position: relative;
+    width: 100%;
 }
 
-/* 空 */
-.footer__sky {
+/* 画面下部に完全にFIX固定（高さ: 画面の約16%） */
+#footerSticky,
+.footer-sticky {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 16vh; /* 画面の15%〜18%の範囲に設定 */
+    min-height: 100px; /* スマホ等で小さくなりすぎないための最小値 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    overflow: hidden;
+    transition: background-color 0.8s ease, color 0.8s ease;
+    background-color: var(--color-base);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* フッターが被らないよう、本文最下部に余白を動的確保 */
+body {
+    padding-bottom: 16vh;
+}
+
+/* 背景演出パーツ */
+.lake-reflection {
     position: absolute;
-    inset: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.12), transparent);
+    pointer-events: none;
+    z-index: 1;
 }
 
-/* 湖 */
-.footer__reflection{
-    position:absolute;
-    left:0;
-    bottom:0;
-    width:100%;
-    height:28%;
-    background:linear-gradient(
-        to top,
-        rgba(255,255,255,.08),
-        transparent
-    );
-    backdrop-filter:blur(12px);
-    pointer-events:none;
+.star-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    z-index: 2;
 }
 
-/* 星 */
-.footer__stars{
-    position:absolute;
-    inset:0;
-    opacity:0;
-    transition:opacity 2s ease;
-    pointer-events:none;
+/* コンテンツ レイアウト配置 */
+.footer-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: color 0.8s ease;
+    color: var(--color-text);
 }
 
-
-/* ========================================
-Footer Content
-======================================== */
-
-.footer__content{
-    position:relative;
-    z-index:5;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    color:#fff;
+/* ロゴアイコン部分 */
+.footer-brand .footer-logo {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: inherit;
+    text-decoration: none;
 }
 
-.footer__copy{
-    font-size:1rem;
-    letter-spacing:.18em;
-    line-height:1.8;
-    opacity:.6;
+/* 予約ボタン */
+.footer-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: inherit;
+    text-decoration: none;
+    border: 1px solid currentColor;
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
-.footer__logo{
-    margin-top:.8rem;
-    font-family:"Cormorant Garamond",serif;
-    font-size:clamp(3rem,5vw,5rem);
-    font-weight:500;
-    letter-spacing:.12em;
-    line-height:1;
+.footer-btn:hover {
+    opacity: 0.7;
 }
 
-
-/* ========================================
-PC
-======================================== */
-
-@media (min-width:1025px){
-    body{
-        padding-bottom:120px;
-    }
-    .footer{
-        height:120px;
-    }
-    .footer__sticky{
-        position:fixed;
-        left:0;
-        bottom:0;
-        width:100%;
-        height:120px;
-        overflow:hidden;
-    }
-    .footer__content{
-        gap:.4rem;
-    }
+/* コピーライト */
+.copyright {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+    margin: 0;
 }
 
-
-/* ========================================
-Mobile
-======================================== */
-
-@media (max-width:768px){
-    .footer{
-        height:90vh;
-    }
-    .footer__content{
-        padding-inline:2rem;
-    }
-    .footer__logo{
-        font-size:clamp(2.8rem,10vw,4rem);
-    }
-}
-
-
-/* ========================================
-starBlink
-======================================== */
-@keyframes starBlink{
-
-    0%,100%{
-        opacity:.3;
-        transform:scale(.8);
+/* スマホ表示時は縦並びでコンパクトに収める */
+@media (max-width: 600px) {
+    #footerSticky,
+    .footer-sticky {
+        height: 18vh; /* スマホ時は少し広めに確保 */
     }
 
-    50%{
-        opacity:1;
-        transform:scale(1.2);
+    body {
+        padding-bottom: 18vh;
     }
 
+    .footer-content {
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .copyright {
+        font-size: 0.6rem;
+    }
 }
