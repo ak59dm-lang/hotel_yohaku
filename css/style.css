@@ -1,10 +1,94 @@
 @charset "UTF-8";
 
-/* ========================================
-   Hero
-======================================== */
+/* ==========================================================
+   1. 共通パーツ & コンポーネント (Common / Components)
+   ========================================================== */
 
-/* Hero本体 */
+/* --- セクション共通ヘッダー --- */
+.section-header {
+    margin-bottom: var(--space-l, 2.5rem);
+}
+
+.section-header__num {
+    display: block;
+    font-family: "Cinzel", "Cormorant Garamond", serif;
+    font-size: 0.85rem;
+    color: #7e95a8;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.2rem;
+}
+
+.section-header__en {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: #8c96a0;
+    margin-bottom: 0.8rem;
+}
+
+.section-header__jp,
+.section-header__title {
+    font-family: "Noto Serif JP", serif;
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--color-main, #4a5560);
+}
+
+.section-header__subtitle {
+    font-size: 0.85rem;
+    color: var(--color-sub, #8c96a0);
+    margin-top: 6px;
+    letter-spacing: 0.05em;
+}
+
+/* --- セクション説明文・共通テキスト --- */
+.section-desc,
+.rooms__desc {
+    margin-top: 1.5rem;
+}
+
+.section-text,
+.rooms__text {
+    font-size: 0.95rem;
+    line-height: 2.2;
+    color: var(--color-main, #4a5560);
+    margin-bottom: 1.5rem;
+}
+
+/* --- 矢印付きリンクボタン（共通） --- */
+.link-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--color-main, #4a5560);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid rgba(74, 85, 96, 0.3);
+    padding-bottom: 0.3rem;
+    transition:
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.link-more:hover {
+    border-color: #7e95a8;
+    color: #7e95a8;
+}
+
+.link-more .arrow {
+    transition: transform 0.3s ease;
+}
+
+.link-more:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* ==========================================================
+   2. メインビジュアル (Hero Section)
+   ========================================================== */
+
 .hero {
     position: relative;
     height: 100vh;
@@ -12,334 +96,306 @@
     overflow: hidden;
 }
 
-/* ========================================
-   Hero Swiper
-======================================== */
-
+/* スライダー本体 */
 .hero__swiper {
     position: absolute;
     inset: 0;
     z-index: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
 }
 
 .heroSwiper,
-.swiper-wrapper,
-.swiper-slide {
+.heroSwiper .swiper-wrapper,
+.heroSwiper .swiper-slide {
     width: 100%;
     height: 100%;
 }
 
-.swiper-slide img {
+.heroSwiper .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* ========================================
-   Hero Overlay
-======================================== */
-
+/* オーバーレイ（暗がり） */
 .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgb(0 0 0 / 18%);
+    background: rgb(0 0 0 / 22%);
     z-index: 2;
 }
 
-/* ========================================
-Hero Content
-======================================== */
-
+/* キャッチコピー表示領域 */
 .hero__content {
     position: absolute;
     inset: 0;
     z-index: 10;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* ← 中央配置 */
+    justify-content: center;
     align-items: center;
     pointer-events: none;
 }
-
-/* ========================================
-Hero Copy
-======================================== */
 
 .hero__copy {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-s);
-
-    margin-bottom: var(--space-xl);
+    gap: var(--space-s, 1rem);
+    margin-bottom: var(--space-xl, 2rem);
 }
 
-/* 「予定：」 */
 .hero__lead {
     font-size: clamp(1.1rem, 1rem + 0.2vw, 1.4rem);
     letter-spacing: 0.45em;
-    color: var(--color-base);
+    color: var(--color-base, #ffffff);
 }
 
-/* 「何もしない」 */
 .hero__title {
     font-family: "Noto Serif JP", serif;
     font-size: clamp(3rem, 2.6rem + 1.5vw, 5rem);
     font-weight: 500;
     line-height: 1.2;
-    color: var(--color-base);
+    color: var(--color-base, #ffffff);
     text-shadow: 0 4px 16px rgb(0 0 0 / 20%);
 }
 
-/* ========================================
-   Hero Scroll
-======================================== */
-
+/* スクロール誘導 (SCROLL) */
 .hero__scroll {
     position: absolute;
-    bottom: var(--space-l);
+    bottom: 2rem;
     left: 50%;
-
     transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+}
 
-    color: var(--color-base);
-    font-size: 1.2rem;
+.hero__scroll span {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 0.8rem;
     letter-spacing: 0.3em;
-
-    opacity: 0.8;
+    color: var(--color-base, #ffffff);
 }
 
-/* ========================================
-   Concept
-======================================== */
-
-/* Concept本体 */
-.concept {
-    background: var(--color-base);
+.scroll-line {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
-/* レイアウト */
+.scroll-line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    animation: scrollAnimation 2s infinite ease-in-out;
+}
+
+@keyframes scrollAnimation {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+/* ==========================================================
+   3. トップページ・レイアウト＆背景設定 (Top Layout & Themes)
+   ========================================================== */
+
+/* 上下余白の統一（テンポ感の創出） */
+.concept,
+.rooms,
+.experience,
+.dining,
+.top-special {
+    padding-block: clamp(4.5rem, 7vw, 7.5rem);
+}
+
+/* コンテンツ横幅の共通制限 */
+.rooms__inner,
+.experience__inner,
+.dining__inner,
+.access__inner {
+    max-width: 1080px;
+    margin-inline: auto;
+    padding-inline: 2rem;
+}
+
+/* ==========================================================
+   4. トップページ・各セクション (Top Page Sections)
+   ========================================================== */
+
+/* --- Concept --- */
 .concept__inner {
     max-width: 720px;
     margin-inline: auto;
     text-align: center;
 }
 
-/* テキスト */
 .concept__txt {
     display: flex;
     flex-direction: column;
-    gap: var(--space-l);
-
-    margin-top: var(--space-xl);
-
+    gap: var(--space-l, 1.5rem);
+    margin-top: var(--space-xl, 2rem);
     font-family: "Noto Serif JP", serif;
-    font-size: clamp(1.7rem, 1.5rem + 0.3vw, 2rem);
+    font-size: clamp(1.5rem, 1.3rem + 0.3vw, 1.8rem);
     line-height: 2.6;
     letter-spacing: 0.08em;
-    color: var(--color-main);
+    color: var(--color-main, #4a5560);
 }
 
-/* ========================================
-   Top Link
-======================================== */
-
-.top-link {
-    display: block;
-    color: inherit;
-    text-decoration: none;
-}
-
-.top-link__visual {
-    overflow: hidden;
-    border-radius: var(--radius-l);
-}
-
-.top-link__visual img {
-    display: block;
+/* --- 画像表示エリア（Rooms, Experience, Dining 共通） --- */
+.rooms__img-wrap,
+.experience__img-wrap,
+.dining__img-wrap {
     width: 100%;
     aspect-ratio: 16 / 9;
-    object-fit: cover;
-    transition: transform 2.8s ease;
+    overflow: hidden;
+    border-radius: var(--radius-l, 8px);
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-.top-link:hover .top-link__visual img {
-    transform: scale(1.015);
-}
-
-.top-link__view {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-
-    margin-top: var(--space-m);
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: clamp(2rem, 1.8rem + 0.3vw, 2.4rem);
-
-    letter-spacing: 0.08em;
-}
-
-.top-link__view::after {
-    content: "→";
-    transition: transform 0.6s ease;
-}
-
-.top-link:hover .top-link__view::after {
-    transform: translateX(0.6rem);
-}
-
-/* ========================================
-   Top Layout
-======================================== */
-
-.rooms .top-link {
+.rooms__img-wrap img,
+.experience__img-wrap img,
+.dining__img-wrap img {
+    display: block;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
 }
 
-.experience .top-link {
-    width: 82%;
-    margin-left: auto;
+.rooms__img-wrap:hover img,
+.experience__img-wrap:hover img,
+.dining__img-wrap:hover img {
+    transform: scale(1.02);
 }
 
-.dining .top-link {
-    width: 90%;
+/* --- 雨の日の「余白」（SPECIAL Section） --- */
+.top-special {
+    width: 100%;
+    margin: 0;
+    position: relative;
+    text-align: left;
+    color: #ffffff;
+    overflow: hidden;
+
+    /* 背景画像 ＋ 文字の可読性を高める暗めグラデーション */
+    background-image:
+        linear-gradient(
+            to right,
+            rgba(20, 25, 30, 0.75) 0%,
+            rgba(20, 25, 30, 0.45) 55%,
+            rgba(20, 25, 30, 0.1) 100%
+        ),
+        url("../images/top_rain.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.top-special__inner {
+    max-width: 1080px;
     margin-inline: auto;
+    padding-inline: 2rem;
 }
 
-.access .top-link {
-    width: 76%;
+.top-special__sub {
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    color: #c2d1d9;
+    margin-bottom: 0.8rem;
 }
 
-/* ========================================
-   Rooms
-======================================== */
-
-.rooms {
-    margin-top: var(--space-xxl);
+.top-special__title {
+    font-family: "Noto Serif JP", serif;
+    font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
 }
 
-/* ========================================
-   Experience
-======================================== */
-
-.experience {
-    margin-top: var(--space-xxl);
+.top-special__text {
+    font-size: 0.95rem;
+    line-height: 2.2;
+    color: #e2e8ec;
+    margin-bottom: 2.5rem;
+    max-width: 520px;
 }
 
-/* ========================================
-   Dining
-======================================== */
-
-.dining {
-    margin-top: var(--space-xxl);
-}
-
-/* ========================================
-   Access
-======================================== */
-
-.access {
-    margin-top: var(--space-xxl);
-}
-
-/* ========================================
-   Reservation
-======================================== */
-
-.reservation {
-    padding-block: clamp(10rem, 14vw, 18rem);
-    text-align: center;
-}
-
-.reservation__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-xl);
-}
-
-.reservation__btn {
+/* SPECIAL ボタン */
+.top-special__btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-
-    min-width: 18rem;
-    height: 5.4rem;
-
-    padding-inline: 3rem;
-
-    border: 1px solid rgba(49, 49, 47, 0.18);
-    border-radius: 999px;
-
-    color: var(--color-text);
+    gap: 1rem;
+    padding: 0.8rem 2.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 40px;
+    color: #ffffff;
     text-decoration: none;
-
-    font-family: "Cormorant Garamond", serif;
-    font-size: 2rem;
-    letter-spacing: 0.08em;
-
-    transition:
-        background 0.4s,
-        border-color 0.4s,
-        transform 0.4s;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+    transition: all 0.4s ease;
 }
 
-.reservation__btn:hover {
-    background: rgba(49, 49, 47, 0.05);
-    border-color: rgba(49, 49, 47, 0.35);
-    transform: translateY(-2px);
+.top-special__btn:hover {
+    background-color: #ffffff;
+    color: #222222;
+    border-color: #ffffff;
 }
 
-/* ==========================================================================
-   Page: Experience (過ごし方ページ専用スタイル)
-   ========================================================================== */
+.top-special__btn .arrow {
+    transition: transform 0.3s ease;
+}
+
+.top-special__btn:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* モバイル調整：スマホ時は縦方向グラデーションに */
+@media (max-width: 768px) {
+    .top-special {
+        background-image:
+            linear-gradient(to bottom, rgba(20, 25, 30, 0.8) 0%, rgba(20, 25, 30, 0.4) 100%),
+            url("../images/top_rain.webp");
+    }
+}
+
+/* ==========================================================
+   5. 過ごし方ページ専用 (Page: Experience)
+   ========================================================== */
 
 .experience-section {
     padding-bottom: var(--space-xxl, 100px);
 }
 
-/* セクションタイトル */
-.section-header {
-    margin-bottom: var(--space-l, 32px);
-}
-
-.section-header__num {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 1rem;
-    letter-spacing: 0.2em;
-    color: var(--color-accent);
-    display: block;
-    margin-bottom: 4px;
-}
-
-.section-header__title {
-    font-family: "Noto Serif JP", serif;
-    font-size: clamp(1.5rem, 1.3rem + 0.5vw, 2.2rem);
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    color: var(--color-main);
-}
-
-.section-header__subtitle {
-    font-size: 0.85rem;
-    color: var(--color-sub);
-    margin-top: 6px;
-    letter-spacing: 0.05em;
-}
-
 .experience-desc {
     font-size: 0.95rem;
     line-height: 2.2;
-    color: var(--color-main);
+    color: var(--color-main, #4a5560);
     margin-top: var(--space-l, 32px);
     max-width: 720px;
 }
 
-/* --- 01. 湖のメインスライダー --- */
+/* --- 湖メインスライダー --- */
 .lake-slider-wrapper {
     position: relative;
     width: 100%;
@@ -347,7 +403,7 @@ Hero Copy
     max-height: 520px;
     overflow: hidden;
     border-radius: var(--radius-l, 8px);
-    background-color: var(--color-sub);
+    background-color: var(--color-sub, #8c96a0);
 }
 
 .lake-slider {
@@ -360,7 +416,7 @@ Hero Copy
     position: absolute;
     inset: 0;
     opacity: 0;
-    transition: opacity 2.5s ease-in-out;
+    transition: opacity 1.5s ease-in-out;
 }
 
 .lake-slide.is-active {
@@ -378,7 +434,7 @@ Hero Copy
     bottom: 20px;
     right: 24px;
     background-color: rgba(49, 49, 47, 0.75);
-    color: var(--color-base);
+    color: var(--color-base, #ffffff);
     font-size: 0.8rem;
     padding: 6px 16px;
     letter-spacing: 0.1em;
@@ -386,7 +442,7 @@ Hero Copy
     border-radius: 2px;
 }
 
-/* --- 02 & 03. 4列ギャラリー (館内・温泉・サウナ) --- */
+/* --- 4列フォトギャラリー --- */
 .photo-grid--4col {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -400,37 +456,27 @@ Hero Copy
 
 .photo-item .popover-trigger {
     aspect-ratio: 4 / 3;
-    overflow: hidden; /* 画像が角丸からはみ出すのを防ぐ */
+    overflow: hidden;
     border-radius: var(--radius-m, 8px);
     background-color: transparent;
     display: block;
     width: 100%;
-
-    /* ↓↓↓ 追加・修正ポイント ↓↓↓ */
-    border: none; /* button等のデフォルト枠線を完全に消去 */
-    outline: none; /* クリック時・フォーカス時の枠線を消去 */
-    padding: 0; /* 内側の余白をゼロにする */
-    cursor: pointer; /* ポインター表示 */
-    isolation: isolate; /* 角丸トリミングのチラつき・枠チラつき防止 */
-    transform: translateZ(0); /* GPUアクセラレーションで角丸の境界を綺麗に処理 */
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+    isolation: isolate;
+    transform: translateZ(0);
 }
 
-/* 画像側にも角丸のチラつき防止を追加 */
 .photo-item img {
     display: block;
     width: 100%;
+    max-width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
-    will-change: transform; /* 拡大アニメーションを滑らかにする */
-}
-
-.photo-item img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* ← 枠いっぱいに綺麗に画像を切り抜いてフィットさせる */
-    transition: transform 0.6s ease;
+    will-change: transform;
 }
 
 .photo-item:hover img {
@@ -439,12 +485,12 @@ Hero Copy
 
 .photo-item__caption {
     font-size: 0.78rem;
-    color: var(--color-sub);
+    color: var(--color-sub, #8c96a0);
     margin-top: 12px;
     letter-spacing: 0.05em;
 }
 
-/* --- 04. 食事カード  --- */
+/* --- 食事カード --- */
 .dining-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -460,7 +506,6 @@ Hero Copy
     padding: var(--space-l, 28px);
 }
 
-/* 画像を囲むエリア */
 .dining-card__image,
 .dining-card__image .popover-trigger,
 .dining-card__image button {
@@ -470,14 +515,12 @@ Hero Copy
     overflow: hidden;
     border-radius: var(--radius-s, 8px);
     margin-bottom: var(--space-m, 20px);
-    
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
     background: transparent !important;
     padding: 0 !important;
     cursor: pointer;
-    
     isolation: isolate;
     transform: translateZ(0);
 }
@@ -487,7 +530,6 @@ Hero Copy
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: none !important;
     border-radius: inherit;
     transition: transform 0.6s ease;
 }
@@ -497,53 +539,48 @@ Hero Copy
     transform: scale(1.04);
 }
 
-/* タイトル（下部にゆったりとした余白を確保） */
 .dining-card__title {
     font-family: "Noto Serif JP", serif;
     font-size: clamp(1.1rem, 1rem + 0.3vw, 1.25rem);
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0.08em;
-    color: var(--color-main);
-    
-    /* ↓ 2カラム時でも改行や説明文との詰まりを防ぐ余白設定 */
+    color: var(--color-main, #4a5560);
     margin-top: 0;
-    margin-bottom: var(--space-m, 20px); /* 12px → 20px に広げてしっかり確保 */
+    margin-bottom: var(--space-m, 20px);
 }
 
-/* 説明文（文字サイズを小さく、可読性を維持） */
 .dining-card__desc {
-    font-size: 0.82rem; /* 0.88rem → 0.82rem に少し小さく */
+    font-size: 0.82rem;
     line-height: 1.95;
-    color: var(--color-main);
+    color: var(--color-main, #4a5560);
     letter-spacing: 0.04em;
     margin-bottom: 20px;
 }
 
-/* タグ（文字サイズとパディングを少し控えめに） */
 .dining-card__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     list-style: none;
-    margin-top: auto; /* カード最下部にタグを揃える設定 */
+    margin-top: auto;
     padding: 0;
 }
 
 .dining-card__tags li {
-    font-size: 0.7rem; /* 0.75rem → 0.7rem に少し小さく */
-    background-color: var(--color-base);
-    color: var(--color-accent);
-    padding: 3px 10px; /* パディングも少し抑えてすっきり */
-    border: 1px solid var(--color-accent);
+    font-size: 0.7rem;
+    background-color: var(--color-base, #f5f3ef);
+    color: var(--color-accent, #7e95a8);
+    padding: 3px 10px;
+    border: 1px solid var(--color-accent, #7e95a8);
     border-radius: 999px;
     letter-spacing: 0.03em;
 }
 
-/* --- 05. 雨の日サービス (修正版) --- */
+/* --- 雨の日サービス詳細セクション --- */
 .rainy-service {
-    background-color: rgba(126, 149, 168, 0.08); /* 青銀色のうっすらとした背景 */
-    border-left: 4px solid var(--color-accent);
+    background-color: rgba(126, 149, 168, 0.08);
+    border-left: 4px solid var(--color-accent, #7e95a8);
     padding: var(--space-xl, 40px);
     border-radius: 0 var(--radius-m, 4px) var(--radius-m, 4px) 0;
 }
@@ -552,7 +589,47 @@ Hero Copy
     font-size: 0.95rem;
     line-height: 2.1;
     margin-bottom: 32px;
-    color: var(--color-main);
+    color: var(--color-main, #4a5560);
+}
+
+.rainy-service__images {
+    display: flex;
+    gap: var(--space-m, 20px);
+    margin-bottom: var(--space-l, 32px);
+}
+
+.rainy-image-item {
+    flex: 1;
+    min-width: 0;
+}
+
+.rainy-image-item .popover-trigger {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-m, 8px);
+    background-color: transparent;
+    display: block;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+    isolation: isolate;
+    transform: translateZ(0);
+}
+
+.rainy-image-item img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    will-change: transform;
+}
+
+.rainy-image-item:hover img {
+    transform: scale(1.04);
 }
 
 .rainy-service__list {
@@ -571,7 +648,7 @@ Hero Copy
 .rainy-service__list strong {
     font-size: 1.05rem;
     font-weight: 600;
-    color: var(--color-main);
+    color: var(--color-main, #4a5560);
     margin-bottom: 6px;
     display: flex;
     align-items: center;
@@ -583,80 +660,18 @@ Hero Copy
     display: inline-block;
     width: 6px;
     height: 6px;
-    background-color: var(--color-accent);
+    background-color: var(--color-accent, #7e95a8);
     border-radius: 50%;
 }
 
 .rainy-service__list span {
     font-size: 0.88rem;
-    color: var(--color-sub);
+    color: var(--color-sub, #8c96a0);
     padding-left: 18px;
     line-height: 1.8;
 }
 
-/* --- 雨の日の画像ギャラリー（Flex） --- */
-.rainy-service__images {
-    display: flex;
-    gap: var(--space-m, 20px);
-    margin-bottom: var(--space-l, 32px);
-}
-
-.rainy-image-item {
-    flex: 1; /* 3枚を均等な幅にする */
-    min-width: 0; /* フレックスアイテムのはみ出し防止 */
-}
-
-.rainy-image-item .popover-trigger {
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: var(--radius-m, 8px);
-    background-color: transparent;
-    display: block;
-    width: 100%;
-
-    /* ↓↓↓ 余計な枠線・フォーカス線・ちらつきの解消を追加 ↓↓↓ */
-    border: none;
-    outline: none;
-    padding: 0;
-    cursor: pointer;
-    isolation: isolate;
-    transform: translateZ(0);
-}
-
-.rainy-image-item img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-    will-change: transform;
-}
-
-.rainy-image-item:hover img {
-    transform: scale(1.04);
-}
-
-/* スマホ対応（画面が狭いときは縦並びまたは2列にする） */
-@media (max-width: 768px) {
-    .rainy-service__images {
-        flex-direction: column; /* スマホでは縦に並べる場合 */
-        gap: 12px;
-    }
-}
-
-/* スライダー表示制御 */
-.lake-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}
-
-.lake-slide.is-active {
-    opacity: 1;
-}
-
-/* --- 下部コンバージョン (CTA) --- */
+/* --- コンバージョン (CTA) --- */
 .experience-cta {
     background-color: rgba(49, 49, 47, 0.03);
     padding: var(--space-xxl, 80px) var(--space-m, 20px);
@@ -675,11 +690,11 @@ Hero Copy
 
 .experience-cta__text {
     font-size: 0.9rem;
-    color: var(--color-sub);
+    color: var(--color-sub, #8c96a0);
     margin-bottom: 32px;
 }
 
-/* --- スマホ対応 (レスポンシブ) --- */
+/* --- レスポンシブ（スマホ表示） --- */
 @media (max-width: 768px) {
     .photo-grid--4col {
         grid-template-columns: repeat(2, 1fr);
@@ -699,6 +714,11 @@ Hero Copy
         font-size: 0.88rem;
     }
 
+    .rainy-service__images {
+        flex-direction: column;
+        gap: 12px;
+    }
+
     .rainy-service__list strong {
         font-size: 0.95rem;
     }
@@ -712,5 +732,195 @@ Hero Copy
 }
 
 /* ==========================================
-experience ここまで
-========================================== */
+      6. 予約ページ専用 (Page:reservation )
+   ========================================== */
+
+.reservation-form {
+    max-width: 760px;
+    margin: 40px auto var(--space-xl);
+    background: #fff;
+    padding: clamp(2rem, 5vw, 4rem);
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-soft);
+}
+
+.form-section {
+    margin-bottom: var(--space-l);
+    padding-bottom: var(--space-m);
+    border-bottom: var(--border-light);
+}
+
+.form-section__title {
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-s);
+    color: var(--color-sub);
+    font-weight: 500;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    color: var(--color-main);
+    letter-spacing: 0.05em;
+}
+
+.form-control {
+    padding: 12px 16px;
+    border: 1px solid rgba(138, 130, 121, 0.4);
+    border-radius: var(--radius-s);
+    background: var(--color-base);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--color-text);
+}
+
+/* お部屋選択スタイル */
+.room-group__title {
+    font-size: 0.85rem;
+    color: var(--color-main);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.room-options {
+    display: grid;
+    gap: 12px;
+}
+
+.room-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 20px;
+    border: 1px solid rgba(138, 130, 121, 0.25);
+    border-radius: var(--radius-s);
+    cursor: pointer;
+    background: #faf9f6;
+    transition: all 0.3s ease;
+}
+
+.room-card input[type="radio"] {
+    margin-top: 4px;
+    accent-color: var(--color-sub);
+}
+
+.room-card:has(input:checked) {
+    border-color: var(--color-sub);
+    background: rgba(100, 121, 134, 0.06);
+}
+
+.room-card__content {
+    flex: 1;
+}
+
+.room-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.room-card__name {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.room-card__price {
+    font-size: 1.05rem;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.room-card__price small {
+    font-size: 0.75rem;
+    color: var(--color-main);
+    font-weight: 400;
+}
+
+.room-card__desc {
+    font-size: 0.8rem;
+    color: var(--color-main);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* 概算＆予約確定エリア */
+.reservation-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-top: var(--space-l);
+}
+
+.summary-total {
+    font-size: 1.05rem;
+    color: var(--color-text);
+}
+
+.summary-total strong {
+    font-size: 2rem;
+    margin-left: 12px;
+    color: var(--color-sub);
+    font-weight: 500;
+}
+
+/* 完了モーダル */
+.complete-modal {
+    border: none;
+    border-radius: var(--radius-m);
+    padding: 36px 28px;
+    background: var(--color-base);
+    box-shadow: var(--shadow-card);
+    max-width: 440px;
+    width: 90%;
+    margin: auto;
+}
+
+.complete-modal::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.modal__inner {
+    text-align: center;
+}
+
+.modal__summary {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: #fff;
+    border-radius: var(--radius-s);
+    text-align: left;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    border: var(--border-light);
+}
+
+/* モーダル内の閉じるボタン専用設定 */
+.modal-close-btn {
+    margin-top: 24px !important;
+    min-width: 200px !important;
+    width: auto !important;
+    height: 48px !important;
+    min-height: 48px !important;
+    padding: 0 24px !important;
+    font-size: 0.85rem !important;
+}

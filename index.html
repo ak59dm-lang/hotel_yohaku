@@ -1,18 +1,14 @@
 <!doctype html>
 <html lang="ja">
     <head>
-        <!-- Meta -->
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
             content="YOHAKUは「何もしない贅沢」をコンセプトにした、水辺のリトリートホテルのWebサイトです。"
         />
-        <!-- Title -->
         <title>YOHAKU | 水辺のリトリートホテル</title>
-        <!-- Favicon ※画像生成後挿入 -->
-        <!-- <link rel="icon" href="images/favicon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="images/favicon.png" /> -->
+
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,103 +28,146 @@
         <link rel="stylesheet" href="css/footer.css" />
     </head>
     <body>
-        <!-- main -->
-        <main>
-            <!-- ==========================
-            Hero
-            ========================== -->
-            <section class="hero">
-                <!-- =========================================
-            Header
-            ========================================= -->
-                <header class="header">
-                    <div class="header__container">
-                        <!-- Brand -->
-                        <div class="header__brand">
-                            <!-- TOPのみh1 -->
-                            <h1 class="header__logo">
-                                <a href="index.html" class="header__logo-link"> YOHAKU </a>
-                            </h1>
-                        </div>
+        <!-- Header (Heroの外に配置してクリック・表示崩れを防ぐ) -->
+        <header class="header">
+            <div class="header__container">
+                <!-- Brand Logo -->
+                <div class="header__brand">
+                    <a href="index.html" class="header__logo-link">
+                        <span class="header__logo">YOHAKU</span>
+                    </a>
+                </div>
 
-                        <!-- PC Navigation -->
-                        <nav class="header__nav">
-                            <ul class="header__nav-list">
-                                <li>
-                                    <a href="index.html" class="header__nav-link">
-                                        <span class="header__nav-en">CONCEPT</span>
-                                        <span class="header__nav-ja"> 余白とは </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="pages/rooms.html" class="header__nav-link">
-                                        <span class="header__nav-en">ROOMS</span>
-                                        <span class="header__nav-ja">客室</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="pages/experience.html" class="header__nav-link">
-                                        <span class="header__nav-en">EXPERIENCE</span>
-                                        <span class="header__nav-ja">過ごし方</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="pages/dining.html" class="header__nav-link">
-                                        <span class="header__nav-en">DINING</span>
-                                        <span class="header__nav-ja">食事</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="pages/access.html" class="header__nav-link">
-                                        <span class="header__nav-en">ACCESS</span>
-                                        <span class="header__nav-ja">アクセス</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-
-                        <!-- Reservation -->
-                        <div class="header__reserve">
-                            <a href="pages/reservation.html" class="header__reserve-btn">
-                                RESERVATION
+                <!-- PC Navigation -->
+                <nav class="header__nav">
+                    <ul class="header__nav-list">
+                        <li>
+                            <a href="index.html" class="header__nav-link">
+                                <span class="header__nav-en">CONCEPT</span>
+                                <span class="header__nav-ja">余白とは</span>
                             </a>
-                        </div>
+                        </li>
+                        <li>
+                            <a href="pages/rooms.html" class="header__nav-link">
+                                <span class="header__nav-en">ROOMS</span>
+                                <span class="header__nav-ja">客室</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="pages/experience.html" class="header__nav-link">
+                                <span class="header__nav-en">EXPERIENCE</span>
+                                <span class="header__nav-ja">過ごし方</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="pages/dining.html" class="header__nav-link">
+                                <span class="header__nav-en">DINING</span>
+                                <span class="header__nav-ja">食事</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="pages/access.html" class="header__nav-link">
+                                <span class="header__nav-en">ACCESS</span>
+                                <span class="header__nav-ja">アクセス</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
-                        <!-- Hamburger -->
-                        <button
-                            class="header__menu-btn js-menu-btn"
-                            type="button"
-                            aria-label="メニューを開く"
+                <!-- Header Actions -->
+                <div class="header__actions">
+                    <div class="header__lang">
+                        <span class="header__lang-item is-active">JP</span>
+                        <span class="header__lang-divider">/</span>
+                        <a href="#en" class="header__lang-item">EN</a>
+                    </div>
+
+                    <div class="header__reserve">
+                        <a href="pages/reservation.html" class="header__reserve-btn">RESERVATION</a>
+                    </div>
+
+                    <!-- Hamburger Button -->
+                    <button
+                        class="header__menu-btn js-menu-btn"
+                        type="button"
+                        aria-label="メニュー開閉"
+                    >
+                        <!-- 三本線アイコン -->
+                        <svg
+                            class="icon-menu"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
                         >
-                            <span class="header__menu-line"></span>
-                            <span class="header__menu-line"></span>
-                            <span class="header__menu-line"></span>
-                        </button>
-                    </div>
+                            <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+                        </svg>
 
-                    <!-- Drawer -->
-                    <div class="header__drawer js-drawer">
-                        <nav class="drawer__nav">
-                            <ul class="drawer__nav-list">
-                                <li><a href="index.html">CONCEPT</a></li>
-                                <li><a href="pages/rooms.html">ROOMS</a></li>
-                                <li><a href="pages/experience.html">EXPERIENCE</a></li>
-                                <li><a href="pages/dining.html">DINING</a></li>
-                                <li><a href="pages/access.html">ACCESS</a></li>
-                                <li>
-                                    <a href="pages/reservation.html" class="drawer__reserve">
-                                        RESERVATION
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <!-- 閉じる（✕）アイコン -->
+                        <svg
+                            class="icon-close"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                        >
+                            <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Drawer Menu -->
+            <div class="header__drawer js-drawer">
+                <div class="drawer__inner">
+                    <nav class="drawer__nav">
+                        <ul class="drawer__nav-list">
+                            <li>
+                                <a href="index.html">
+                                    <span class="en">CONCEPT</span>
+                                    <span class="ja">余白とは</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="pages/rooms.html">
+                                    <span class="en">ROOMS</span>
+                                    <span class="ja">客室</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="pages/experience.html">
+                                    <span class="en">EXPERIENCE</span>
+                                    <span class="ja">過ごし方</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="pages/dining.html">
+                                    <span class="en">DINING</span>
+                                    <span class="ja">食事</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="pages/access.html">
+                                    <span class="en">ACCESS</span>
+                                    <span class="ja">アクセス</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="drawer__footer">
+                        <a href="pages/reservation.html" class="drawer__reserve-btn">RESERVATION</a>
                     </div>
-                </header>
-                <!-- Hero Content -->
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section class="hero">
                 <div class="hero__content">
                     <div class="hero__copy">
                         <p class="hero__lead">予定：</p>
@@ -136,9 +175,10 @@
                     </div>
                     <div class="hero__scroll">
                         <span>Scroll</span>
+                        <div class="scroll-line"></div>
                     </div>
                 </div>
-                <!-- Swiper -->
+
                 <div class="hero__swiper">
                     <div class="swiper heroSwiper">
                         <div class="swiper-wrapper">
@@ -149,7 +189,7 @@
                                 <img src="images/hero-02.webp" alt="客室での何もしない時間" />
                             </div>
                             <div class="swiper-slide">
-                                <img src="images/hero-03 .webp" alt="サウナ付き客室" />
+                                <img src="images/hero-03.webp" alt="サウナ付き客室" />
                             </div>
                             <div class="swiper-slide">
                                 <img src="images/hero-04.webp" alt="夕方の雨音と読書" />
@@ -161,9 +201,8 @@
                     </div>
                 </div>
             </section>
-            <!-- ==========================
-            Concept
-            ========================== -->
+
+            <!-- Concept Section -->
             <section class="concept">
                 <div class="container">
                     <div class="concept__inner">
@@ -171,7 +210,6 @@
                             <p class="sec-head__en">CONCEPT</p>
                             <h2 class="sec-head__ja">余白という過ごし方</h2>
                         </div>
-
                         <div class="concept__txt">
                             <p>
                                 何かをするためではなく、<br />
@@ -181,129 +219,131 @@
                     </div>
                 </div>
             </section>
-            <!-- /Concept -->
 
-            <!-- ==========================
-            Rooms
-            ========================== -->
+            <!-- 01. ROOMS -->
             <section class="rooms">
-                <div class="container">
-                    <p class="sec-head__en">ROOMS</p>
-
-                    <a href="pages/rooms.html" class="top-link">
-                        <figure class="top-link__visual">
-                            <img src="images/libraryroom_swiper.webp" alt="Library Room" />
-                        </figure>
-                        <p class="top-link__view">View Rooms →</p>
-                    </a>
-                </div>
-            </section>
-
-            <!-- ==========================
-            Experience
-            ========================== -->
-            <section class="experience">
-                <div class="container">
-                    <p class="sec-head__en">EXPERIENCE</p>
-                    <a href="pages/dining.html" class="top-link">
-                        <figure class="top-link__visual">
-                            <img src="images/freespace3.webp" alt="lounge" />
-                        </figure>
-                        <p class="top-link__view">View Dining →</p>
-                    </a>
-                </div>
-            </section>
-
-            <!-- ==========================
-            Dining
-            ========================== -->
-            <section class="dining">
-                <div class="container">
-                    <p class="sec-head__en">DINING</p>
-                    <a href="pages/dining.html" class="top-link">
-                        <figure class="top-link__visual">
-                            <img src="images/dinner.webp" alt="Dining" />
-                        </figure>
-                        <p class="top-link__view">View Dining →</p>
-                    </a>
-                </div>
-            </section>
-
-            <!-- ==========================
-            Access
-            ========================== -->
-            <section class="access">
-                <div class="container">
-                    <p class="sec-head__en">ACCESS</p>
-                    <a href="pages/access.html" class="top-link">
-                        <figure class="top-link__visual">
-                            <img src="images/TOP_access.webp" alt="Access" />
-                        </figure>
-                        <p class="top-link__view">View Access →</p>
-                    </a>
-                </div>
-            </section>
-
-            <!-- ==========================
-            Reservation
-            ========================== -->
-            <section class="reservation">
-                <div class="container">
-                    <div class="reservation__inner">
-                        <div class="sec-head">
-                            <p class="sec-head__en">RESERVATION</p>
+                <div class="rooms__inner">
+                    <div class="section-header">
+                        <span class="section-header__num">01</span>
+                        <span class="section-header__en">ROOMS</span>
+                        <h2 class="section-header__jp">湖畔の気配を織り込む、静寂の客室</h2>
+                    </div>
+                    <div class="rooms__content">
+                        <div class="rooms__img-wrap">
+                            <img
+                                src="images/libraryroom_swiper.webp"
+                                alt="客室の様子"
+                                loading="lazy"
+                            />
                         </div>
-
-                        <a href="pages/reservation.html" class="reservation__btn"> Reserve → </a>
+                        <div class="rooms__desc">
+                            <p class="rooms__text">
+                                過飾を削ぎ落とし、窓の外に広がる湖の景色を一枚の絵画のように仕立てました。<br />
+                                刻一刻と変わる光と影の移ろいを、心ゆくまでお愉しみください。
+                            </p>
+                            <a href="pages/rooms.html" class="link-more">
+                                <span>客室一覧を見る</span>
+                                <span class="arrow">→</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- /.main -->
-        </main>
-        <!-- Footer -->
-        <!-- ==========================
-        Footer
-        ========================== -->
+            <!-- 02. EXPERIENCE -->
+            <section class="experience">
+                <div class="experience__inner">
+                    <div class="section-header">
+                        <span class="section-header__num">02</span>
+                        <span class="section-header__en">EXPERIENCE</span>
+                        <h2 class="section-header__jp">「何もしない」という、贅沢な過ごし方</h2>
+                    </div>
+                    <div class="experience__img-wrap">
+                        <img
+                            src="images/library_swiper.webp"
+                            alt="過ごし方のイメージ"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="section-desc">
+                        <p class="section-text">
+                            湯に身を委ね、静かな風を感じ、ただ時が過ぎるのを眺める。<br />
+                            日常の忙ジナさを手放し、ご自身を解き放つ時間をお過ごしください。
+                        </p>
+                        <a href="pages/experience.html" class="link-more">
+                            <span>過ごし方を見る</span>
+                            <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
 
-        <!-- スクロール駆動フッター（FIX表示） -->
+            <!-- 03. DINING -->
+            <section class="dining">
+                <div class="dining__inner">
+                    <div class="section-header">
+                        <span class="section-header__num">03</span>
+                        <span class="section-header__en">DINING</span>
+                        <h2 class="section-header__jp">風土の恵みを味わう、滋味深いお食事</h2>
+                    </div>
+                    <div class="dining__img-wrap">
+                        <img src="images/dinner.webp" alt="お食事のイメージ" loading="lazy" />
+                    </div>
+                    <div class="section-desc">
+                        <p class="section-text">
+                            その土地の旬を取り入れた、体に優しく染み渡る一皿。<br />
+                            五感で味わう静かなお食事のひとときをご提供いたします。
+                        </p>
+                        <a href="pages/dining.html" class="link-more">
+                            <span>お料理を見る</span>
+                            <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SPECIAL / RAINY DAY -->
+            <section class="top-special">
+                <div class="top-special__inner">
+                    <p class="top-special__sub">SPECIAL</p>
+                    <h2 class="top-special__title">雨の日の「余白」</h2>
+                    <div class="top-special__content">
+                        <p class="top-special__text">
+                            しとしとと湖面を濡らす雨音を聞きながら、温かいお茶を愉しむ。<br />
+                            YOHAKUでは、雨の日だからこそ出会える静寂と、特別な催しをご用意しております。
+                        </p>
+                        <a href="pages/experience.html#rainy" class="top-special__btn">
+                            <span>雨の日の過ごし方を見る</span>
+                            <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
         <footer id="footerWrapper" class="footer-wrapper">
             <div id="footerSticky" class="footer-sticky">
-                <!-- 水面反射エフェクト -->
                 <div class="lake-reflection"></div>
-
-                <!-- 星々が描画されるレイヤー -->
                 <div id="starField" class="star-field"></div>
-
-                <!-- フッターコンテンツ（コンパクト版） -->
                 <div id="footerContent" class="footer-content">
-                    <!-- ロゴアイコン / シンボル -->
                     <div class="footer-brand">
                         <a href="#top" class="footer-logo">YOHAKU</a>
                     </div>
-
-                    <!-- 予約ボタン -->
                     <div class="footer-action">
-                        <a href="#reservation" class="footer-btn">RESERVATION</a>
+                        <a href="pages/reservation.html" class="footer-btn">RESERVATION</a>
                     </div>
-
-                    <!-- コピーライト -->
                     <p class="copyright">© YOHAKU All Rights Reserved.</p>
                 </div>
             </div>
         </footer>
-        <!-- /.footer -->
-        <!-- Swiper JS -->
+
+        <!-- JS -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
-        <!-- GSAP -->
         <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-
-        <!-- ScrollTrigger -->
         <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-
-        <!-- 自分のJavaScript -->
-        <script src="js/main.js"></script>
-        <script src="js/footer.js"></script>
+        <script src="js/swiper.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/footer.js" defer></script>
     </body>
 </html>

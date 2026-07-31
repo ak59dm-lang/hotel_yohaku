@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. 星々の自動生成
     function createStars() {
         starField.innerHTML = "";
-        const starCount = 30; // フッターがコンパクトになったため少し控えめに調整
+        const starCount = 30; // フッター用に少し控えめに調整
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement("div");
             const size = Math.random() * 2 + 1;
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     createStars();
 
-    // 2. ページ全体のスクロール量に応じた状態更新
+    // 2. ページ全体のスクロール量に応じた状態更新（統一カラー設定）
     function updateFooterState() {
         const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
         const currentScroll = window.scrollY;
@@ -44,17 +44,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // 朝 (0〜0.35) -> 夕 (0.35〜0.7) -> 夜 (0.7〜1.0)
+        // CSS変数に頼らずカラーコードを統一して全ページの挙動を揃えます
         if (progress < 0.35) {
-            sticky.style.backgroundColor = "var(--color-base)";
-            content.style.color = "var(--color-text)";
+            // 朝：ベースカラー背景 & ダークテキスト
+            sticky.style.backgroundColor = "#f4f1ea";
+            content.style.color = "#31312f";
             starField.style.opacity = "0";
         } else if (progress >= 0.35 && progress < 0.7) {
-            sticky.style.backgroundColor = "var(--color-accent)";
-            content.style.color = "var(--color-text)";
+            // 夕方：青銀色アクセント背景 & ホワイトテキスト
+            sticky.style.backgroundColor = "#647986";
+            content.style.color = "#ffffff";
             starField.style.opacity = "0.2";
         } else {
-            sticky.style.backgroundColor = "var(--color-sub)";
-            content.style.color = "var(--color-base)";
+            // 夜：落ち着いたメイングレー背景 & アイボリーテキスト
+            sticky.style.backgroundColor = "#31312f";
+            content.style.color = "#f4f1ea";
             starField.style.opacity = "1";
         }
     }

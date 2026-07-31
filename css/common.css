@@ -1,9 +1,8 @@
 @charset "UTF-8";
 
 /* ========================================
-Foundation
-======================================== */
-
+   1. Foundation & Variables (基本設定・CSS変数)
+   ======================================== */
 :root {
     /* Colors */
     --color-base: #f4f1ea;
@@ -12,45 +11,39 @@ Foundation
     --color-accent: #aebcc6;
     --color-text: #31312f;
 
-    /* font */
+    /* Font */
     --font-title: clamp(2.4rem, 1.8rem + 1.5vw, 4rem);
     --font-subtitle: clamp(1.6rem, 1.2rem + 0.8vw, 2.2rem);
     --font-body: clamp(1.4rem, 1.3rem + 0.2vw, 1.6rem);
 
-    /* Layout */
+    /* Layout & Space */
     --content-width: min(90%, 1200px);
     --section-space: clamp(6rem, 8vw, 12rem);
-
-    /* Radius */
-    --radius-s: 8px;
-    --radius-m: 16px;
-    --radius-l: 24px;
-
-    /* Border */
-    --border-light: 1px solid rgba(138, 130, 121, 0.3);
-
-    /* Shadow */
-    --shadow-soft: 0 8px 32px rgba(49, 49, 47, 0.08);
-    --shadow-card: 0 8px 24px rgb(0 0 0 / 8%);
-
-    /* Animation */
-    --transition: 0.4s ease;
-
-    /* z-index */
-    --z-header: 100;
-    --z-drawer: 200;
-    --z-modal: 300;
-
-    /* Space */
     --space-xs: 0.8rem;
     --space-s: 1.6rem;
     --space-m: 2.4rem;
     --space-l: 4rem;
     --space-xl: 6.4rem;
     --space-xxl: 9.6rem;
+
+    /* Radius & Border */
+    --radius-s: 8px;
+    --radius-m: 16px;
+    --radius-l: 24px;
+    --border-light: 1px solid rgba(138, 130, 121, 0.3);
+
+    /* Shadow & Transition */
+    --shadow-soft: 0 8px 32px rgba(49, 49, 47, 0.08);
+    --shadow-card: 0 8px 24px rgb(0 0 0 / 8%);
+    --transition: 0.4s ease;
+
+    /* Layer z-index */
+    --z-header: 100;
+    --z-drawer: 9990;
+    --z-btn: 9999;
 }
 
-/* font */
+/* Base style */
 body {
     font-family: "Noto Serif JP", serif;
     font-size: var(--font-body);
@@ -59,7 +52,6 @@ body {
     line-height: 1.8;
 }
 
-/* title */
 h1,
 h2,
 h3 {
@@ -67,21 +59,31 @@ h3 {
     font-weight: 500;
 }
 
-@media (max-width:768px){
+.container {
+    width: var(--content-width);
+    margin-inline: auto;
+}
 
-    :root{
-        --section-space:clamp(4rem,8vw,6rem);
-        --space-xl:4rem;
-        --space-xxl:6rem;
+section {
+    padding-block: var(--section-space);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --section-space: clamp(4rem, 8vw, 6rem);
+        --space-xl: 4rem;
+        --space-xxl: 6rem;
     }
-
 }
 
 /* ========================================
-   Button
-======================================== */
-
-/* normal */
+   2. Components (ボタン・パーツ)
+   ======================================== */
 .btn {
     display: inline-flex;
     justify-content: center;
@@ -100,7 +102,6 @@ h3 {
         transform var(--transition);
 }
 
-/* hover */
 .btn:hover {
     background: var(--color-accent);
     color: var(--color-text);
@@ -108,51 +109,29 @@ h3 {
 }
 
 /* ========================================
-Layout
-======================================== */
-
-/* container */
-.container {
-    width: var(--content-width);
-    margin-inline: auto;
-}
-
-/* section padding */
-section {
-    padding-block: var(--section-space);
-}
-
-/* ========================================
-Header
-======================================== */
-
-/* Header */
+   3. Header & Navigation (PC & ドロワー共通)
+   ======================================== */
 .header {
-    position: absolute;
-    inset: 0 0 auto;
+    position: relative;
     width: 100%;
-    padding-block: var(--space-m);
+    padding-block: 20px;
+    background-color: var(--color-base);
     z-index: var(--z-header);
 }
 
-/* Header Container */
 .header__container {
-    width: min(94%, 1440px);
+    width: min(92%, 1320px);
     margin-inline: auto;
     display: flex;
     align-items: center;
-}
-
-/* Brand */
-.header__brand {
-    flex-shrink: 0;
+    justify-content: space-between;
 }
 
 .header__logo {
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(2.8rem, 2.2rem + 1vw, 4rem);
-    font-weight: 500;
-    line-height: 1;
+    font-size: 1.8rem;
+    letter-spacing: 0.2em;
+    font-weight: 400;
 }
 
 .header__logo-link {
@@ -160,16 +139,14 @@ Header
     text-decoration: none;
 }
 
-/* Navigation */
-.header__nav {
-    margin-left: auto;
-}
-
+/* PC Nav */
 .header__nav-list {
     display: flex;
     align-items: center;
-    gap: clamp(3rem, 2vw, 5rem);
+    gap: clamp(2rem, 3vw, 4rem);
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .header__nav-link {
@@ -178,203 +155,267 @@ Header
     align-items: center;
     text-decoration: none;
     color: inherit;
-    gap: 0.5rem;
-    transition: opacity var(--transition);
+    gap: 2px;
+    transition: opacity 0.3s ease;
+}
 
-    &:hover {
-        opacity: 0.65;
-    }
+.header__nav-link:hover {
+    opacity: 0.5;
 }
 
 .header__nav-en {
-    font-size: 1.1rem;
-    letter-spacing: 0.28em;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.25em;
 }
 
 .header__nav-ja {
-    font-size: 1rem;
+    font-size: 0.7rem;
     color: var(--color-main);
-    white-space: nowrap;
+    letter-spacing: 0.1em;
 }
 
-/* Reservation */
-.header__reserve {
-    margin-left: clamp(3rem, 4vw, 6rem);
+.header__actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.header__lang {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+}
+
+.header__lang-item.is-active {
+    font-weight: 600;
+}
+
+.header__lang-divider {
+    margin-inline: 4px;
+    opacity: 0.4;
 }
 
 .header__reserve-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 18rem;
-    height: 5.4rem;
-    border: var(--border-light);
+    padding: 10px 24px;
+    border: 1px solid var(--color-text);
     border-radius: 999px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    color: var(--color-text);
     text-decoration: none;
-    color: inherit;
-    letter-spacing: 0.15em;
-    transition: var(--transition);
-
-    &:hover {
-        background: rgb(255 255 255 /0.18);
-    }
+    transition: all 0.3s ease;
 }
 
-/* ========================================
-Hamburger
-======================================== */
-.header__menu-btn {
-    display: none;
-    width: 4.8rem;
-    height: 4.8rem;
-    padding: 0;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: calc(var(--z-drawer) + 1);
+.header__reserve-btn:hover {
+    background-color: var(--color-text);
+    color: var(--color-base);
 }
 
-.header__menu-line {
-    display: block;
-    width: 2.8rem;
-    height: 1px;
-    margin: 0.7rem auto;
-    background: currentColor;
-    transition: var(--transition);
-}
-
-/* ========================================
-Drawer
-======================================== */
-
+/* --- ドロワーメニュー本体（全画面対応） --- */
 .header__drawer {
+    display: none; /* 通常時は非表示 */
     position: fixed;
     inset: 0;
-    display: flex;
-    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(244, 241, 234, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: var(--z-drawer);
     align-items: center;
-    background: rgba(244, 241, 234, 0.96);
+    justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: var(--transition);
-    z-index: var(--z-drawer);
+    pointer-events: none;
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease;
 }
 
-.header__drawer.is-open {
-    opacity: 1;
-    visibility: visible;
+/* メニュー展開時 */
+.header__drawer.is-active {
+    display: flex !important; /* 開いた時だけflexにする */
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+.drawer__inner {
+    text-align: center;
 }
 
 .drawer__nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-    list-style: none;
+    gap: 24px;
 }
 
 .drawer__nav-list a {
-    color: inherit;
     text-decoration: none;
-    letter-spacing: 0.15em;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-.drawer__reserve {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 18rem;
-    height: 5rem;
-    border: var(--border-light);
-    border-radius: 999px;
-}
-
-/* ========================================
-Tablet / Mobile
-======================================== */
-
-@media (max-width: 1024px) {
-    .header__nav,
-    .header__reserve {
-        display: none;
-    }
-
-    .header__menu-btn {
-        display: block;
-        margin-left: auto;
-    }
-}
-
-@media (max-width: 768px) {
-    .header {
-        padding-block: 2rem;
-    }
-
-    .header__logo {
-        font-size: clamp(2.6rem, 5vw, 3.4rem);
-    }
-}
-
-/* ========================================
-   Section Heading
-======================================== */
-
-.sec-head {
-    text-align: center;
-}
-
-.sec-head__en {
+.drawer__nav-list .en {
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(1.8rem, 1.5rem + 0.5vw, 2.4rem);
-    font-weight: 500;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+}
+
+.drawer__nav-list .ja {
+    font-size: 0.75rem;
     color: var(--color-main);
 }
 
-.sec-head__ja {
-    margin-top: var(--space-s);
+.drawer__reserve-btn {
+    display: inline-block;
+    padding: 12px 36px;
+    border: 1px solid var(--color-text);
+    border-radius: 999px;
+    font-family: "Cormorant Garamond", serif;
+    text-decoration: none;
+    color: inherit;
+}
 
-    font-family: "Noto Serif JP", serif;
-    font-size: clamp(2.8rem, 2.2rem + 1vw, 4rem);
-    font-weight: 500;
-    line-height: 1.8;
-    letter-spacing: 0.08em;
+/* PC表示時（1025px以上）ではハンバーガーボタンを非表示 */
+.header__menu-btn {
+    display: none;
 }
 
 /* ========================================
-Card
-======================================== */
+   4. Mobile / Tablet Styles (1024px 以下)
+   ======================================== */
+@media (max-width: 1024px) {
+    /* PC用の横並びナビを隠す */
+    .header__nav,
+    .header__reserve {
+        display: none !important;
+    }
 
-.card {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-m);
+    /* ハンバーガーボタンを表示 */
+    .header__menu-btn {
+        display: flex !important;
+        position: relative; /* ← これを追加（z-indexを効かせるため） */
+        z-index: 99999 !important; /* ← z-indexを確実に一番上にする */
+        align-items: center;
+        justify-content: center;
+        width: 40px !important;
+        height: 40px !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        cursor: pointer;
+        z-index: var(--z-btn) !important; /* ドロワーより手前に指定 */
+        color: var(--color-text) !important;
+    }
+
+    /* SVGアイコンサイズ指定 */
+    .header__menu-btn svg {
+        width: 28px !important;
+        height: 28px !important;
+        stroke: currentColor;
+    }
+
+    /* アイコン表示切替 */
+    .header__menu-btn .icon-close {
+        display: none !important;
+    }
+    .header__menu-btn .icon-menu {
+        display: block !important;
+    }
+
+    .header__menu-btn.is-active .icon-menu {
+        display: none !important;
+    }
+    .header__menu-btn.is-active .icon-close {
+        display: block !important;
+    }
 }
-
-.card__img {
-    width: 100%;
-    overflow: hidden;
-    border-radius: var(--radius-l);
-    aspect-ratio: 4 / 3;
-}
-
-.card__img img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 01.6s ease;
-}
-
-.card:hover .card__img img {
-    transform: scale(1.02);
-}
-
-.card__title {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(2.4rem, 2rem + 0.6vw, 3.2rem);
-    font-weight: 500;
+/* ==================================================
+ * PAGE HERO (全下層ページ共通スタイル)
+ * ================================================== */
+.page-hero {
+    background-color: #f7f5f0; /* 生成りカラー */
+    padding: 80px 20px 70px;
     text-align: center;
+}
+
+.page-hero-inner {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-hero-en {
+    display: block;
+    font-size: 0.85rem;
+    letter-spacing: 0.35em;
+    color: #93a2b1; /* くすみブルー・グレー系 */
+    margin-bottom: 24px;
+    font-weight: 400;
+}
+
+.page-hero-jp {
+    font-size: 1.85rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    color: #2c2c2c;
+    margin: 0 0 24px 0;
+}
+
+.page-hero-desc {
+    font-size: 0.88rem;
+    line-height: 2;
+    color: #686868;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* レスポンシブ（スマホ対応） */
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 60px 20px 50px;
+    }
+    .page-hero-jp {
+        font-size: 1.45rem;
+    }
+}
+
+/* --- ハンバーガーメニュー動作保証用CSS（index.html超強固版） --- */
+@media (max-width: 1024px) {
+    /* ボタンを絶対的最前面へ */
+    .header__menu-btn {
+        position: relative !important;
+        z-index: 9999999 !important; /* 数値を限界まで上げる */
+        cursor: pointer !important;
+    }
+
+    /* ドロワーを画面全体＆超最前面へ */
+    .header__drawer {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+
+    /* 開いた時のドロワー表示 */
+    .header__drawer.is-active {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        z-index: 9999990 !important; /* SwiperやHeroより上に表示 */
+        background-color: rgba(244, 241, 234, 0.98) !important;
+    }
 }

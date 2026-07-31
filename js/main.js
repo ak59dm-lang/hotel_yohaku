@@ -1,59 +1,79 @@
 /* ==========================================
-Drawer Menu
-========================================== */
+   01. ハンバーガーボタン & ドロワーメニュー制御
+   ========================================== */
+function initHamburgerMenu() {
+    const menuBtn = document.querySelector(".header__menu-btn") || document.querySelector(".js-menu-btn");
+    const drawer = document.querySelector(".header__drawer") || document.querySelector(".js-drawer");
 
-const menuBtn = document.querySelector(".js-menu-btn");
-const drawer = document.querySelector(".js-drawer");
+    // デバッグ用ログ（DevToolsのConsoleで確認）
+    console.log("menuBtn:", menuBtn);
+    console.log("drawer:", drawer);
 
-// 要素が存在するときだけ実行する
-if (menuBtn && drawer) {
-    menuBtn.addEventListener("click", () => {
-        drawer.classList.toggle("is-open");
-    });
+    if (menuBtn && drawer) {
+        // 念のため既存のイベントを消して再登録
+        menuBtn.onclick = function() {
+            console.log("ボタンがクリックされました！");
+            menuBtn.classList.toggle("is-active");
+            drawer.classList.toggle("is-active");
+        };
+
+        const drawerLinks = drawer.querySelectorAll("a");
+        drawerLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                menuBtn.classList.remove("is-active");
+                drawer.classList.remove("is-active");
+            });
+        });
+    }
+}
+
+// ページの読み込み状態に合わせて実行
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHamburgerMenu);
+} else {
+    initHamburgerMenu();
 }
 
 /* ==========================================
-Image Popover (Rooms モーダル拡大表示)
-========================================== */
-const popoverTriggers = document.querySelectorAll(".popover-trigger");
-const popoverDialog = document.getElementById("image-popover");
-const popoverImg = document.getElementById("js-popover-img");
-const popoverClose = document.getElementById("js-popover-close");
+   02. Image Popover (Rooms モーダル拡大表示)
+   ========================================== */
+document.addEventListener("DOMContentLoaded", () => {
+    const popoverTriggers = document.querySelectorAll(".popover-trigger");
+    const popoverDialog = document.getElementById("image-popover");
+    const popoverImg = document.getElementById("js-popover-img");
+    const popoverClose = document.getElementById("js-popover-close");
 
-if (popoverDialog && popoverTriggers.length > 0) {
-    // トリガーボタン（画像）をクリックした時
-    popoverTriggers.forEach((trigger) => {
-        trigger.addEventListener("click", () => {
-            const targetImg = trigger.querySelector("img");
-            if (targetImg) {
-                popoverImg.src = targetImg.src;
-                popoverImg.alt = targetImg.alt;
-                popoverDialog.showModal(); // <dialog>を開く
+    if (popoverDialog && popoverTriggers.length > 0) {
+        // トリガーボタン（画像）をクリックした時
+        popoverTriggers.forEach((trigger) => {
+            trigger.addEventListener("click", () => {
+                const targetImg = trigger.querySelector("img");
+                if (targetImg) {
+                    popoverImg.src = targetImg.src;
+                    popoverImg.alt = targetImg.alt;
+                    popoverDialog.showModal(); // <dialog>を開く
+                }
+            });
+        });
+
+        // 閉じるボタンをクリックした時
+        popoverClose?.addEventListener("click", () => {
+            popoverDialog.close();
+        });
+
+        // 背景（バックドロップ）をクリックした時に閉じる
+        popoverDialog.addEventListener("click", (e) => {
+            if (e.target === popoverDialog) {
+                popoverDialog.close();
             }
         });
-    });
-
-    // 閉じるボタンをクリックした時
-    popoverClose?.addEventListener("click", () => {
-        popoverDialog.close();
-    });
-
-    // 背景（バックドロップ）をクリックした時に閉じる
-    popoverDialog.addEventListener("click", (e) => {
-        if (e.target === popoverDialog) {
-            popoverDialog.close();
-        }
-    });
-}
+    }
+});
 
 /* ==========================================
-スライダーの画像切替
-========================================== */
-
+   03. 水辺と自然 スライダー自動切替 (Experience)
+   ========================================== */
 document.addEventListener("DOMContentLoaded", () => {
-    /* ========================================
-     01. 水辺と自然 スライダー自動切替
-  ======================================== */
     const slides = document.querySelectorAll(".lake-slide");
 
     if (slides.length > 0) {
@@ -61,14 +81,36 @@ document.addEventListener("DOMContentLoaded", () => {
         const intervalTime = 4000; // 4秒ごとに切り替え
 
         setInterval(() => {
-            // 現在の slide から active クラスを外す
             slides[currentIndex].classList.remove("is-active");
-
-            // 次の slide インデックスへ
             currentIndex = (currentIndex + 1) % slides.length;
-
-            // 次の slide に active クラスを付与
             slides[currentIndex].classList.add("is-active");
         }, intervalTime);
+    }
+});
+
+/* ==========================================
+   04. タブ切り替え (Dining)
+   ========================================== */
+document.addEventListener("DOMContentLoaded", () => {
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const tabPanels = document.querySelectorAll(".tab-panel");
+
+    if (tabButtons.length > 0) {
+        tabButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const targetTab = button.getAttribute("data-tab");
+
+                // 全タブのactiveクラスを解除
+                tabButtons.forEach((btn) => btn.classList.remove("active"));
+                tabPanels.forEach((panel) => panel.classList.remove("active"));
+
+                // 選択したタブとパネルをアクティブ化
+                button.classList.add("active");
+                const targetPanel = document.getElementById(targetTab);
+                if (targetPanel) {
+                    targetPanel.classList.add("active");
+                }
+            });
+        });
     }
 });
