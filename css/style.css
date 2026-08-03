@@ -288,20 +288,26 @@
 
 /* --- 雨の日の「余白」（SPECIAL Section） --- */
 .top-special {
-    width: 100%;
-    margin: 0;
+    /* 画面いっぱいに広げる指定 */
+    width: 100vw;
     position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
     text-align: left;
     color: #ffffff;
     overflow: hidden;
+
+    /* 上下にしっかり余白を取りつつ、背景画像は全幅表示 */
+    padding-block: clamp(4.5rem, 7vw, 7.5rem);
 
     /* 背景画像 ＋ 文字の可読性を高める暗めグラデーション */
     background-image:
         linear-gradient(
             to right,
-            rgba(20, 25, 30, 0.75) 0%,
-            rgba(20, 25, 30, 0.45) 55%,
-            rgba(20, 25, 30, 0.1) 100%
+            rgba(20, 25, 30, 0.8) 0%,
+            rgba(20, 25, 30, 0.5) 55%,
+            rgba(20, 25, 30, 0.15) 100%
         ),
         url("../images/top_rain.webp");
     background-size: cover;
@@ -309,10 +315,11 @@
     background-repeat: no-repeat;
 }
 
+/* テキストを他セクションと同じ幅（1080px）の中央に揃える設定 */
 .top-special__inner {
     max-width: 1080px;
     margin-inline: auto;
-    padding-inline: 2rem;
+    padding-inline: 2rem; /* スマホ表示時の画面端とのクッション */
 }
 
 .top-special__sub {

@@ -2,8 +2,10 @@
    01. ハンバーガーボタン & ドロワーメニュー制御
    ========================================== */
 function initHamburgerMenu() {
-    const menuBtn = document.querySelector(".header__menu-btn") || document.querySelector(".js-menu-btn");
-    const drawer = document.querySelector(".header__drawer") || document.querySelector(".js-drawer");
+    const menuBtn =
+        document.querySelector(".header__menu-btn") || document.querySelector(".js-menu-btn");
+    const drawer =
+        document.querySelector(".header__drawer") || document.querySelector(".js-drawer");
 
     // デバッグ用ログ（DevToolsのConsoleで確認）
     console.log("menuBtn:", menuBtn);
@@ -11,7 +13,7 @@ function initHamburgerMenu() {
 
     if (menuBtn && drawer) {
         // 念のため既存のイベントを消して再登録
-        menuBtn.onclick = function() {
+        menuBtn.onclick = function () {
             console.log("ボタンがクリックされました！");
             menuBtn.classList.toggle("is-active");
             drawer.classList.toggle("is-active");
@@ -114,3 +116,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+/* ==========================================
+   05. TOPへ戻るボタン
+   ========================================== */
+// TOPへ戻るボタンの制御
+const pageTopBtn = document.getElementById("js-pagetop");
+
+if (pageTopBtn) {
+    // スクロール位置に応じて表示/非表示を切替
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            pageTopBtn.classList.add("is-show");
+        } else {
+            pageTopBtn.classList.remove("is-show");
+        }
+    });
+
+    // クリックしたら一番上までスムーズにスクロール
+    pageTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    });
+}

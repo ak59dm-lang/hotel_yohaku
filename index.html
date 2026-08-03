@@ -5,10 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="YOHAKUは「何もしない贅沢」をコンセプトにした、水辺のリトリートホテルのWebサイトです。"
+            content="水辺のリトリートホテル「YOHAKU」の公式サイト。湖畔の静寂のなかで『何もしない贅沢』を味わう特別な時間をお届けします。客室、お食事、過ごし方のご案内。"
         />
         <title>YOHAKU | 水辺のリトリートホテル</title>
 
+        <!-- Favicon (SVG形式) -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23697b85'/><text x='50' y='68' font-family='Cormorant Garamond, serif' font-size='60' fill='%23f7f6f2' text-anchor='middle'>Y</text></svg>"
+            type="image/svg+xml"
+        />
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,8 +39,45 @@
             <div class="header__container">
                 <!-- Brand Logo -->
                 <div class="header__brand">
-                    <a href="index.html" class="header__logo-link">
-                        <span class="header__logo">YOHAKU</span>
+                    <a
+                        href="index.html"
+                        class="header__logo-link"
+                        aria-label="YOHAKU トップページへ"
+                    >
+                        <svg
+                            class="header__logo-svg"
+                            viewBox="0 0 160 32"
+                            width="160"
+                            height="32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <!-- シンボルマーク：水面と静寂を模した三日月・波紋アーク -->
+                            <circle
+                                cx="16"
+                                cy="16"
+                                r="12"
+                                stroke="currentColor"
+                                stroke-width="1"
+                                opacity="0.4"
+                            />
+                            <path
+                                d="M 16 6 A 10 10 0 0 0 16 26 C 20 22 20 10 16 6 Z"
+                                fill="currentColor"
+                            />
+                            <!-- ロゴテキスト -->
+                            <text
+                                x="38"
+                                y="22"
+                                font-family="'Cormorant Garamond', serif"
+                                font-size="20"
+                                font-weight="500"
+                                letter-spacing="0.25em"
+                                fill="currentColor"
+                            >
+                                YOHAKU
+                            </text>
+                        </svg>
                     </a>
                 </div>
 
@@ -43,7 +86,7 @@
                     <ul class="header__nav-list">
                         <li>
                             <a href="index.html" class="header__nav-link">
-                                <span class="header__nav-en">CONCEPT</span>
+                                <span class="header__nav-en">TOP</span>
                                 <span class="header__nav-ja">余白とは</span>
                             </a>
                         </li>
@@ -76,11 +119,11 @@
 
                 <!-- Header Actions -->
                 <div class="header__actions">
-                    <div class="header__lang">
+                    <!-- <div class="header__lang">
                         <span class="header__lang-item is-active">JP</span>
                         <span class="header__lang-divider">/</span>
                         <a href="#en" class="header__lang-item">EN</a>
-                    </div>
+                    </div> -->
 
                     <div class="header__reserve">
                         <a href="pages/reservation.html" class="header__reserve-btn">RESERVATION</a>
@@ -128,7 +171,7 @@
                         <ul class="drawer__nav-list">
                             <li>
                                 <a href="index.html">
-                                    <span class="en">CONCEPT</span>
+                                    <span class="en">TOP</span>
                                     <span class="ja">余白とは</span>
                                 </a>
                             </li>
@@ -202,12 +245,12 @@
                 </div>
             </section>
 
-            <!-- Concept Section -->
+            <!-- TOP Section -->
             <section class="concept">
                 <div class="container">
                     <div class="concept__inner">
                         <div class="sec-head">
-                            <p class="sec-head__en">CONCEPT</p>
+                            <p class="sec-head__en">concept</p>
                             <h2 class="sec-head__ja">余白という過ごし方</h2>
                         </div>
                         <div class="concept__txt">
@@ -328,7 +371,32 @@
                 <div id="starField" class="star-field"></div>
                 <div id="footerContent" class="footer-content">
                     <div class="footer-brand">
-                        <a href="#top" class="footer-logo">YOHAKU</a>
+                        <a
+                            href="index.html"
+                            class="footer-logo-link"
+                            aria-label="YOHAKU トップページへ"
+                        >
+                            <!-- fill="none" を除去し、CSSに制御を完全委任 -->
+                            <svg
+                                class="footer-logo-svg"
+                                viewBox="0 0 160 32"
+                                width="150"
+                                height="30"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <circle cx="16" cy="16" r="12" opacity="0.4" />
+                                <path d="M 16 6 A 10 10 0 0 0 16 26 C 20 22 20 10 16 6 Z" />
+                                <text
+                                    x="38"
+                                    y="22"
+                                    font-family="'Cormorant Garamond', serif"
+                                    font-size="20"
+                                    letter-spacing="0.25em"
+                                >
+                                    YOHAKU
+                                </text>
+                            </svg>
+                        </a>
                     </div>
                     <div class="footer-action">
                         <a href="pages/reservation.html" class="footer-btn">RESERVATION</a>
@@ -337,6 +405,9 @@
                 </div>
             </div>
         </footer>
+
+        <!-- TOPへ戻るボタン -->
+        <button id="js-pagetop" class="pagetop-btn" aria-label="ページトップへ戻る">↑</button>
 
         <!-- JS -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>

@@ -85,21 +85,36 @@ img {
    2. Components (ボタン・パーツ)
    ======================================== */
 .btn {
+    /* Flexboxで中央揃え */
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    min-width: 22rem;
-    min-height: 5.6rem;
-    padding: 0 3.2rem;
-    background: var(--color-sub);
+
+    /* --- clamp関数でのサイズ調整 --- */
+    /* 幅：最小280px 〜 画面幅の80% 〜 最大360px で滑らかに変化 */
+    width: clamp(280px, 80%, 360px);
+
+    /* 高さ：最小48px 〜 画面幅に応じたサイズ 〜 最大56px */
+    min-height: clamp(48px, 5vw, 56px);
+
+    /* 余白と行高 */
+    padding: 0 1.5rem;
+    line-height: 1;
+
+    /* その他既存のスタイル */
+    background-color: var(--color-sub);
     color: var(--color-base);
-    font-size: 1.4rem;
-    letter-spacing: 0.18em;
+    font-size: clamp(0.8rem, 1vw, 0.95rem); /* フォントサイズもclampで可変にできます */
+    letter-spacing: 0.15em;
+    position: relative;
+    z-index: 1;
+    border-radius: 9999px;
     text-decoration: none;
-    border-radius: 999px;
-    transition:
-        background var(--transition),
-        transform var(--transition);
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+
+    /* ★角丸からはみ出すスライド背景をマスク（カット）する */
+    overflow: hidden;
 }
 
 .btn:hover {
@@ -418,4 +433,92 @@ img {
         z-index: 9999990 !important; /* SwiperやHeroより上に表示 */
         background-color: rgba(244, 241, 234, 0.98) !important;
     }
+}
+
+/* --- TOPへ戻るボタン --- */
+.pagetop-btn {
+    position: fixed;
+    /* 位置の調整：下からの距離を広げ、フッターと被らない高さへ */
+    bottom: 80px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    /* 背景色をフッターのトーンに合わせた質感に */
+    background-color: rgba(247, 246, 242, 0.9); /* 薄い生成り色 */
+    color: #4a555c; /* 落ち着いたダークグレー */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease,
+        background-color 0.3s ease;
+    z-index: 99;
+}
+
+/* スクロールしたら表示するクラス */
+.pagetop-btn.is-show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pagetop-btn:hover {
+    transform: translateY(-4px);
+    background-color: #ffffff;
+}
+
+/* --- SVG Logo Styles (完全版) --- */
+.footer-brand {
+    display: flex;
+    align-items: center; /* 上下中央揃え */
+}
+
+.footer-logo-link {
+    display: inline-flex;
+    align-items: center; /* SVG自体を上下中央揃え */
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    color: inherit; /* 親の文字色を継承 */
+}
+
+.footer-logo-link:hover {
+    opacity: 0.7;
+}
+
+/* フッターロゴのサイズと質感 */
+.footer-logo-svg {
+    height: auto;
+    max-width: 150px;
+    display: block;
+    opacity: 0.75; /* コピーライトと同等の透け感 */
+}
+
+/* ★色指定の根本解決：SVG内部の全要素に色を強制適用 */
+.footer-logo-svg circle,
+.footer-logo-svg path,
+.footer-logo-svg text {
+    color: inherit !important;
+    fill: currentColor !important;
+    stroke: currentColor !important;
+}
+
+/* 円の線だけ線幅と塗り（fill）を調整 */
+.footer-logo-svg circle {
+    fill: none !important; /* 円の中身は塗らない */
+    stroke-width: 0.8px; /* 繊細な細線 */
+}
+
+/* 三日月とテキストは塗りつぶす */
+.footer-logo-svg path,
+.footer-logo-svg text {
+    stroke: none !important; /* 線枠はつけない */
+    font-weight: 400;
 }
