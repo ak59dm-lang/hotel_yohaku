@@ -81,30 +81,33 @@ img {
     }
 }
 
+/* Screen Reader Only */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* ========================================
    2. Components (ボタン・パーツ)
    ======================================== */
 .btn {
-    /* Flexboxで中央揃え */
     display: inline-flex;
     justify-content: center;
     align-items: center;
-
-    /* --- clamp関数でのサイズ調整 --- */
-    /* 幅：最小280px 〜 画面幅の80% 〜 最大360px で滑らかに変化 */
     width: clamp(280px, 80%, 360px);
-
-    /* 高さ：最小48px 〜 画面幅に応じたサイズ 〜 最大56px */
     min-height: clamp(48px, 5vw, 56px);
-
-    /* 余白と行高 */
     padding: 0 1.5rem;
     line-height: 1;
-
-    /* その他既存のスタイル */
     background-color: var(--color-sub);
     color: var(--color-base);
-    font-size: clamp(0.8rem, 1vw, 0.95rem); /* フォントサイズもclampで可変にできます */
+    font-size: clamp(0.8rem, 1vw, 0.95rem);
     letter-spacing: 0.15em;
     position: relative;
     z-index: 1;
@@ -112,8 +115,6 @@ img {
     text-decoration: none;
     box-sizing: border-box;
     transition: all 0.3s ease;
-
-    /* ★角丸からはみ出すスライド背景をマスク（カット）する */
     overflow: hidden;
 }
 
@@ -121,6 +122,43 @@ img {
     background: var(--color-accent);
     color: var(--color-text);
     transform: translateY(-2px);
+}
+
+/* TOPへ戻るボタン */
+.pagetop-btn {
+    position: fixed;
+    bottom: 80px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba(247, 246, 242, 0.9);
+    color: #4a555c;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease,
+        background-color 0.3s ease;
+    z-index: 99;
+}
+
+.pagetop-btn.is-show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pagetop-btn:hover {
+    transform: translateY(-4px);
+    background-color: #ffffff;
 }
 
 /* ========================================
@@ -152,6 +190,11 @@ img {
 .header__logo-link {
     color: inherit;
     text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.header__logo-link:hover {
+    opacity: 0.7;
 }
 
 /* PC Nav */
@@ -196,21 +239,6 @@ img {
     gap: 24px;
 }
 
-.header__lang {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 0.95rem;
-    letter-spacing: 0.1em;
-}
-
-.header__lang-item.is-active {
-    font-weight: 600;
-}
-
-.header__lang-divider {
-    margin-inline: 4px;
-    opacity: 0.4;
-}
-
 .header__reserve-btn {
     display: inline-flex;
     align-items: center;
@@ -231,9 +259,9 @@ img {
     color: var(--color-base);
 }
 
-/* --- ドロワーメニュー本体（全画面対応） --- */
+/* ドロワーメニュー本体 */
 .header__drawer {
-    display: none; /* 通常時は非表示 */
+    display: none;
     position: fixed;
     inset: 0;
     width: 100vw;
@@ -251,12 +279,11 @@ img {
         visibility 0.4s ease;
 }
 
-/* メニュー展開時 */
 .header__drawer.is-active {
-    display: flex !important; /* 開いた時だけflexにする */
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .drawer__inner {
@@ -284,11 +311,24 @@ img {
     font-family: "Cormorant Garamond", serif;
     font-size: 1.5rem;
     letter-spacing: 0.2em;
+    transition:
+        letter-spacing 0.4s ease,
+        opacity 0.4s ease;
 }
 
 .drawer__nav-list .ja {
     font-size: 0.75rem;
     color: var(--color-main);
+    transition: opacity 0.4s ease;
+}
+
+.drawer__nav-list a:hover .en {
+    letter-spacing: 0.35em;
+    opacity: 0.7;
+}
+
+.drawer__nav-list a:hover .ja {
+    opacity: 0.7;
 }
 
 .drawer__reserve-btn {
@@ -299,68 +339,25 @@ img {
     font-family: "Cormorant Garamond", serif;
     text-decoration: none;
     color: inherit;
+    transition: all 0.3s ease;
 }
 
-/* PC表示時（1025px以上）ではハンバーガーボタンを非表示 */
+.drawer__reserve-btn:hover {
+    background-color: var(--color-accent);
+    color: var(--color-base);
+    border-color: var(--color-base);
+    transform: translateY(-2px);
+}
+
 .header__menu-btn {
     display: none;
 }
 
 /* ========================================
-   4. Mobile / Tablet Styles (1024px 以下)
+   4. Page Hero (全下層ページ共通)
    ======================================== */
-@media (max-width: 1024px) {
-    /* PC用の横並びナビを隠す */
-    .header__nav,
-    .header__reserve {
-        display: none !important;
-    }
-
-    /* ハンバーガーボタンを表示 */
-    .header__menu-btn {
-        display: flex !important;
-        position: relative; /* ← これを追加（z-indexを効かせるため） */
-        z-index: 99999 !important; /* ← z-indexを確実に一番上にする */
-        align-items: center;
-        justify-content: center;
-        width: 40px !important;
-        height: 40px !important;
-        background: transparent !important;
-        border: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        cursor: pointer;
-        z-index: var(--z-btn) !important; /* ドロワーより手前に指定 */
-        color: var(--color-text) !important;
-    }
-
-    /* SVGアイコンサイズ指定 */
-    .header__menu-btn svg {
-        width: 28px !important;
-        height: 28px !important;
-        stroke: currentColor;
-    }
-
-    /* アイコン表示切替 */
-    .header__menu-btn .icon-close {
-        display: none !important;
-    }
-    .header__menu-btn .icon-menu {
-        display: block !important;
-    }
-
-    .header__menu-btn.is-active .icon-menu {
-        display: none !important;
-    }
-    .header__menu-btn.is-active .icon-close {
-        display: block !important;
-    }
-}
-/* ==================================================
- * PAGE HERO (全下層ページ共通スタイル)
- * ================================================== */
 .page-hero {
-    background-color: #f7f5f0; /* 生成りカラー */
+    background-color: var(--color-base, #f4f1ea);
     padding: 80px 20px 70px;
     text-align: center;
 }
@@ -368,157 +365,155 @@ img {
 .page-hero-inner {
     max-width: 800px;
     margin: 0 auto;
+    background: transparent !important; /* 内側の白背景枠を解除 */
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
 }
 
 .page-hero-en {
     display: block;
     font-size: 0.85rem;
     letter-spacing: 0.35em;
-    color: #93a2b1; /* くすみブルー・グレー系 */
+    color: var(--color-accent, #aebcc6);
     margin-bottom: 24px;
     font-weight: 400;
 }
 
 .page-hero-jp {
+    font-family: "Noto Serif JP", serif;
     font-size: 1.85rem;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0.1em;
-    color: #2c2c2c;
+    color: var(--color-text, #31312f);
     margin: 0 0 24px 0;
 }
 
 .page-hero-desc {
     font-size: 0.88rem;
     line-height: 2;
-    color: #686868;
+    color: var(--color-main, #8a8279);
     margin: 0;
     font-weight: 400;
 }
 
-/* レスポンシブ（スマホ対応） */
 @media (max-width: 768px) {
     .page-hero {
         padding: 60px 20px 50px;
     }
+
     .page-hero-jp {
         font-size: 1.45rem;
     }
 }
 
-/* --- ハンバーガーメニュー動作保証用CSS（index.html超強固版） --- */
-@media (max-width: 1024px) {
-    /* ボタンを絶対的最前面へ */
-    .header__menu-btn {
-        position: relative !important;
-        z-index: 9999999 !important; /* 数値を限界まで上げる */
-        cursor: pointer !important;
-    }
-
-    /* ドロワーを画面全体＆超最前面へ */
-    .header__drawer {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-    }
-
-    /* 開いた時のドロワー表示 */
-    .header__drawer.is-active {
-        display: flex !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-        z-index: 9999990 !important; /* SwiperやHeroより上に表示 */
-        background-color: rgba(244, 241, 234, 0.98) !important;
-    }
-}
-
-/* --- TOPへ戻るボタン --- */
-.pagetop-btn {
-    position: fixed;
-    /* 位置の調整：下からの距離を広げ、フッターと被らない高さへ */
-    bottom: 80px;
-    right: 24px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    /* 背景色をフッターのトーンに合わせた質感に */
-    background-color: rgba(247, 246, 242, 0.9); /* 薄い生成り色 */
-    color: #4a555c; /* 落ち着いたダークグレー */
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    cursor: pointer;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    opacity: 0;
-    visibility: hidden;
-    transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease,
-        transform 0.3s ease,
-        background-color 0.3s ease;
-    z-index: 99;
-}
-
-/* スクロールしたら表示するクラス */
-.pagetop-btn.is-show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.pagetop-btn:hover {
-    transform: translateY(-4px);
-    background-color: #ffffff;
-}
-
-/* --- SVG Logo Styles (完全版) --- */
+/* ========================================
+   5. Footer SVG Logo
+   ======================================== */
 .footer-brand {
     display: flex;
-    align-items: center; /* 上下中央揃え */
+    align-items: center;
 }
 
 .footer-logo-link {
     display: inline-flex;
-    align-items: center; /* SVG自体を上下中央揃え */
+    align-items: center;
     text-decoration: none;
     transition: opacity 0.3s ease;
-    color: inherit; /* 親の文字色を継承 */
+    color: inherit;
 }
 
 .footer-logo-link:hover {
     opacity: 0.7;
 }
 
-/* フッターロゴのサイズと質感 */
 .footer-logo-svg {
     height: auto;
     max-width: 150px;
     display: block;
-    opacity: 0.75; /* コピーライトと同等の透け感 */
+    opacity: 0.75;
 }
 
-/* ★色指定の根本解決：SVG内部の全要素に色を強制適用 */
 .footer-logo-svg circle,
 .footer-logo-svg path,
 .footer-logo-svg text {
-    color: inherit !important;
-    fill: currentColor !important;
-    stroke: currentColor !important;
+    color: inherit;
+    fill: currentColor;
+    stroke: currentColor;
 }
 
-/* 円の線だけ線幅と塗り（fill）を調整 */
 .footer-logo-svg circle {
-    fill: none !important; /* 円の中身は塗らない */
-    stroke-width: 0.8px; /* 繊細な細線 */
+    fill: none;
+    stroke-width: 0.8px;
 }
 
-/* 三日月とテキストは塗りつぶす */
 .footer-logo-svg path,
 .footer-logo-svg text {
-    stroke: none !important; /* 線枠はつけない */
+    stroke: none;
     font-weight: 400;
+}
+
+/* ========================================
+   6. Mobile / Tablet Responsive (1024px 以下)
+   ======================================== */
+@media (max-width: 1024px) {
+    .header__nav,
+    .header__reserve {
+        display: none !important;
+    }
+
+    /* ハンバーガーボタン表示設定 */
+    .header__menu-btn {
+        display: flex !important;
+        position: relative;
+        z-index: var(--z-btn);
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        color: var(--color-text);
+    }
+
+    .header__menu-btn:hover svg path {
+        stroke: var(--color-accent);
+        transition: stroke 0.3s ease;
+    }
+
+    .header__menu-btn svg {
+        width: 28px;
+        height: 28px;
+        stroke: currentColor;
+    }
+
+    .header__menu-btn .icon-close {
+        display: none !important;
+    }
+
+    .header__menu-btn .icon-menu {
+        display: block !important;
+    }
+
+    .header__menu-btn.is-active .icon-menu {
+        display: none !important;
+    }
+
+    .header__menu-btn.is-active .icon-close {
+        display: block !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 60px 20px 50px;
+    }
+
+    .page-hero-jp {
+        font-size: 1.45rem;
+    }
 }

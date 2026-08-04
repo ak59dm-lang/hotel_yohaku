@@ -1,47 +1,47 @@
 @charset "UTF-8";
 
-/* ----------------------------------
-   スクロール駆動フッター（FIX表示）
----------------------------------- */
+/* ==========================================================
+   スクロール駆動・固定フッター (Sticky Footer)
+   ========================================================== */
 
-#footerWrapper,
 .footer-wrapper {
     position: relative;
     width: 100%;
 }
 
-/* 画面下部に完全にFIX固定（高さ: 画面の約16%） */
-#footerSticky,
+/* 画面下部に固定表示（高さ: 画面の約16%） */
 .footer-sticky {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 16vh; /* 画面の15%〜18%の範囲に設定 */
-    min-height: 100px; /* スマホ等で小さくなりすぎないための最小値 */
+    height: 16vh;
+    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 90;
     overflow: hidden;
-    transition: background-color 0.8s ease, color 0.8s ease;
-    background-color: var(--color-base);
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+    background-color: var(--color-base, #f5f3ef);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
+    transition:
+        background-color 0.8s ease,
+        color 0.8s ease;
 }
 
-/* フッターが被らないよう、本文最下部に余白を動的確保 */
+/* フッターとコンテンツの重なりを防ぐ下部余白 */
 body {
     padding-bottom: 16vh;
 }
 
-/* 背景演出パーツ */
+/* --- 背景演出パーツ --- */
 .lake-reflection {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 50%;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.12), transparent);
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.15), transparent);
     pointer-events: none;
     z-index: 1;
 }
@@ -58,23 +58,24 @@ body {
     z-index: 2;
 }
 
-/* コンテンツ レイアウト配置 */
+/* --- コンテンツレイアウト --- */
 .footer-content {
     position: relative;
     z-index: 3;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1100px;
     padding: 0 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+    color: var(--color-main, #4a5560);
     transition: color 0.8s ease;
-    color: var(--color-text);
 }
 
-/* ロゴアイコン部分 */
+/* ブランドロゴ */
 .footer-brand .footer-logo {
+    font-family: var(--font-serif, "Noto Serif JP", serif);
     font-size: 1.2rem;
     font-weight: 300;
     letter-spacing: 0.25em;
@@ -82,21 +83,25 @@ body {
     text-decoration: none;
 }
 
-/* 予約ボタン */
+/* RESERVATION ボタン */
 .footer-btn {
-    display: inline-block;
-    padding: 8px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 24px;
     font-size: 0.75rem;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
     color: inherit;
     text-decoration: none;
     border: 1px solid currentColor;
     border-radius: 20px;
+    background-color: transparent;
     transition: all 0.3s ease;
 }
 
 .footer-btn:hover {
     opacity: 0.7;
+    transform: translateY(-1px);
 }
 
 /* コピーライト */
@@ -107,11 +112,13 @@ body {
     margin: 0;
 }
 
-/* スマホ表示時は縦並びでコンパクトに収める */
+/* ==========================================================
+   モバイル対応 (max-width: 600px)
+   ========================================================== */
+
 @media (max-width: 600px) {
-    #footerSticky,
     .footer-sticky {
-        height: 18vh; /* スマホ時は少し広めに確保 */
+        height: 18vh;
     }
 
     body {

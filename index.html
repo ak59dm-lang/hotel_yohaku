@@ -9,12 +9,13 @@
         />
         <title>YOHAKU | 水辺のリトリートホテル</title>
 
-        <!-- Favicon (SVG形式) -->
+        <!-- Favicon (SVG) -->
         <link
             rel="icon"
             href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23697b85'/><text x='50' y='68' font-family='Cormorant Garamond, serif' font-size='60' fill='%23f7f6f2' text-anchor='middle'>Y</text></svg>"
             type="image/svg+xml"
         />
+
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,22 +23,26 @@
             href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@300;400;500;600&display=swap"
             rel="stylesheet"
         />
-        <!-- Swiper CSS -->
+
+        <!-- Vendor CSS -->
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
         />
-        <!-- Stylesheet -->
+
+        <!-- Original Stylesheet -->
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/common.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/footer.css" />
     </head>
     <body>
-        <!-- Header (Heroの外に配置してクリック・表示崩れを防ぐ) -->
+        <!-- ==========================================
+        Header
+        ========================================== -->
         <header class="header">
             <div class="header__container">
-                <!-- Brand Logo -->
+                <!-- ブランドロゴ -->
                 <div class="header__brand">
                     <a
                         href="index.html"
@@ -52,7 +57,6 @@
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                         >
-                            <!-- シンボルマーク：水面と静寂を模した三日月・波紋アーク -->
                             <circle
                                 cx="16"
                                 cy="16"
@@ -65,7 +69,6 @@
                                 d="M 16 6 A 10 10 0 0 0 16 26 C 20 22 20 10 16 6 Z"
                                 fill="currentColor"
                             />
-                            <!-- ロゴテキスト -->
                             <text
                                 x="38"
                                 y="22"
@@ -81,7 +84,7 @@
                     </a>
                 </div>
 
-                <!-- PC Navigation -->
+                <!-- PC ナビゲーション -->
                 <nav class="header__nav">
                     <ul class="header__nav-list">
                         <li>
@@ -117,19 +120,12 @@
                     </ul>
                 </nav>
 
-                <!-- Header Actions -->
+                <!-- アクションエリア（予約ボタン・ハンバーガー） -->
                 <div class="header__actions">
-                    <!-- <div class="header__lang">
-                        <span class="header__lang-item is-active">JP</span>
-                        <span class="header__lang-divider">/</span>
-                        <a href="#en" class="header__lang-item">EN</a>
-                    </div> -->
-
                     <div class="header__reserve">
                         <a href="pages/reservation.html" class="header__reserve-btn">RESERVATION</a>
                     </div>
 
-                    <!-- Hamburger Button -->
                     <button
                         class="header__menu-btn js-menu-btn"
                         type="button"
@@ -147,7 +143,6 @@
                         >
                             <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
                         </svg>
-
                         <!-- 閉じる（✕）アイコン -->
                         <svg
                             class="icon-close"
@@ -164,7 +159,7 @@
                 </div>
             </div>
 
-            <!-- Mobile Drawer Menu -->
+            <!-- モバイル ドロワーメニュー -->
             <div class="header__drawer js-drawer">
                 <div class="drawer__inner">
                     <nav class="drawer__nav">
@@ -208,13 +203,19 @@
             </div>
         </header>
 
+        <!-- ==========================================
+            Main Content
+        ========================================== -->
         <main>
+            <!-- サイト主見出し（SEO・アクセシビリティ用） -->
+            <h1 class="visually-hidden">YOHAKU | 水辺のリトリートホテル</h1>
+
             <!-- Hero Section -->
             <section class="hero">
                 <div class="hero__content">
                     <div class="hero__copy">
                         <p class="hero__lead">予定：</p>
-                        <h2 class="hero__title">何もしない</h2>
+                        <p class="hero__title">何もしない</p>
                     </div>
                     <div class="hero__scroll">
                         <span>Scroll</span>
@@ -245,7 +246,7 @@
                 </div>
             </section>
 
-            <!-- TOP Section -->
+            <!-- Concept Section -->
             <section class="concept">
                 <div class="container">
                     <div class="concept__inner">
@@ -311,7 +312,7 @@
                     <div class="section-desc">
                         <p class="section-text">
                             湯に身を委ね、静かな風を感じ、ただ時が過ぎるのを眺める。<br />
-                            日常の忙ジナさを手放し、ご自身を解き放つ時間をお過ごしください。
+                            日常の忙しさを手放し、ご自身を解き放つ時間をお過ごしください。
                         </p>
                         <a href="pages/experience.html" class="link-more">
                             <span>過ごし方を見る</span>
@@ -364,7 +365,9 @@
             </section>
         </main>
 
-        <!-- Footer -->
+        <!-- ==========================================
+             Footer
+             ========================================== -->
         <footer id="footerWrapper" class="footer-wrapper">
             <div id="footerSticky" class="footer-sticky">
                 <div class="lake-reflection"></div>
@@ -376,7 +379,6 @@
                             class="footer-logo-link"
                             aria-label="YOHAKU トップページへ"
                         >
-                            <!-- fill="none" を除去し、CSSに制御を完全委任 -->
                             <svg
                                 class="footer-logo-svg"
                                 viewBox="0 0 160 32"
@@ -409,7 +411,7 @@
         <!-- TOPへ戻るボタン -->
         <button id="js-pagetop" class="pagetop-btn" aria-label="ページトップへ戻る">↑</button>
 
-        <!-- JS -->
+        <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>

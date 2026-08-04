@@ -13,7 +13,7 @@
     display: block;
     font-family: "Cinzel", "Cormorant Garamond", serif;
     font-size: 0.85rem;
-    color: #7e95a8;
+    color: var(--color-accent, #7e95a8);
     letter-spacing: 0.2em;
     margin-bottom: 0.2rem;
 }
@@ -22,7 +22,7 @@
     display: block;
     font-size: 0.75rem;
     letter-spacing: 0.25em;
-    color: #8c96a0;
+    color: var(--color-sub, #8c96a0);
     margin-bottom: 0.8rem;
 }
 
@@ -73,8 +73,8 @@
 }
 
 .link-more:hover {
-    border-color: #7e95a8;
-    color: #7e95a8;
+    border-color: var(--color-accent, #7e95a8);
+    color: var(--color-accent, #7e95a8);
 }
 
 .link-more .arrow {
@@ -125,7 +125,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgb(0 0 0 / 22%);
+    background: rgba(0, 0, 0, 0.22);
     z-index: 2;
 }
 
@@ -161,7 +161,7 @@
     font-weight: 500;
     line-height: 1.2;
     color: var(--color-base, #ffffff);
-    text-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* スクロール誘導 (SCROLL) */
@@ -213,7 +213,7 @@
 }
 
 /* ==========================================================
-   3. トップページ・レイアウト＆背景設定 (Top Layout & Themes)
+   3. トップページ・レイアウト (Top Layout)
    ========================================================== */
 
 /* 上下余白の統一（テンポ感の創出） */
@@ -235,15 +235,19 @@
     padding-inline: 2rem;
 }
 
-/* ==========================================================
-   4. トップページ・各セクション (Top Page Sections)
-   ========================================================== */
-
 /* --- Concept --- */
 .concept__inner {
     max-width: 720px;
     margin-inline: auto;
     text-align: center;
+}
+
+.sec-head__en,
+.sec-head__ja {
+    font-family: "Noto Serif JP", serif;
+    color: var(--color-main, #4a5560);
+    line-height: 2;
+    letter-spacing: 0.08em;
 }
 
 .concept__txt {
@@ -288,20 +292,14 @@
 
 /* --- 雨の日の「余白」（SPECIAL Section） --- */
 .top-special {
-    /* 画面いっぱいに広げる指定 */
     width: 100vw;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-
     text-align: left;
     color: #ffffff;
     overflow: hidden;
-
-    /* 上下にしっかり余白を取りつつ、背景画像は全幅表示 */
     padding-block: clamp(4.5rem, 7vw, 7.5rem);
-
-    /* 背景画像 ＋ 文字の可読性を高める暗めグラデーション */
     background-image:
         linear-gradient(
             to right,
@@ -315,11 +313,10 @@
     background-repeat: no-repeat;
 }
 
-/* テキストを他セクションと同じ幅（1080px）の中央に揃える設定 */
 .top-special__inner {
     max-width: 1080px;
     margin-inline: auto;
-    padding-inline: 2rem; /* スマホ表示時の画面端とのクッション */
+    padding-inline: 2rem;
 }
 
 .top-special__sub {
@@ -346,7 +343,6 @@
     max-width: 520px;
 }
 
-/* SPECIAL ボタン */
 .top-special__btn {
     display: inline-flex;
     align-items: center;
@@ -377,17 +373,8 @@
     transform: translateX(4px);
 }
 
-/* モバイル調整：スマホ時は縦方向グラデーションに */
-@media (max-width: 768px) {
-    .top-special {
-        background-image:
-            linear-gradient(to bottom, rgba(20, 25, 30, 0.8) 0%, rgba(20, 25, 30, 0.4) 100%),
-            url("../images/top_rain.webp");
-    }
-}
-
 /* ==========================================================
-   5. 過ごし方ページ専用 (Page: Experience)
+   4. 過ごし方ページ専用 (Page: Experience)
    ========================================================== */
 
 .experience-section {
@@ -472,18 +459,14 @@
     outline: none;
     padding: 0;
     cursor: pointer;
-    isolation: isolate;
-    transform: translateZ(0);
 }
 
 .photo-item img {
     display: block;
     width: 100%;
-    max-width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
-    will-change: transform;
 }
 
 .photo-item:hover img {
@@ -522,14 +505,11 @@
     overflow: hidden;
     border-radius: var(--radius-s, 8px);
     margin-bottom: var(--space-m, 20px);
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
-    padding: 0 !important;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0;
     cursor: pointer;
-    isolation: isolate;
-    transform: translateZ(0);
 }
 
 .dining-card__image img {
@@ -589,7 +569,7 @@
     background-color: rgba(126, 149, 168, 0.08);
     border-left: 4px solid var(--color-accent, #7e95a8);
     padding: var(--space-xl, 40px);
-    border-radius: 0 var(--radius-m, 4px) var(--radius-m, 4px) 0;
+    border-radius: 0 var(--radius-m, 8px) var(--radius-m, 8px) 0;
 }
 
 .rainy-service__desc {
@@ -621,18 +601,14 @@
     outline: none;
     padding: 0;
     cursor: pointer;
-    isolation: isolate;
-    transform: translateZ(0);
 }
 
 .rainy-image-item img {
     display: block;
     width: 100%;
-    max-width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
-    will-change: transform;
 }
 
 .rainy-image-item:hover img {
@@ -701,8 +677,329 @@
     margin-bottom: 32px;
 }
 
-/* --- レスポンシブ（スマホ表示） --- */
+/* ==========================================
+   5. 予約ページ専用 (Page: Reservation)
+   ========================================== */
+
+/* --- 予約フォームコンテナ --- */
+.reservation-form {
+    max-width: 800px;
+    margin: 0 auto 120px;
+    background: #ffffff;
+    padding: clamp(2rem, 5vw, 3.5rem);
+    border-radius: var(--radius-m, 12px);
+    border: 1px solid rgba(184, 178, 170, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.form-section {
+    margin-bottom: var(--space-l, 2.5rem);
+    padding-bottom: var(--space-m, 1.5rem);
+    border-bottom: 1px solid rgba(184, 178, 170, 0.2);
+}
+
+.form-section__title {
+    font-family: var(--font-serif, "Noto Serif JP", serif);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-s, 1rem);
+    color: var(--color-main, #4a5560);
+    font-weight: 500;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    color: var(--color-main, #4a5560);
+    letter-spacing: 0.05em;
+}
+
+.form-control {
+    padding: 12px 16px;
+    border: 1px solid rgba(184, 178, 170, 0.4);
+    border-radius: var(--radius-s, 6px);
+    background: var(--color-base, #f5f3ef);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--color-main, #4a5560);
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-accent, #7e95a8);
+}
+
+/* --- お部屋選択スタイル --- */
+.room-group {
+    margin-bottom: 24px;
+}
+
+.room-group__title {
+    font-size: 0.85rem;
+    color: var(--color-accent, #7e95a8);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.room-options {
+    display: grid;
+    gap: 12px;
+}
+
+.room-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 20px;
+    border: 1px solid rgba(184, 178, 170, 0.3);
+    border-radius: var(--radius-s, 8px);
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease;
+}
+
+.room-card input[type="radio"] {
+    margin-top: 4px;
+    accent-color: var(--color-accent, #7e95a8);
+}
+
+.room-card:has(input:checked) {
+    border-color: var(--color-accent, #7e95a8);
+    background: rgba(126, 149, 168, 0.06);
+}
+
+.room-card__content {
+    flex: 1;
+}
+
+.room-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.room-card__name {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--color-main, #4a5560);
+}
+
+.room-card__price {
+    font-size: 1.05rem;
+    color: var(--color-main, #4a5560);
+    font-weight: 500;
+}
+
+.room-card__price small {
+    font-size: 0.75rem;
+    color: var(--color-sub, #b8b2aa);
+    font-weight: 400;
+}
+
+.room-card__desc {
+    font-size: 0.8rem;
+    color: var(--color-main, #4a5560);
+    margin: 0;
+    line-height: 1.6;
+    opacity: 0.85;
+}
+
+/* --- 概算＆予約確定エリア --- */
+.reservation-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-top: var(--space-l, 2.5rem);
+}
+
+.summary-total {
+    font-size: 1.05rem;
+    color: var(--color-main, #4a5560);
+}
+
+.summary-total strong {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2.2rem;
+    margin-left: 12px;
+    color: var(--color-main, #4a5560);
+    font-weight: 500;
+}
+
+.reservation-btn {
+    display: inline-block;
+    padding: 14px 48px;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    background-color: var(--color-accent, #7e95a8);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reservation-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+/* ==========================================
+   6. モーダル (Reservation Modal)
+   ========================================== */
+
+.complete-modal {
+    border: none;
+    border-radius: 16px;
+    background-color: #f7f6f2;
+    padding: 0;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.complete-modal::backdrop {
+    background-color: rgba(30, 35, 38, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.modal__inner {
+    padding: 48px 32px 40px;
+    text-align: center;
+    color: #4a555b;
+}
+
+.modal__sub-title {
+    display: block;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    color: #8c99a0;
+    margin-bottom: 12px;
+}
+
+.modal__title {
+    font-family: "Noto Serif JP", serif;
+    font-weight: 300;
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    color: #2c3539;
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.modal__notice {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #8c99a0;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+    margin-bottom: 32px;
+}
+
+.modal__summary {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(210, 205, 195, 0.5);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+}
+
+.modal__summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    text-align: left;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+.modal__summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal__summary-item dt {
+    color: #7a8890;
+    font-weight: 300;
+}
+
+.modal__summary-item dd {
+    color: #2c3539;
+    font-weight: 400;
+    margin: 0;
+}
+
+.modal__summary-price {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.modal__action {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-close-btn {
+    display: inline-block;
+    padding: 12px 36px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+    background-color: #697b85;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition:
+        background-color 0.3s ease,
+        opacity 0.3s ease,
+        transform 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    color: #ffffff;
+    background-color: #586973;
+    opacity: 0.6;
+    transform: translateY(-1px);
+}
+
+.modal-close-btn:active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ==========================================================
+   7. モバイル・レスポンシブ (Mobile / Tablet 768px 以下)
+   ========================================================== */
+
 @media (max-width: 768px) {
+    .top-special {
+        background-image:
+            linear-gradient(to bottom, rgba(20, 25, 30, 0.8) 0%, rgba(20, 25, 30, 0.4) 100%),
+            url("../images/top_rain.webp");
+    }
+
     .photo-grid--4col {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
@@ -736,198 +1033,4 @@
         bottom: 12px;
         right: 12px;
     }
-}
-
-/* ==========================================
-      6. 予約ページ専用 (Page:reservation )
-   ========================================== */
-
-.reservation-form {
-    max-width: 760px;
-    margin: 40px auto var(--space-xl);
-    background: #fff;
-    padding: clamp(2rem, 5vw, 4rem);
-    border-radius: var(--radius-m);
-    box-shadow: var(--shadow-soft);
-}
-
-.form-section {
-    margin-bottom: var(--space-l);
-    padding-bottom: var(--space-m);
-    border-bottom: var(--border-light);
-}
-
-.form-section__title {
-    font-size: 1.1rem;
-    letter-spacing: 0.12em;
-    margin-bottom: var(--space-s);
-    color: var(--color-sub);
-    font-weight: 500;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.form-group label {
-    font-size: 0.8rem;
-    color: var(--color-main);
-    letter-spacing: 0.05em;
-}
-
-.form-control {
-    padding: 12px 16px;
-    border: 1px solid rgba(138, 130, 121, 0.4);
-    border-radius: var(--radius-s);
-    background: var(--color-base);
-    font-family: inherit;
-    font-size: 0.95rem;
-    color: var(--color-text);
-}
-
-/* お部屋選択スタイル */
-.room-group__title {
-    font-size: 0.85rem;
-    color: var(--color-main);
-    letter-spacing: 0.1em;
-    margin-bottom: 12px;
-    font-weight: 500;
-}
-
-.room-options {
-    display: grid;
-    gap: 12px;
-}
-
-.room-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 18px 20px;
-    border: 1px solid rgba(138, 130, 121, 0.25);
-    border-radius: var(--radius-s);
-    cursor: pointer;
-    background: #faf9f6;
-    transition: all 0.3s ease;
-}
-
-.room-card input[type="radio"] {
-    margin-top: 4px;
-    accent-color: var(--color-sub);
-}
-
-.room-card:has(input:checked) {
-    border-color: var(--color-sub);
-    background: rgba(100, 121, 134, 0.06);
-}
-
-.room-card__content {
-    flex: 1;
-}
-
-.room-card__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 4px;
-}
-
-.room-card__name {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 1.25rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-}
-
-.room-card__price {
-    font-size: 1.05rem;
-    color: var(--color-text);
-    font-weight: 500;
-}
-
-.room-card__price small {
-    font-size: 0.75rem;
-    color: var(--color-main);
-    font-weight: 400;
-}
-
-.room-card__desc {
-    font-size: 0.8rem;
-    color: var(--color-main);
-    margin: 0;
-    line-height: 1.5;
-}
-
-/* 概算＆予約確定エリア */
-.reservation-summary {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    margin-top: var(--space-l);
-}
-
-.summary-total {
-    font-size: 1.05rem;
-    color: var(--color-text);
-}
-
-.summary-total strong {
-    font-size: 2rem;
-    margin-left: 12px;
-    color: var(--color-sub);
-    font-weight: 500;
-}
-
-/* 完了モーダル */
-.complete-modal {
-    border: none;
-    border-radius: var(--radius-m);
-    padding: 36px 28px;
-    background: var(--color-base);
-    box-shadow: var(--shadow-card);
-    max-width: 440px;
-    width: 90%;
-    margin: auto;
-}
-
-.complete-modal::backdrop {
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
-}
-
-.modal__inner {
-    text-align: center;
-}
-
-.modal__summary {
-    margin-top: 20px;
-    padding: 16px 20px;
-    background: #fff;
-    border-radius: var(--radius-s);
-    text-align: left;
-    font-size: 0.85rem;
-    line-height: 1.8;
-    border: var(--border-light);
-}
-
-/* モーダル内の閉じるボタン専用設定 */
-.modal-close-btn {
-    margin-top: 24px !important;
-    min-width: 200px !important;
-    width: auto !important;
-    height: 48px !important;
-    min-height: 48px !important;
-    padding: 0 24px !important;
-    font-size: 0.85rem !important;
 }

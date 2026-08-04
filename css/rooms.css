@@ -1,8 +1,9 @@
 @charset "UTF-8";
 
-/* ==========================================================================
-   Design Variables (カラーパレット・フォント定義)
-   ========================================================================== */
+/* ==========================================================
+   1. デザイン変数 & 基本設定 (Variables & Base)
+   ========================================================== */
+
 :root {
     /* Color Palette */
     --color-base: #f5f3ef; /* ベース：アイボリー */
@@ -19,9 +20,6 @@
     --section-space: 100px;
 }
 
-/* ==========================================================================
-   Base Styles
-   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -66,39 +64,11 @@ a {
     padding: 0 24px;
 }
 
-/* ==========================================================================
-   Page Hero (ページヘッダー領域)
-   ========================================================================== */
-.page-hero {
-    padding: 120px 24px 80px;
-    text-align: center;
-}
 
-.page-hero__sub {
-    display: block;
-    font-size: 0.875rem;
-    letter-spacing: 0.25em;
-    color: var(--color-accent);
-    margin-bottom: 12px;
-}
+/* ==========================================================
+   2. 客室一覧 (Rooms List & Cards)
+   ========================================================== */
 
-.page-hero__title {
-    font-size: 2rem;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    margin-bottom: 24px;
-}
-
-.page-hero__text {
-    font-size: 0.95rem;
-    color: var(--color-main);
-    opacity: 0.85;
-    line-height: 2;
-}
-
-/* ==========================================================================
-   Rooms List
-   ========================================================================== */
 .rooms-list {
     padding-bottom: var(--section-space);
 }
@@ -129,6 +99,7 @@ a {
     aspect-ratio: 4 / 3;
     overflow: hidden;
     background-color: var(--color-sub);
+    border-radius: 4px;
 }
 
 .room-card__image img {
@@ -195,16 +166,86 @@ a {
     color: var(--color-main);
 }
 
-/* ==========================================================================
-   Rooms List（ボタンの中央寄せ＆ホバー演出）
-   ========================================================================== */
+/* ==========================================================
+   3. 間取り図 (Floor Plan)
+   ========================================================== */
+
+.room-card__floorplan {
+    margin-top: 24px;
+    margin-bottom: 28px;
+    padding: 16px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(184, 178, 170, 0.3);
+    border-radius: 4px;
+}
+
+.floorplan-label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--color-sub);
+    margin-bottom: 12px;
+}
+
+.room-card__floorplan img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    opacity: 0.85;
+}
+
+/* Standard Room用 2列配置 */
+.floorplan-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.floorplan-item {
+    text-align: center;
+}
+
+.floorplan-caption {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-main);
+    margin-top: 6px;
+}
+
+/* ==========================================================
+   4. ボタン演出 (Button Styles & Animations)
+   ========================================================== */
+
+/* 5. ボタン演出 */
+.btn {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 36px;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--color-main);
+    border: 1px solid var(--color-main);
+    border-radius: 30px;
+    background-color: transparent;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
+    transition:
+        color 0.4s ease,
+        transform 0.2s ease,
+        border-color 0.4s ease;
+}
+
 .room-card__content .btn {
     display: flex;
     margin-inline: auto;
     margin-top: 32px;
 }
 
-/* 左から右へ広がる背景要素 */
+/* 左から右へスライドする背景演出 */
 .btn::before {
     content: "";
     position: absolute;
@@ -212,37 +253,107 @@ a {
     left: 0;
     width: 0%;
     height: 100%;
-    background-color: var(
-        --color-main
-    ); /* ホバー後の色（お好みで var(--color-accent) 等に変更可） */
-    transition: width 0.35s ease;
+    background-color: var(--color-main);
+    transition: width 0.4s ease;
     z-index: -1;
 }
 
-/* ホバー時の挙動 */
 .btn:hover::before {
     width: 100%;
 }
 
 .btn:hover {
     color: var(--color-base);
-    transform: translateY(-2px); /* 少し上に浮くアニメーションも残す場合 */
+    transform: translateY(-2px);
 }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
+/* ==========================================================
+   5. 画像拡大ポップオーバー (Popover / Modal)
+   ========================================================== */
+
+/* トリガーボタン（画像部分） */
+.popover-trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: zoom-in;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+}
+
+/* ポップアップ本体 (dialog) */
+.image-popover {
+    margin: auto;
+    border: none;
+    background: transparent;
+    max-width: 90vw;
+    max-height: 90vh;
+    padding: 0;
+    overflow: visible;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* 背景バックドロップ */
+.image-popover::backdrop {
+    background-color: rgba(30, 35, 40, 0.85);
+    backdrop-filter: blur(4px);
+}
+
+.image-popover__inner {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-popover__inner img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    background-color: var(--color-base);
+    border-radius: 4px;
+}
+
+/* 閉じるボタン */
+.image-popover__close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    line-height: 1;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.image-popover__close:hover {
+    opacity: 1;
+}
+
+/* ==========================================================
+   6. フッター (Footer)
+   ========================================================== */
+
 .footer {
     background-color: var(--color-main);
     color: var(--color-base);
     padding: 60px 24px;
     text-align: center;
+    position: relative;
+    z-index: 10;
 }
 
 .footer__logo {
     font-size: 1.5rem;
     letter-spacing: 0.2em;
     margin-bottom: 12px;
+    color: var(--color-base);
 }
 
 .footer__address {
@@ -257,24 +368,13 @@ a {
     display: block;
 }
 
-/* ==========================================================================
-   Responsive (スマートフォン対応)
-   ========================================================================== */
+/* ==========================================================
+   7. モバイル・レスポンシブ (Mobile 768px 以下)
+   ========================================================== */
+
 @media (max-width: 768px) {
     :root {
         --section-space: 60px;
-    }
-
-    .header__inner {
-        padding: 16px 20px;
-    }
-
-    .header__nav ul {
-        gap: 16px;
-    }
-
-    .header__nav a {
-        font-size: 0.75rem;
     }
 
     .page-hero {
@@ -302,153 +402,7 @@ a {
     }
 
     .btn {
-        display: block;
+        display: flex;
         width: 100%;
     }
-}
-
-/* ==========================================================================
-   Floor Plan (追加された間取り画像のスタイル)
-   ========================================================================== */
-.room-card__floorplan {
-    margin-top: 24px;
-    margin-bottom: 28px;
-    padding: 16px;
-    background-color: rgba(255, 255, 255, 0.4);
-    border: 1px solid rgba(184, 178, 170, 0.3);
-    border-radius: 2px;
-}
-
-.floorplan-label {
-    display: block;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    color: var(--color-sub);
-    margin-bottom: 12px;
-}
-
-.room-card__floorplan img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
-    opacity: 0.85;
-}
-
-/* Standard Room用の2列配置 */
-.floorplan-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
-.floorplan-item {
-    text-align: center;
-}
-
-.floorplan-caption {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--color-main);
-    margin-top: 6px;
-}
-
-/* ==========================================================================
-   Footer (色の安定化・修正)
-   ========================================================================== */
-.footer {
-    background-color: #4a5560 !important; /* スレートグレーを確実に適用 */
-    color: #f5f3ef !important; /* アイボリーの文字 */
-    padding: 60px 24px;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-}
-
-.footer__logo {
-    font-size: 1.5rem;
-    letter-spacing: 0.2em;
-    margin-bottom: 12px;
-    color: #f5f3ef;
-}
-
-.footer__address {
-    font-size: 0.8rem;
-    color: #b8b2aa;
-    margin-bottom: 24px;
-}
-
-.footer__copyright {
-    font-size: 0.75rem;
-    color: rgba(245, 243, 239, 0.5);
-    display: block;
-}
-
-/* ==========================================================================
-   Popover / Modal Styles
-   ========================================================================== */
-
-/* トリガーボタン（画像部分） */
-.popover-trigger {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: zoom-in;
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-align: left;
-}
-
-/* ポップアップ本体 (dialog) */
-.image-popover {
-    margin: auto;
-    border: none;
-    background: transparent;
-    max-width: 90vw;
-    max-height: 90vh;
-    padding: 0;
-    overflow: visible;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-/* 背景の暗がり（バックドロップ） */
-.image-popover::backdrop {
-    background-color: rgba(30, 35, 40, 0.85); /* 静けさを感じる深めの暗色 */
-    backdrop-filter: blur(4px);
-}
-
-.image-popover__inner {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.image-popover__inner img {
-    max-width: 90vw;
-    max-height: 85vh;
-    object-fit: contain;
-    background-color: var(--color-base);
-    border-radius: 2px;
-}
-
-/* 閉じるボタン */
-.image-popover__close {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 8px;
-    line-height: 1;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-}
-
-.image-popover__close:hover {
-    opacity: 1;
 }

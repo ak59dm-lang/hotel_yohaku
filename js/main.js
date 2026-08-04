@@ -141,3 +141,23 @@ if (pageTopBtn) {
         });
     });
 }
+/* ==========================================
+   06. 予約完了モーダル
+   ========================================== */
+// フォーム送信時のサマリー生成処理
+document.getElementById("js-modal-summary").innerHTML = `
+    <dl class="modal__summary-list">
+        <div class="modal__summary-item">
+            <dt>お名前</dt>
+            <dd>${name} 様</dd>
+        </div>
+        <div class="modal__summary-item">
+            <dt>お部屋</dt>
+            <dd>${roomName}</dd>
+        </div>
+        <div class="modal__summary-item">
+            <dt>お支払い金額</dt>
+            <dd class="modal__summary-price">${totalPriceEl.textContent}</dd>
+        </div>
+    </dl>
+`;
