@@ -1,53 +1,128 @@
 @charset "UTF-8";
 
 /* ==========================================================
-   1. トップページ Swiper と Footer の高さ調整（PC/スマホ共通）
+   1. トップページ Swiper (Hero Section)
    ========================================================== */
 
 .hero {
     position: relative;
-    height: calc(100dvh - var(--footer-height, 120px));
-    min-height: -webkit-fill-available;
+    width: 100%;
+    height: calc(100vh - 100px);
+    max-height: 1000px;
     padding: 0;
+    margin: 0;
     overflow: hidden;
 }
 
-/* Swiper内のpictureタグとimgを全画面フィットさせる */
+.hero__swiper,
+.heroSwiper,
+.heroSwiper .swiper-wrapper,
+.heroSwiper .swiper-slide {
+    width: 100%;
+    height: 100%;
+}
+
 .heroSwiper .swiper-slide picture,
 .heroSwiper .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.hero__content {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.hero__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-s, 1rem);
+    margin-bottom: var(--space-xl, 2rem);
+}
+
+.hero__lead {
+    font-size: var(--font-caption, 0.9rem);
+    letter-spacing: 0.45em;
+    color: #ffffff;
+}
+
+.hero__title {
+    font-family: "Noto Serif JP", serif;
+    font-size: var(--font-title, 2.5rem);
+    font-weight: 500;
+    line-height: 1.2;
+    color: #ffffff;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.hero__scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+}
+
+.hero__scroll span {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: #ffffff;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    animation: scrollAnimation 2s infinite ease-in-out;
+}
+
+@keyframes scrollAnimation {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
 }
 
 /* ==========================================================
-   2. スマホ実機用の最適化 (768px 以下)
-   ========================================================== */
-@media (max-width: 768px) {
-    :root {
-        --footer-height: 70px;
-    }
-
-    .hero {
-        height: calc(100dvh - var(--footer-height));
-    }
-
-    .footer {
-        height: var(--footer-height);
-        padding-block: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .hero__scroll {
-        bottom: 1rem;
-    }
-}
-
-/* ==========================================================
-   3. 共通パーツ & コンポーネント (Common / Components)
+   2. 共通パーツ (Common Components)
    ========================================================== */
 
 .section-header {
@@ -74,7 +149,7 @@
 .section-header__jp,
 .section-header__title {
     font-family: "Noto Serif JP", serif;
-    font-size: var(--font-subtitle);
+    font-size: var(--font-subtitle, 1.5rem);
     font-weight: 400;
     letter-spacing: 0.12em;
     color: var(--color-main, #4a5560);
@@ -84,13 +159,6 @@
     display: inline-block;
 }
 
-.section-header__subtitle {
-    font-size: var(--font-body);
-    color: var(--color-sub, #8c96a0);
-    margin-top: 6px;
-    letter-spacing: 0.05em;
-}
-
 .section-desc,
 .rooms__desc {
     margin-top: 1.5rem;
@@ -98,7 +166,7 @@
 
 .section-text,
 .rooms__text {
-    font-size: var(--font-body);
+    font-size: var(--font-body, 0.95rem);
     line-height: 2.2;
     color: var(--color-main, #4a5560);
     margin-bottom: 1.5rem;
@@ -133,121 +201,19 @@
 }
 
 /* ==========================================================
-   4. メインビジュアル (Hero Section)
-   ========================================================== */
-
-.heroSwiper .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.22);
-    z-index: 2;
-}
-
-.hero__content {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-}
-
-.hero__copy {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-s, 1rem);
-    margin-bottom: var(--space-xl, 2rem);
-}
-
-.hero__lead {
-    font-size: var(--font-caption);
-    letter-spacing: 0.45em;
-    color: var(--color-base, #ffffff);
-}
-
-.hero__title {
-    font-family: "Noto Serif JP", serif;
-    font-size: var(--font-title);
-    font-weight: 500;
-    line-height: 1.2;
-    color: var(--color-base, #ffffff);
-    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-}
-
-.hero__scroll {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    z-index: 10;
-}
-
-.hero__scroll span {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.3em;
-    color: var(--color-base, #ffffff);
-}
-
-.scroll-line {
-    width: 1px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.scroll-line::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #ffffff;
-    animation: scrollAnimation 2s infinite ease-in-out;
-}
-
-@keyframes scrollAnimation {
-    0% {
-        transform: translateY(-100%);
-    }
-    100% {
-        transform: translateY(100%);
-    }
-}
-
-/* ==========================================================
-   5. トップページ・レイアウト (Top Layout)
+   3. トップページ各セクション (Top Sections)
    ========================================================== */
 
 .concept,
 .rooms,
 .experience,
-.dining,
-.top-special {
-    padding-block: clamp(4.5rem, 7vw, 7.5rem);
+.dining {
+    padding-block: clamp(4rem, 6vw, 7rem);
 }
 
 .rooms__inner,
 .experience__inner,
-.dining__inner,
-.access__inner {
+.dining__inner {
     max-width: 1080px;
     margin-inline: auto;
     padding-inline: 2rem;
@@ -259,21 +225,26 @@
     text-align: center;
 }
 
-.sec-head__en,
+.sec-head__en {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    color: var(--color-sub, #8c96a0);
+    margin-bottom: 0.5rem;
+}
+
 .sec-head__ja {
     font-family: "Noto Serif JP", serif;
+    font-size: var(--font-subtitle, 1.5rem);
     color: var(--color-main, #4a5560);
-    line-height: 2;
+    line-height: 1.8;
     letter-spacing: 0.08em;
 }
 
 .concept__txt {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-l, 1.5rem);
     margin-top: var(--space-xl, 2rem);
     font-family: "Noto Serif JP", serif;
-    font-size: var(--font-subtitle);
+    font-size: var(--font-subtitle, 1.25rem);
     line-height: 2.2;
     letter-spacing: 0.08em;
     color: var(--color-main, #4a5560);
@@ -300,28 +271,26 @@
     transition: transform 0.8s ease;
 }
 
-.rooms__img-wrap:hover img,
-.experience__img-wrap:hover img,
-.dining__img-wrap:hover img {
-    transform: scale(1.02);
-}
+/* ==========================================================
+   4. 雨の日の「余白」（SPECIAL Section - 画面幅100%全幅）
+   ========================================================== */
 
-/* 雨の日の「余白」（SPECIAL Section） */
 .top-special {
-    width: 100vw;
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    /* 親要素の幅指定（padding/max-width）を無視して全幅に広げる */
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-top: clamp(4.5rem, 7vw, 7rem);
+    padding-bottom: clamp(5rem, 8vw, 8rem);
     text-align: left;
     color: #ffffff;
-    overflow: hidden;
-    padding-block: clamp(4.5rem, 7vw, 7.5rem);
     background-image:
         linear-gradient(
             to right,
-            rgba(20, 25, 30, 0.8) 0%,
-            rgba(20, 25, 30, 0.5) 55%,
-            rgba(20, 25, 30, 0.15) 100%
+            rgba(20, 25, 30, 0.88) 0%,
+            rgba(20, 25, 30, 0.65) 55%,
+            rgba(20, 25, 30, 0.3) 100%
         ),
         url("../images/top_rain.webp");
     background-size: cover;
@@ -344,7 +313,7 @@
 
 .top-special__title {
     font-family: "Noto Serif JP", serif;
-    font-size: var(--font-subtitle);
+    font-size: var(--font-subtitle, 1.5rem);
     font-weight: 400;
     letter-spacing: 0.15em;
     color: #ffffff;
@@ -352,7 +321,7 @@
 }
 
 .top-special__text {
-    font-size: var(--font-body);
+    font-size: var(--font-body, 0.95rem);
     line-height: 2.2;
     color: #e2e8ec;
     margin-bottom: 2.5rem;
@@ -381,699 +350,47 @@
     border-color: #ffffff;
 }
 
-.top-special__btn .arrow {
-    transition: transform 0.3s ease;
-}
-
-.top-special__btn:hover .arrow {
-    transform: translateX(4px);
-}
-
 /* ==========================================================
-   6. 過ごし方ページ専用 (Page: Experience)
+   5. モバイル・画面リサイズ時対応 (Responsive)
    ========================================================== */
 
-.experience-section {
-    padding-bottom: var(--space-xxl, 100px);
-}
-
-.experience-desc {
-    font-size: var(--font-body);
-    line-height: 2.2;
-    color: var(--color-main, #4a5560);
-    margin-top: var(--space-l, 32px);
-    max-width: 720px;
-}
-
-.lake-slider-wrapper {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    max-height: 520px;
-    overflow: hidden;
-    border-radius: var(--radius-l, 8px);
-    background-color: var(--color-sub, #8c96a0);
-}
-
-.lake-slider {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.lake-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}
-
-.lake-slide.is-active {
-    opacity: 1;
-}
-
-.lake-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.lake-slide__caption {
-    position: absolute;
-    bottom: 20px;
-    right: 24px;
-    background-color: rgba(49, 49, 47, 0.75);
-    color: var(--color-base, #ffffff);
-    font-size: 0.8rem;
-    padding: 6px 16px;
-    letter-spacing: 0.1em;
-    backdrop-filter: blur(4px);
-    border-radius: 2px;
-}
-
-.photo-grid--4col {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-m, 20px);
-}
-
-.photo-item {
-    display: flex;
-    flex-direction: column;
-}
-
-.photo-item .popover-trigger {
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: var(--radius-m, 8px);
-    background-color: transparent;
-    display: block;
-    width: 100%;
-    border: none;
-    outline: none;
-    padding: 0;
-    cursor: pointer;
-}
-
-.photo-item img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.photo-item:hover img {
-    transform: scale(1.04);
-}
-
-.photo-item__caption {
-    font-size: 0.78rem;
-    color: var(--color-sub, #8c96a0);
-    margin-top: 12px;
-    letter-spacing: 0.05em;
-}
-
-.dining-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-l, 32px);
-}
-
-.dining-card {
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(49, 49, 47, 0.1);
-    border-radius: var(--radius-m, 8px);
-    padding: var(--space-l, 28px);
-}
-
-.dining-card__image,
-.dining-card__image .popover-trigger,
-.dining-card__image button {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    border-radius: var(--radius-s, 8px);
-    margin-bottom: var(--space-m, 20px);
-    border: none;
-    outline: none;
-    background: transparent;
-    padding: 0;
-    cursor: pointer;
-}
-
-.dining-card__image img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: inherit;
-    transition: transform 0.6s ease;
-}
-
-.dining-card__image:hover img,
-.dining-card__image .popover-trigger:hover img {
-    transform: scale(1.04);
-}
-
-.dining-card__title {
-    font-family: "Noto Serif JP", serif;
-    font-size: var(--font-caption);
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0.08em;
-    color: var(--color-main, #4a5560);
-    margin-top: 0;
-    margin-bottom: var(--space-m, 20px);
-}
-
-.dining-card__desc {
-    font-size: var(--font-body);
-    line-height: 1.95;
-    color: var(--color-main, #4a5560);
-    letter-spacing: 0.04em;
-    margin-bottom: 20px;
-}
-
-.dining-card__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    list-style: none;
-    margin-top: auto;
-    padding: 0;
-}
-
-.dining-card__tags li {
-    font-size: 0.7rem;
-    background-color: var(--color-base, #f5f3ef);
-    color: var(--color-accent, #7e95a8);
-    padding: 3px 10px;
-    border: 1px solid var(--color-accent, #7e95a8);
-    border-radius: 999px;
-    letter-spacing: 0.03em;
-}
-
-.rainy-service {
-    background-color: rgba(126, 149, 168, 0.08);
-    border-left: 4px solid var(--color-accent, #7e95a8);
-    padding: var(--space-xl, 40px);
-    border-radius: 0 var(--radius-m, 8px) var(--radius-m, 8px) 0;
-}
-
-.rainy-service__desc {
-    font-size: var(--font-body);
-    line-height: 2.1;
-    margin-bottom: 32px;
-    color: var(--color-main, #4a5560);
-}
-
-.rainy-service__images {
-    display: flex;
-    gap: var(--space-m, 20px);
-    margin-bottom: var(--space-l, 32px);
-}
-
-.rainy-image-item {
-    flex: 1;
-    min-width: 0;
-}
-
-.rainy-image-item .popover-trigger {
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: var(--radius-m, 8px);
-    background-color: transparent;
-    display: block;
-    width: 100%;
-    border: none;
-    outline: none;
-    padding: 0;
-    cursor: pointer;
-}
-
-.rainy-image-item img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.rainy-image-item:hover img {
-    transform: scale(1.04);
-}
-
-.rainy-service__list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    padding: 0;
-}
-
-.rainy-service__list li {
-    display: flex;
-    flex-direction: column;
-}
-
-.rainy-service__list strong {
-    font-size: var(--font-caption);
-    font-weight: 600;
-    color: var(--color-main, #4a5560);
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.rainy-service__list strong::before {
-    content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background-color: var(--color-accent, #7e95a8);
-    border-radius: 50%;
-}
-
-.rainy-service__list span {
-    font-size: var(--font-body);
-    color: var(--color-sub, #8c96a0);
-    padding-left: 18px;
-    line-height: 1.8;
-}
-
-.experience-cta {
-    background-color: rgba(49, 49, 47, 0.03);
-    padding: var(--space-xxl, 80px) var(--space-m, 20px);
-    text-align: center;
-    margin-bottom: var(--space-xl, 60px);
-    border-radius: var(--radius-l, 8px);
-}
-
-.experience-cta__title {
-    font-family: "Noto Serif JP", serif;
-    font-size: var(--font-subtitle);
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    margin-bottom: 12px;
-}
-
-.experience-cta__text {
-    font-size: var(--font-body);
-    color: var(--color-sub, #8c96a0);
-    margin-bottom: 32px;
-}
-
-/* ==========================================
-   7. 予約ページ専用 (Page: Reservation)
-   ========================================== */
-
-.reservation-form {
-    max-width: 800px;
-    margin: 0 auto 120px;
-    background: #ffffff;
-    padding: clamp(2rem, 5vw, 3.5rem);
-    border-radius: var(--radius-m, 12px);
-    border: 1px solid rgba(184, 178, 170, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-}
-
-.form-section {
-    margin-bottom: var(--space-l, 2.5rem);
-    padding-bottom: var(--space-m, 1.5rem);
-    border-bottom: 1px solid rgba(184, 178, 170, 0.2);
-}
-
-.form-section__title {
-    font-family: var(--font-serif, "Noto Serif JP", serif);
-    font-size: var(--font-caption);
-    letter-spacing: 0.1em;
-    margin-bottom: var(--space-s, 1rem);
-    color: var(--color-main, #4a5560);
-    font-weight: 500;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.form-group label {
-    font-size: 0.8rem;
-    color: var(--color-main, #4a5560);
-    letter-spacing: 0.05em;
-}
-
-.form-control {
-    padding: 12px 16px;
-    border: 1px solid rgba(184, 178, 170, 0.4);
-    border-radius: var(--radius-s, 6px);
-    background: var(--color-base, #f5f3ef);
-    font-family: inherit;
-    font-size: var(--font-body);
-    color: var(--color-main, #4a5560);
-    transition: border-color 0.3s ease;
-}
-
-.form-control:focus {
-    outline: none;
-    border-color: var(--color-accent, #7e95a8);
-}
-
-.room-group {
-    margin-bottom: 24px;
-}
-
-.room-group__title {
-    font-size: 0.85rem;
-    color: var(--color-accent, #7e95a8);
-    letter-spacing: 0.1em;
-    margin-bottom: 12px;
-    font-weight: 500;
-}
-
-.room-options {
-    display: grid;
-    gap: 12px;
-}
-
-.room-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 18px 20px;
-    border: 1px solid rgba(184, 178, 170, 0.3);
-    border-radius: var(--radius-s, 8px);
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.6);
-    transition: all 0.3s ease;
-}
-
-.room-card input[type="radio"] {
-    margin-top: 4px;
-    accent-color: var(--color-accent, #7e95a8);
-}
-
-.room-card:has(input:checked) {
-    border-color: var(--color-accent, #7e95a8);
-    background: rgba(126, 149, 168, 0.06);
-}
-
-.room-card__content {
-    flex: 1;
-}
-
-.room-card__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 4px;
-}
-
-.room-card__name {
-    font-family: "Cormorant Garamond", serif;
-    font-size: var(--font-caption);
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: var(--color-main, #4a5560);
-}
-
-.room-card__price {
-    font-size: var(--font-body);
-    color: var(--color-main, #4a5560);
-    font-weight: 500;
-}
-
-.room-card__price small {
-    font-size: 0.75rem;
-    color: var(--color-sub, #b8b2aa);
-    font-weight: 400;
-}
-
-.room-card__desc {
-    font-size: 0.8rem;
-    color: var(--color-main, #4a5560);
-    margin: 0;
-    line-height: 1.6;
-    opacity: 0.85;
-}
-
-.reservation-summary {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    margin-top: var(--space-l, 2.5rem);
-}
-
-.summary-total {
-    font-size: var(--font-body);
-    color: var(--color-main, #4a5560);
-}
-
-.summary-total strong {
-    font-family: "Cormorant Garamond", serif;
-    font-size: var(--font-subtitle);
-    margin-left: 12px;
-    color: var(--color-main, #4a5560);
-    font-weight: 500;
-}
-
-.reservation-btn {
-    display: inline-block;
-    padding: 14px 48px;
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
-    color: #ffffff;
-    background-color: var(--color-accent, #7e95a8);
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.reservation-btn:hover {
-    opacity: 0.85;
-    transform: translateY(-1px);
-}
-
-/* ==========================================
-   8. モーダル (Reservation Modal)
-   ========================================== */
-
-.complete-modal {
-    border: none;
-    border-radius: 16px;
-    background-color: #f7f6f2;
-    padding: 0;
-    max-width: 480px;
-    width: 90%;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-}
-
-.complete-modal::backdrop {
-    background-color: rgba(30, 35, 38, 0.4);
-    backdrop-filter: blur(4px);
-}
-
-.modal__inner {
-    padding: 48px 32px 40px;
-    text-align: center;
-    color: #4a555b;
-}
-
-.modal__sub-title {
-    display: block;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 0.85rem;
-    letter-spacing: 0.25em;
-    color: #8c99a0;
-    margin-bottom: 12px;
-}
-
-.modal__title {
-    font-family: "Noto Serif JP", serif;
-    font-weight: 300;
-    font-size: var(--font-caption);
-    letter-spacing: 0.1em;
-    color: #2c3539;
-    margin-bottom: 16px;
-    line-height: 1.6;
-}
-
-.modal__notice {
-    font-size: 0.75rem;
-    font-weight: 300;
-    color: #8c99a0;
-    letter-spacing: 0.05em;
-    line-height: 1.8;
-    margin-bottom: 32px;
-}
-
-.modal__summary {
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(210, 205, 195, 0.5);
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin-bottom: 32px;
-}
-
-.modal__summary-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 0;
-    text-align: left;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-}
-
-.modal__summary-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modal__summary-item dt {
-    color: #7a8890;
-    font-weight: 300;
-}
-
-.modal__summary-item dd {
-    color: #2c3539;
-    font-weight: 400;
-    margin: 0;
-}
-
-.modal__summary-price {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-.modal__action {
-    display: flex;
-    justify-content: center;
-}
-
-.modal-close-btn {
-    display: inline-block;
-    padding: 12px 36px;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    color: #ffffff;
-    background-color: #697b85;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition:
-        background-color 0.3s ease,
-        opacity 0.3s ease,
-        transform 0.2s ease;
-}
-
-.modal-close-btn:hover {
-    color: #ffffff;
-    background-color: #586973;
-    opacity: 0.6;
-    transform: translateY(-1px);
-}
-
-.modal-close-btn:active {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-/* ==========================================================
-   9. モバイル・レスポンシブ (Mobile / Tablet 768px 以下)
-   ========================================================== */
-
-/* スマホ表示時（768px以下）のメインSwiper調整 */
 @media (max-width: 768px) {
-    .main-swiper,
-    .swiper-container {
-        /* ※実際にお使いのSwiperを囲むクラス名に変更してください */
-        height: 40vh !important; /* 画面高さの40%程度に制限（お好みの数字に調整可能） */
-        max-height: 320px; /* 高くなりすぎないよう上限を設定 */
+    /* Swiper Hero スマホ調整 */
+    .hero {
+        height: auto !important;
+        aspect-ratio: 4 / 5;
+        min-height: 420px;
+        max-height: 600px;
     }
 
-    .swiper-slide img {
-        height: 100%;
-        object-fit: cover; /* 画像が歪まないようにトリミング */
-    }
-}
-
-/* スマホ表示時（768px以下）のフッター調整 */
-@media (max-width: 768px) {
-    /* フッター内のロゴを非表示 */
-    .footer-logo-svg {
-        /* ※実際のロゴのクラス名やimgタグに合わせて変更してください */
-        display: none !important;
+    .hero__title {
+        font-size: 1.8rem;
     }
 
-    /* フッター全体の上下余白を最小限に */
-    footer {
-        padding-top: 0 !important;
-        padding-bottom: 15px !important;
-        min-height: auto !important;
+    .hero__scroll {
+        bottom: 1.2rem;
     }
-    .footer-wrapper {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-    }
-}
 
-@media (max-width: 768px) {
+    /* 雨の日セクション スマホ背景調整 */
     .top-special {
+        padding-top: 3.5rem;
+        padding-bottom: 4.5rem;
         background-image:
-            linear-gradient(to bottom, rgba(20, 25, 30, 0.8) 0%, rgba(20, 25, 30, 0.4) 100%),
+            linear-gradient(to bottom, rgba(20, 25, 30, 0.88) 0%, rgba(20, 25, 30, 0.75) 100%),
             url("../images/top_rain.webp");
     }
 
-    .photo-grid--4col {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+    .rooms__inner,
+    .experience__inner,
+    .dining__inner,
+    .top-special__inner {
+        padding-inline: 1.25rem;
     }
 
-    .dining-cards {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .rainy-service {
-        padding: 24px 20px;
-    }
-
-    .rainy-service__desc {
-        font-size: 0.88rem;
-    }
-
-    .rainy-service__images {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .rainy-service__list strong {
-        font-size: 0.95rem;
-    }
-
-    .lake-slide__caption {
-        font-size: 0.72rem;
-        padding: 4px 10px;
-        bottom: 12px;
-        right: 12px;
+    /* ★ スマホ版フッターロゴを非表示 */
+    .footer-brand,
+    .footer-logo-link,
+    .footer-logo-svg {
+        display: none !important;
     }
 }
