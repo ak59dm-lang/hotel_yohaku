@@ -1001,6 +1001,41 @@
    9. モバイル・レスポンシブ (Mobile / Tablet 768px 以下)
    ========================================================== */
 
+/* スマホ表示時（768px以下）のメインSwiper調整 */
+@media (max-width: 768px) {
+    .main-swiper,
+    .swiper-container {
+        /* ※実際にお使いのSwiperを囲むクラス名に変更してください */
+        height: 40vh !important; /* 画面高さの40%程度に制限（お好みの数字に調整可能） */
+        max-height: 320px; /* 高くなりすぎないよう上限を設定 */
+    }
+
+    .swiper-slide img {
+        height: 100%;
+        object-fit: cover; /* 画像が歪まないようにトリミング */
+    }
+}
+
+/* スマホ表示時（768px以下）のフッター調整 */
+@media (max-width: 768px) {
+    /* フッター内のロゴを非表示 */
+    .footer-logo-svg {
+        /* ※実際のロゴのクラス名やimgタグに合わせて変更してください */
+        display: none !important;
+    }
+
+    /* フッター全体の上下余白を最小限に */
+    footer {
+        padding-top: 0 !important;
+        padding-bottom: 15px !important;
+        min-height: auto !important;
+    }
+    .footer-wrapper {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+}
+
 @media (max-width: 768px) {
     .top-special {
         background-image:
