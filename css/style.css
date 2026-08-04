@@ -394,3 +394,33 @@
         display: none !important;
     }
 }
+/* ==========================================================
+   実機モバイル（Safari/Chrome）用のフッター余白・隙間強制打ち消し
+   ========================================================== */
+
+/* footer.css が持つ body への余白指定を最優先で上書き */
+body {
+    padding-bottom: 0 !important;
+}
+
+/* スマホ表示時、footerと親要素の隙間を完全にゼロにする */
+@media (max-width: 768px) {
+    body {
+        padding-bottom: 0 !important;
+    }
+
+    /* 念のためメインコンテンツ下部の隙間もカット */
+    main {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .top-special {
+        margin-bottom: 0 !important;
+    }
+
+    .footer-wrapper,
+    #footerWrapper {
+        margin-top: 0 !important;
+    }
+}
