@@ -395,28 +395,25 @@
     }
 }
 /* ==========================================================
-   実機モバイル（Safari/Chrome）用のフッター余白・隙間強制打ち消し
+   実機モバイル用：固定フッターによるコンテンツ被り防止
    ========================================================== */
 
-/* footer.css が持つ body への余白指定を最優先で上書き */
+/* body全体の崩れを防ぐため余白はリセット */
 body {
     padding-bottom: 0 !important;
 }
 
-/* スマホ表示時、footerと親要素の隙間を完全にゼロにする */
+/* モバイル表示時：フッターの高さ分だけ一番下のセクションに余白を作る */
 @media (max-width: 768px) {
     body {
         padding-bottom: 0 !important;
     }
 
-    /* 念のためメインコンテンツ下部の隙間もカット */
-    main {
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
-    }
-
+    /* 雨の日セクション（最下部）の下余白をしっかり確保してボタンを上へ押し上げる */
     .top-special {
         margin-bottom: 0 !important;
+        /* フッターの高さ（約18vh）＋十分な押し上げ余白 を追加 */
+        padding-bottom: calc(18vh + 3rem) !important;
     }
 
     .footer-wrapper,
