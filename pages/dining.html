@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="YOHAKUのお食事のご案内。その土地の旬を取り入れた、体に優しく染み渡る滋味深い一皿をご提供いたします。五感で味わう静かなお食事のひとときをお愉しみください。"
+        />
+        <title>Dining | YOHAKU</title>
+
+        <!-- Favicon (SVG) -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23697b85'/><text x='50' y='68' font-family='Cormorant Garamond, serif' font-size='60' fill='%23f7f6f2' text-anchor='middle'>Y</text></svg>"
+            type="image/svg+xml"
+        />
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Vendor CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+        />
+
+        <!-- Original Stylesheet -->
+        <link rel="stylesheet" href="../css/reset.css" />
+        <link rel="stylesheet" href="../css/common.css" />
+        <link rel="stylesheet" href="../css/dining.css" />
+        <link rel="stylesheet" href="../css/footer.css" />
+    </head>
+    <body>
+        <!-- ==========================================
+            Header
+        ========================================== -->
+        <header class="header">
+            <div class="header__container">
+                <!-- ブランドロゴ -->
+                <div class="header__brand">
+                    <a
+                        href="../index.html"
+                        class="header__logo-link"
+                        aria-label="YOHAKU トップページへ"
+                    >
+                        <svg
+                            class="header__logo-svg"
+                            viewBox="0 0 160 32"
+                            width="160"
+                            height="32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <circle
+                                cx="16"
+                                cy="16"
+                                r="12"
+                                stroke="currentColor"
+                                stroke-width="1"
+                                opacity="0.4"
+                            />
+                            <path
+                                d="M 16 6 A 10 10 0 0 0 16 26 C 20 22 20 10 16 6 Z"
+                                fill="currentColor"
+                            />
+                            <text
+                                x="38"
+                                y="22"
+                                font-family="'Cormorant Garamond', serif"
+                                font-size="20"
+                                font-weight="500"
+                                letter-spacing="0.25em"
+                                fill="currentColor"
+                            >
+                                YOHAKU
+                            </text>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- PC ナビゲーション -->
+                <nav class="header__nav">
+                    <ul class="header__nav-list">
+                        <li>
+                            <a href="../index.html" class="header__nav-link">
+                                <span class="header__nav-en">TOP</span>
+                                <span class="header__nav-ja">余白とは</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./rooms.html" class="header__nav-link">
+                                <span class="header__nav-en">ROOMS</span>
+                                <span class="header__nav-ja">客室</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./experience.html" class="header__nav-link">
+                                <span class="header__nav-en">EXPERIENCE</span>
+                                <span class="header__nav-ja">過ごし方</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./dining.html" class="header__nav-link">
+                                <span class="header__nav-en">DINING</span>
+                                <span class="header__nav-ja">食事</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./access.html" class="header__nav-link">
+                                <span class="header__nav-en">ACCESS</span>
+                                <span class="header__nav-ja">アクセス</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- アクションエリア（予約ボタン・ハンバーガー） -->
+                <div class="header__actions">
+                    <div class="header__reserve">
+                        <a href="./reservation.html" class="header__reserve-btn">RESERVATION</a>
+                    </div>
+
+                    <button
+                        class="header__menu-btn js-menu-btn"
+                        type="button"
+                        aria-label="メニュー開閉"
+                    >
+                        <!-- 三本線アイコン -->
+                        <svg
+                            class="icon-menu"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                        >
+                            <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+                        </svg>
+                        <!-- 閉じる（✕）アイコン -->
+                        <svg
+                            class="icon-close"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                        >
+                            <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- モバイル ドロワーメニュー -->
+            <div class="header__drawer js-drawer">
+                <div class="drawer__inner">
+                    <nav class="drawer__nav">
+                        <ul class="drawer__nav-list">
+                            <li>
+                                <a href="../index.html">
+                                    <span class="en">TOP</span>
+                                    <span class="ja">余白とは</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./rooms.html">
+                                    <span class="en">ROOMS</span>
+                                    <span class="ja">客室</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./experience.html">
+                                    <span class="en">EXPERIENCE</span>
+                                    <span class="ja">過ごし方</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./dining.html">
+                                    <span class="en">DINING</span>
+                                    <span class="ja">食事</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./access.html">
+                                    <span class="en">ACCESS</span>
+                                    <span class="ja">アクセス</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="drawer__footer">
+                        <a href="./reservation.html" class="drawer__reserve-btn">RESERVATION</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==========================================
+            Main Content
+        ========================================== -->
+        <!-- ヒーローエリア -->
+        <section class="page-hero">
+            <div class="page-hero-inner">
+                <span class="page-hero-en">D I N I N G</span>
+                <h1 class="page-hero-jp">お食事</h1>
+                <p class="page-hero-desc">
+                    旬の北海道産食材を惜しみなく取り入れた、自分自身を労わるご褒美の一皿。<br />
+                    ただ静かに素材と向き合い、余白を愉しむ食体験をご用意しております。
+                </p>
+            </div>
+        </section>
+        
+        <main class="dining-container">
+            <!-- 特徴・サービス一覧（オールインクルーシブ・日替わり・限定空間） -->
+            <section class="dining-features">
+                <div class="feature-card">
+                    <div class="feature-img-wrapper">
+                        <img
+                            src="../images/dinner.webp"
+                            alt="極上のディナーコース"
+                            class="feature-img"
+                        />
+                    </div>
+                    <div class="feature-info">
+                        <span class="feature-tag">EXCLUSIVE DINNER</span>
+                        <h2 class="feature-title">北海道食材を仕立てたご褒美ディナー</h2>
+                        <p class="feature-desc">
+                            滋味豊かな地元食材を中心に厳選し、シェフが腕を振るう日替わりのコース料理。<br />
+                            ご連泊の際にも新鮮な驚きをご堪能いただけます。ご自身へのご褒美となる心尽くしの味わいをご提供いたします。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-card reverse">
+                    <div class="feature-img-wrapper">
+                        <img
+                            src="../images/dining_drink.webp"
+                            alt="フリーフローペアリング"
+                            class="feature-img"
+                        />
+                    </div>
+                    <div class="feature-info">
+                        <span class="feature-tag">ALL INCLUSIVE</span>
+                        <h2 class="feature-title">自由に愉しむペアリングドリンク</h2>
+                        <p class="feature-desc">
+                            当館はオールインクルーシブ仕様となっております。<br />
+                            地元のクラフトビールや厳選されたナチュールワイン、こだわりの日本酒、自家製ソフトドリンクまで、お食事や気分に合わせてお好きなだけお楽しみいただけます。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ランチボックス・自由な食事スタイルの提案 -->
+            <section class="dining-style">
+                <div class="style-header">
+                    <span class="style-subtitle">FREE-STYLE DINING</span>
+                    <h2 class="style-title">時間と場所の制約から解放される</h2>
+                    <p class="style-lead">
+                        「朝陽とともにテラスで」「夕暮れの湖畔で風を感じながら」<br />
+                        お客様の心赴くままに食を楽しんでいただくため、お持ち歩き可能なスタイリッシュなランチボックスをご用意いたします。
+                    </p>
+                </div>
+
+                <!-- 4種のカテゴリー選択（タブ切り替え） -->
+                <div class="box-categories">
+                    <div class="category-tabs" role="tablist">
+                        <button class="tab-btn active" data-tab="japanese" role="tab">
+                            和食 - Japanese
+                        </button>
+                        <button class="tab-btn" data-tab="western" role="tab">
+                            洋食 - Western
+                        </button>
+                        <button class="tab-btn" data-tab="chinese" role="tab">
+                            中華 - Chinese
+                        </button>
+                        <button class="tab-btn" data-tab="snack" role="tab">
+                            軽食 - Light Meals
+                        </button>
+                    </div>
+
+                    <div class="tab-contents">
+                        <!-- 和食 -->
+                        <div class="tab-panel active" id="japanese" role="tabpanel">
+                            <div class="panel-box">
+                                <div class="panel-img-wrapper">
+                                    <img
+                                        src="../images/dining_japanese.webp"
+                                        alt="彩り旬彩 和膳ボックス"
+                                        class="panel-img"
+                                    />
+                                </div>
+                                <div class="panel-info">
+                                    <h3 class="panel-title">彩り旬彩 和膳ボックス</h3>
+                                    <p class="panel-desc">
+                                        北海道産米の炊き込みご飯、季節の地魚の焼き物、滋味あふれるお惣菜を少しずつ丁寧に敷き詰めました。朝の静けさのなかでお楽しみいただくのにも最適です。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 洋食 -->
+                        <div class="tab-panel" id="western" role="tabpanel">
+                            <div class="panel-box">
+                                <div class="panel-img-wrapper">
+                                    <img
+                                        src="../images/dining_western.webp"
+                                        alt="道産素材のグリル＆サンドイッチ"
+                                        class="panel-img"
+                                    />
+                                </div>
+                                <div class="panel-info">
+                                    <h3 class="panel-title">道産素材のグリル＆サンドイッチ</h3>
+                                    <p class="panel-desc">
+                                        自家製パンを使った香ばしいサンドイッチと、道産野菜のロースト、ハーブ風味のグリルドチキン。風が心地よいテラスやお部屋でのブランチにピッタリです。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 中華 -->
+                        <div class="tab-panel" id="chinese" role="tabpanel">
+                            <div class="panel-box">
+                                <div class="panel-img-wrapper">
+                                    <img
+                                        src="../images/dining_chinese.webp"
+                                        alt="薬膳と厳選素材の点心御膳"
+                                        class="panel-img"
+                                    />
+                                </div>
+                                <div class="panel-info">
+                                    <h3 class="panel-title">薬膳と厳選素材の点心御膳</h3>
+                                    <p class="panel-desc">
+                                        体に優しい味わいの薬膳中華粥またはチャーハンを中心に、手作り点心と道産豚のしっとり煮込みをセットに。しっかりエネルギーを満たしたい方に。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 軽食 -->
+                        <div class="tab-panel" id="snack" role="tabpanel">
+                            <div class="panel-box">
+                                <div class="panel-img-wrapper">
+                                    <img
+                                        src="../images/dining_snack.png"
+                                        alt="プレミアム フィンガーフード＆チーズ"
+                                        class="panel-img"
+                                    />
+                                </div>
+                                <div class="panel-info">
+                                    <h3 class="panel-title">プレミアム フィンガーフード＆チーズ</h3>
+                                    <p class="panel-desc">
+                                        ワインや日本酒に寄り添う、近隣工房のフレッシュチーズやドライフルーツ、生ハムの詰め合わせ。湖畔でのアペリティフタイムやお休み前の小腹を満たす一口に。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 好きな場所で楽しむロケーション紹介 -->
+                <div class="location-grid">
+                    <div class="location-item">
+                        <span class="location-num">01</span>
+                        <h3 class="location-name">Private Room</h3>
+                        <p class="location-text">心からリラックスできる客室のプライベート空間で</p>
+                    </div>
+                    <div class="location-item">
+                        <span class="location-num">02</span>
+                        <h3 class="location-name">Open Terrace</h3>
+                        <p class="location-text">四季折々の風と光を感じる開放的な屋外テラスで</p>
+                    </div>
+                    <div class="location-item">
+                        <span class="location-num">03</span>
+                        <h3 class="location-name">Lakeside & Park</h3>
+                        <p class="location-text">
+                            澄んだ空気と静寂に包まれる湖畔やフリースペースで
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ==========================================
+            Footer
+        ========================================== -->
+        <footer id="footerWrapper" class="footer-wrapper">
+            <div id="footerSticky" class="footer-sticky">
+                <div class="lake-reflection"></div>
+                <div id="starField" class="star-field"></div>
+                <div id="footerContent" class="footer-content">
+                    <div class="footer-brand">
+                        <a
+                            href="../index.html"
+                            class="footer-logo-link"
+                            aria-label="YOHAKU トップページへ"
+                        >
+                            <svg
+                                class="footer-logo-svg"
+                                viewBox="0 0 160 32"
+                                width="150"
+                                height="30"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <circle cx="16" cy="16" r="12" opacity="0.4" />
+                                <path d="M 16 6 A 10 10 0 0 0 16 26 C 20 22 20 10 16 6 Z" />
+                                <text
+                                    x="38"
+                                    y="22"
+                                    font-family="'Cormorant Garamond', serif"
+                                    font-size="20"
+                                    letter-spacing="0.25em"
+                                >
+                                    YOHAKU
+                                </text>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="footer-action">
+                        <a href="./reservation.html" class="footer-btn">RESERVATION</a>
+                    </div>
+                    <p class="copyright">© YOHAKU All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- TOPへ戻るボタン -->
+        <button id="js-pagetop" class="pagetop-btn" aria-label="ページトップへ戻る">↑</button>
+
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+        <script src="../js/main.js" defer></script>
+        <script src="../js/footer.js" defer></script>
+    </body>
+</html>

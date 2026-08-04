@@ -142,22 +142,66 @@ if (pageTopBtn) {
     });
 }
 /* ==========================================
-   06. 予約完了モーダル
+   06. 予約完了モーダル制御
    ========================================== */
-// フォーム送信時のサマリー生成処理
-document.getElementById("js-modal-summary").innerHTML = `
-    <dl class="modal__summary-list">
-        <div class="modal__summary-item">
-            <dt>お名前</dt>
-            <dd>${name} 様</dd>
-        </div>
-        <div class="modal__summary-item">
-            <dt>お部屋</dt>
-            <dd>${roomName}</dd>
-        </div>
-        <div class="modal__summary-item">
-            <dt>お支払い金額</dt>
-            <dd class="modal__summary-price">${totalPriceEl.textContent}</dd>
-        </div>
-    </dl>
-`;
+document.addEventListener("DOMContentLoaded", () => {
+    const reservationForm = document.getElementById("js-reservation-form");
+    const modal = document.getElementById("js-complete-modal");
+    const modalSummary = document.getElementById("js-modal-summary");
+    const modalCloseBtn = document.getElementById("js-modal-close");
+
+    // 予約フォームが存在するページでのみ実行
+    if (reservationForm && modal && modalSummary) {
+        reservationForm.addEventListener("submit", (e) => {
+            e.preventDefault(); // フォームの通常送信をキャンセル
+
+            // 1. 各要素から値を取得
+            const nameInput = document.getElementById("js-form-name");
+            const roomRadio = document.querySelector('input[name="room"]:checked');
+            const totalPriceEl = document.getElementById("js-total-price");
+
+            // 値の安全な取得（値がない場合のフォールバック）
+            const name = nameInput ? nameInput.value : "ゲスト";
+
+            // 選択された部屋のラベル名を取得
+            let roomName = "未選択";
+            if (roomRadio) {
+                const roomCard = roomRadio.closest(".room-card");
+                const roomNameEl = roomCard ? roomCard.querySelector(".room-card__name") : null;
+                if (roomNameEl) {
+                    roomName = roomNameEl.textContent;
+                }
+            }
+
+            const totalPrice = totalPriceEl ? totalPriceEl.textContent : "¥0";
+
+            // 2. モーダル内に表示テキストを注入
+            modalSummary.innerHTML = `
+                <dl class="modal__summary-list">
+                    <div class="modal__summary-item">
+                        <dt>お名前</dt>
+                        <dd>${name} 様</dd>
+                    </div>
+                    <div class="modal__summary-item">
+                        <dt>お部屋</dt>
+                        <dd>${roomName}</dd>
+                    </div>
+                    <div class="modal__summary-item">
+                        <dt>お支払い金額</dt>
+                        <dd class="modal__summary-price">${totalPrice}</dd>
+                    </div>
+                </dl>
+            `;
+
+            // 3. モーダルを表示
+            if (typeof modal.showModal === "function") {
+                modal.showModal();
+            }
+        });
+
+        // 閉じるボタンのイベント
+        modalCloseBtn?.addEventListener("click", () => {
+            modal.close();
+        });
+    }
+});
