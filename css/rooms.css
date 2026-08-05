@@ -6,10 +6,10 @@
 
 :root {
     /* Color Palette */
-    --color-base: #f5f3ef; /* ベース：アイボリー */
-    --color-main: #4a5560; /* メイン：スレートグレー */
-    --color-sub: #b8b2aa; /* サブ：ウォームグレー */
-    --color-accent: #7e95a8; /* アクセント：青銀色 */
+    --color-base: #f5f3ef;
+    --color-main: #4a5560;
+    --color-sub: #b8b2aa;
+    --color-accent: #7e95a8;
     --color-white: #ffffff;
     --color-text-light: #777777;
 
@@ -20,52 +20,13 @@
     --section-space: 100px;
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-}
-
-body {
-    font-family: var(--font-serif);
-    background-color: var(--color-base);
-    color: var(--color-main);
-    line-height: 1.9;
-    letter-spacing: 0.08em;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    width: 100%;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    vertical-align: bottom;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-    transition:
-        opacity 0.3s ease,
-        color 0.3s ease,
-        background-color 0.3s ease;
-}
-
 /* 共通コンテナ */
 .container {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 24px;
+    box-sizing: border-box;
 }
 
 /* ==========================================================
@@ -74,6 +35,8 @@ a {
 
 .rooms-list {
     padding-bottom: var(--section-space);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .room-card {
@@ -83,6 +46,7 @@ a {
     align-items: center;
     margin-bottom: 120px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .room-card:last-child {
@@ -122,6 +86,8 @@ a {
     padding: 20px 0;
     word-break: break-word;
     overflow-wrap: anywhere;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .room-card__badge {
@@ -224,27 +190,6 @@ a {
 /* ==========================================================
    4. ボタン演出 (Button Styles)
    ========================================================== */
-
-.btn {
-    position: relative;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 36px;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    color: var(--color-main);
-    border: 1px solid var(--color-main);
-    border-radius: 30px;
-    background-color: transparent;
-    overflow: hidden;
-    z-index: 1;
-    cursor: pointer;
-    transition:
-        color 0.4s ease,
-        transform 0.2s ease,
-        border-color 0.4s ease;
-}
 
 .room-card__content .btn {
     display: flex;
