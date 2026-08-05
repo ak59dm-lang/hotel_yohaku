@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // 基本設定
         direction: "horizontal",
         loop: true,
-        speed: 2000, // 2秒かけてじんわり切り替わる
+        speed: 1200, // ★ 2000 (2秒) から 1200 (1.2秒) に変更（フェード切替を少し速く）
 
         // 自動再生（Autoplay)
         autoplay: {
-            delay: 4000, // 4秒ごとに次の写真へ
+            delay: 3000, // ★ 4000 (4秒) から 3000 (3秒) に変更（表示時間を少し短縮）
             disableOnInteraction: false, // ユーザーが操作しても自動再生を継続
         },
 
