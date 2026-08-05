@@ -31,6 +31,7 @@
 html {
     font-size: 16px;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -40,6 +41,8 @@ body {
     line-height: 1.9;
     letter-spacing: 0.08em;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 img {
@@ -59,11 +62,11 @@ a {
 
 /* 共通コンテナ */
 .container {
+    width: 100%;
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 24px;
 }
-
 
 /* ==========================================================
    2. 客室一覧 (Rooms List & Cards)
@@ -79,6 +82,7 @@ a {
     gap: 60px;
     align-items: center;
     margin-bottom: 120px;
+    width: 100%;
 }
 
 .room-card:last-child {
@@ -116,6 +120,8 @@ a {
 /* テキストコンテンツ */
 .room-card__content {
     padding: 20px 0;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .room-card__badge {
@@ -177,6 +183,8 @@ a {
     background-color: rgba(255, 255, 255, 0.4);
     border: 1px solid rgba(184, 178, 170, 0.3);
     border-radius: 4px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .floorplan-label {
@@ -214,10 +222,9 @@ a {
 }
 
 /* ==========================================================
-   4. ボタン演出 (Button Styles & Animations)
+   4. ボタン演出 (Button Styles)
    ========================================================== */
 
-/* 5. ボタン演出 */
 .btn {
     position: relative;
     display: inline-flex;
@@ -245,7 +252,6 @@ a {
     margin-top: 32px;
 }
 
-/* 左から右へスライドする背景演出 */
 .btn::before {
     content: "";
     position: absolute;
@@ -271,7 +277,6 @@ a {
    5. 画像拡大ポップオーバー (Popover / Modal)
    ========================================================== */
 
-/* トリガーボタン（画像部分） */
 .popover-trigger {
     background: none;
     border: none;
@@ -283,7 +288,6 @@ a {
     text-align: left;
 }
 
-/* ポップアップ本体 (dialog) */
 .image-popover {
     margin: auto;
     border: none;
@@ -295,7 +299,6 @@ a {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* 背景バックドロップ */
 .image-popover::backdrop {
     background-color: rgba(30, 35, 40, 0.85);
     backdrop-filter: blur(4px);
@@ -316,7 +319,6 @@ a {
     border-radius: 4px;
 }
 
-/* 閉じるボタン */
 .image-popover__close {
     position: absolute;
     top: -40px;
@@ -337,39 +339,7 @@ a {
 }
 
 /* ==========================================================
-   6. フッター (Footer)
-   ========================================================== */
-
-.footer {
-    background-color: var(--color-main);
-    color: var(--color-base);
-    padding: 60px 24px;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-}
-
-.footer__logo {
-    font-size: 1.5rem;
-    letter-spacing: 0.2em;
-    margin-bottom: 12px;
-    color: var(--color-base);
-}
-
-.footer__address {
-    font-size: 0.8rem;
-    color: var(--color-sub);
-    margin-bottom: 24px;
-}
-
-.footer__copyright {
-    font-size: 0.75rem;
-    color: rgba(245, 243, 239, 0.5);
-    display: block;
-}
-
-/* ==========================================================
-   7. モバイル・レスポンシブ (Mobile 768px 以下)
+   6. モバイル・レスポンシブ (Mobile 768px 以下)
    ========================================================== */
 
 @media (max-width: 768px) {
@@ -377,15 +347,10 @@ a {
         --section-space: 60px;
     }
 
-    .page-hero {
-        padding: 80px 20px 40px;
+    .container {
+        padding: 0 16px;
     }
 
-    .page-hero__title {
-        font-size: 1.5rem;
-    }
-
-    /* カードを1列（縦並び）に統合 */
     .room-card {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -399,6 +364,16 @@ a {
 
     .room-card__title {
         font-size: 1.4rem;
+    }
+
+    .room-card__info {
+        grid-template-columns: 60px 1fr;
+        gap: 6px 12px;
+    }
+
+    .floorplan-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
 
     .btn {

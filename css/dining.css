@@ -9,6 +9,7 @@
     max-width: 1100px;
     margin: 0 auto;
     padding: 80px 24px 120px;
+    box-sizing: border-box;
 }
 
 /* ==========================================================
@@ -60,6 +61,11 @@
     transform: scale(1.03);
 }
 
+.feature-info {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
 .feature-tag {
     display: inline-block;
     font-size: 0.7rem;
@@ -96,6 +102,7 @@
     border-radius: 16px;
     border: 1px solid rgba(184, 178, 170, 0.2);
     isolation: isolate;
+    box-sizing: border-box;
 }
 
 .style-header {
@@ -190,6 +197,7 @@
     gap: 36px;
     align-items: center;
     border: 1px solid rgba(184, 178, 170, 0.2);
+    box-sizing: border-box;
 }
 
 .panel-img-wrapper {
@@ -216,6 +224,8 @@
 
 .panel-info {
     text-align: left;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .panel-title {
@@ -248,6 +258,7 @@
     border-radius: 12px;
     text-align: center;
     border: 1px solid rgba(184, 178, 170, 0.2);
+    box-sizing: border-box;
 }
 
 .location-num {
@@ -289,8 +300,12 @@
     }
 
     .dining-container {
-        padding-top: 40px;
-        padding-bottom: 60px;
+        padding: 40px 16px 60px;
+    }
+
+    .dining-features {
+        gap: 48px;
+        margin-bottom: 60px;
     }
 
     .feature-card,
@@ -305,17 +320,17 @@
     }
 
     .dining-style {
-        padding: 48px 20px;
+        padding: 36px 16px;
     }
 
     .panel-box {
         grid-template-columns: 1fr;
         gap: 20px;
-        padding: 24px;
+        padding: 20px;
     }
 
     .panel-info {
-        text-align: center;
+        text-align: left;
     }
 
     .location-grid {
