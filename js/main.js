@@ -205,3 +205,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+// 選択されたお部屋カードのクラス切替（CSSの :has 非対応環境のフォールバック）
+document.addEventListener("DOMContentLoaded", () => {
+    const roomRadios = document.querySelectorAll('input[name="room"]');
+    
+    if (roomRadios.length > 0) {
+        roomRadios.forEach((radio) => {
+            radio.addEventListener("change", () => {
+                // すべてのカードから is-selected クラスを外す
+                document.querySelectorAll(".room-card").forEach((card) => {
+                    card.classList.remove("is-selected");
+                });
+                // 選択されたラジオボタンの親カードに is-selected クラスを付与
+                const parentCard = radio.closest(".room-card");
+                if (parentCard) {
+                    parentCard.classList.add("is-selected");
+                }
+            });
+        });
+    }
+});

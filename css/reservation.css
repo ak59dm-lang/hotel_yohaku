@@ -525,3 +525,20 @@ input[type="date"]::-webkit-clear-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+/* ==========================================
+   選択されたお部屋カードのハイライト（背景色変更）
+========================================== */
+
+/* 1. カード全体の基本遷移設定 */
+.room-card {
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 2. ラジオボタンがチェックされたカードの背景色と枠線 */
+/* モダンブラウザ向け（CSS parent selector） */
+.room-card:has(input[type="radio"]:checked) {
+    background-color: #f2f5f6 !important; /* ほんのり上品なグレーブルー（お好みの色に調整可） */
+    border-color: #697b85 !important;      /* YOHAKUのブランドカラー枠線 */
+    box-shadow: 0 4px 12px rgba(105, 123, 133, 0.12); /* 軽く浮き上がる影 */
+}
