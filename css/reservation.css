@@ -542,3 +542,60 @@ input[type="date"]::-webkit-clear-button {
     border-color: #697b85 !important;      /* YOHAKUのブランドカラー枠線 */
     box-shadow: 0 4px 12px rgba(105, 123, 133, 0.12); /* 軽く浮き上がる影 */
 }
+/* ==========================================
+   予約ページ 視認性・レイアウト修正
+========================================== */
+
+/* 1. 見出しやフォーム内の数字を読みやすいゴシック体に変更 */
+.reservation-form,
+.reservation-form h2,
+.reservation-form h3,
+.section-title,
+.section-number,
+input,
+select,
+option {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif !important;
+}
+
+/* 見出しの「1. 2. 3.」などの数字を強調して見やすく */
+.section-header__num,
+.step-number,
+.reservation-section-title span {
+    font-family: "Cormorant Garamond", -apple-system, sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+}
+
+/* 2. お部屋選択ボタン（ラジオボタン/選択ボタン）の横伸び防止 */
+.room-card__select,
+.room-card .select-btn,
+.room-card input[type="radio"] {
+    width: auto !important;
+    max-width: fit-content !important;
+    margin-left: 0;
+    margin-right: auto; /* または中央寄せにしたい場合は margin: 16px auto 0; */
+}
+
+/* ラベルボタン形式にしている場合の幅・位置調整 */
+.room-card label.select-label,
+.room-card .btn-select {
+    display: inline-block !important;
+    width: auto !important;
+    min-width: 140px; /* ボタンとして押しやすい最低限の幅 */
+    padding: 10px 24px !important;
+    text-align: center;
+    box-sizing: border-box !important;
+}
+
+/* お部屋カード内部のレイアウト調整（要素が横に引き伸ばされるのを防ぐ） */
+.room-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 配下要素を必要以上に横いっぱいに広げない */
+}
+
+.room-card__img,
+.room-card__info {
+    width: 100% !important; /* 画像や説明文領域は100%を維持 */
+}
