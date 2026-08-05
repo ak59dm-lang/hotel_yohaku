@@ -412,3 +412,72 @@
         gap: 0.2rem;
     }
 }
+
+/* ==========================================
+   予約完了モーダル・オーバーレイの修正
+========================================== */
+
+/* モーダルの背景（画面全体を覆う黒透過レイヤー） */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 予約完了カード本体（中央配置・幅調整） */
+.modal-content,
+.complete-modal {
+    position: relative;
+    width: 100%;
+    max-width: 440px; /* カードの最大幅 */
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 36px 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* トップページへ戻るボタン（デザイン調整） */
+.modal-content .btn-primary,
+.complete-modal .btn-primary,
+.complete-modal a.btn,
+.complete-modal button {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 24px auto 0;
+    padding: 14px 20px;
+    background-color: #697b85; /* ブランドカラー */
+    color: #ffffff;
+    border: 1px solid #697b85;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-family: var(--font-serif, "Noto Serif JP", serif);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-align: center;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ボタンホバー・タップ時 */
+.modal-content .btn-primary:hover,
+.complete-modal .btn-primary:hover,
+.complete-modal a.btn:hover {
+    background-color: #4a5560;
+    border-color: #4a5560;
+    color: #ffffff;
+}
