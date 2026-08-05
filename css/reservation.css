@@ -1,0 +1,414 @@
+@charset "UTF-8";
+
+/* ==========================================================
+   1. ページヒーロー (Page Hero)
+   ========================================================== */
+.page-hero {
+    padding-top: clamp(6rem, 10vw, 8rem);
+    padding-bottom: clamp(3rem, 5vw, 4.5rem);
+    text-align: center;
+    background-color: #f7f6f2;
+}
+
+.page-hero-inner {
+    max-width: 800px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+}
+
+.page-hero-en {
+    display: block;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--color-accent, #7e95a8);
+    margin-bottom: 0.5rem;
+}
+
+.page-hero-jp {
+    font-family: "Noto Serif JP", serif;
+    font-size: var(--font-title, 2rem);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--color-main, #4a5560);
+    margin-bottom: 1.2rem;
+}
+
+.page-hero-desc {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--color-sub, #697b85);
+}
+
+/* ==========================================================
+   2. フォーム全体レイアウト (Form Container)
+   ========================================================== */
+.reservation-form {
+    max-width: 840px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+    padding-top: 3rem;
+    padding-bottom: 6rem;
+}
+
+.form-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(220, 225, 230, 0.6);
+}
+
+.form-section__title {
+    font-family: "Noto Serif JP", serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-main, #4a5560);
+    padding-bottom: 1rem;
+    margin-bottom: 1.8rem;
+    border-bottom: 1px solid #eef1f3;
+}
+
+/* ==========================================================
+   3. 入力項目・フォームコントロール (Inputs & Selects)
+   ========================================================== */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-main, #4a5560);
+    letter-spacing: 0.05em;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+    color: #333333;
+    background-color: #fafbfc;
+    border: 1px solid #dcdfe4;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-accent, #7e95a8);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(126, 149, 168, 0.15);
+}
+
+/* ==========================================================
+   4. お部屋選択カード (Room Cards with Image)
+   ========================================================== */
+.room-group {
+    margin-bottom: 2rem;
+}
+
+.room-group:last-child {
+    margin-bottom: 0;
+}
+
+.room-group__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-accent, #7e95a8);
+    margin-bottom: 1rem;
+    letter-spacing: 0.08em;
+}
+
+.room-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* カード風ラッパー */
+.room-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: #fafbfc;
+    border: 2px solid #e8ecf0;
+    border-radius: 10px;
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.room-card:hover {
+    border-color: #bdc8d2;
+    background-color: #ffffff;
+}
+
+/* ラジオボタンが選択された状態のスタイル */
+.room-card:has(input[type="radio"]:checked) {
+    border-color: var(--color-accent, #7e95a8);
+    background-color: #f4f7f9;
+    box-shadow: 0 4px 12px rgba(126, 149, 168, 0.12);
+}
+
+/* 標準ラジオボタンのデザインカスタマイズ */
+.room-card input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #b0b8c0;
+    border-radius: 50%;
+    outline: none;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.room-card input[type="radio"]:checked {
+    border-color: var(--color-accent, #7e95a8);
+    background-color: var(--color-accent, #7e95a8);
+}
+
+.room-card input[type="radio"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+/* お部屋画像 */
+.room-card__img-wrap {
+    width: 140px;
+    height: 95px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: #e0e0e0;
+}
+
+.room-card__img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.room-card:hover .room-card__img-wrap img {
+    transform: scale(1.05);
+}
+
+/* お部屋テキスト情報 */
+.room-card__content {
+    flex-grow: 1;
+}
+
+.room-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.room-card__name {
+    font-family: "Noto Serif JP", serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-main, #4a5560);
+}
+
+.room-card__price {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-main, #4a5560);
+}
+
+.room-card__price small {
+    font-size: 0.75rem;
+    color: #888;
+    font-weight: normal;
+}
+
+.room-card__desc {
+    font-size: 0.825rem;
+    line-height: 1.6;
+    color: var(--color-sub, #697b85);
+}
+
+/* ==========================================================
+   5. 概算合計 & 送信エリア (Summary & Submit)
+   ========================================================== */
+.reservation-summary {
+    background: #ffffff;
+    border: 1px solid var(--color-accent, #7e95a8);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 6px 24px rgba(126, 149, 168, 0.12);
+}
+
+.summary-total {
+    font-size: 1.05rem;
+    color: var(--color-main, #4a5560);
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.summary-total strong {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--color-main, #4a5560);
+}
+
+.reservation-btn {
+    display: inline-block;
+    width: 100%;
+    max-width: 360px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    background-color: var(--color-main, #4a5560);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.reservation-btn:hover {
+    background-color: var(--color-accent, #7e95a8);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================
+   6. 完了モーダル (Modal)
+   ========================================================== */
+.complete-modal {
+    border: none;
+    border-radius: 12px;
+    padding: 0;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.complete-modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.modal__inner {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    background: #ffffff;
+}
+
+.modal__sub-title {
+    display: block;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    color: var(--color-accent, #7e95a8);
+    margin-bottom: 0.4rem;
+}
+
+.modal__title {
+    font-family: "Noto Serif JP", serif;
+    font-size: 1.35rem;
+    color: var(--color-main, #4a5560);
+    margin-bottom: 0.8rem;
+}
+
+.modal__notice {
+    font-size: 0.8rem;
+    color: #e06d6d;
+    margin-bottom: 1.5rem;
+}
+
+.modal__summary {
+    background: #f8f9fa;
+    padding: 1.2rem;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 2rem;
+}
+
+.modal-close-btn {
+    padding: 0.8rem 2.5rem;
+    border-radius: 40px;
+    border: 1px solid var(--color-main, #4a5560);
+    background: transparent;
+    color: var(--color-main, #4a5560);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    background: var(--color-main, #4a5560);
+    color: #ffffff;
+}
+
+/* ==========================================================
+   7. スマホ・レスポンシブ対応 (Mobile)
+   ========================================================== */
+@media (max-width: 640px) {
+    .reservation-form {
+        padding-inline: 1rem;
+        padding-top: 1.5rem;
+        padding-bottom: 8rem; /* フッター固定部分との重なり防止 */
+    }
+
+    .room-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding: 1rem;
+    }
+
+    .room-card input[type="radio"] {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .room-card__img-wrap {
+        width: 100%;
+        height: 160px;
+    }
+
+    .room-card__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+}

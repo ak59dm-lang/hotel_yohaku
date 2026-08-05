@@ -33,7 +33,7 @@
         <!-- Original Stylesheet -->
         <link rel="stylesheet" href="../css/reset.css" />
         <link rel="stylesheet" href="../css/common.css" />
-        <link rel="stylesheet" href="../css/style.css" />
+        <link rel="stylesheet" href="../css/experience.css?v=1" />
         <link rel="stylesheet" href="../css/footer.css" />
     </head>
     <body>
@@ -120,7 +120,7 @@
                     </ul>
                 </nav>
 
-                <!-- アクションエリア（予約ボタン・ハンバーガー） -->
+                <!-- アクションエリア -->
                 <div class="header__actions">
                     <div class="header__reserve">
                         <a href="./reservation.html" class="header__reserve-btn">RESERVATION</a>
@@ -131,7 +131,6 @@
                         type="button"
                         aria-label="メニュー開閉"
                     >
-                        <!-- 三本線アイコン -->
                         <svg
                             class="icon-menu"
                             width="24"
@@ -143,7 +142,6 @@
                         >
                             <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
                         </svg>
-                        <!-- 閉じる（✕）アイコン -->
                         <svg
                             class="icon-close"
                             width="24"
@@ -206,7 +204,6 @@
         <!-- ==========================================
             Main Content
         ========================================== -->
-        <!-- ページメインビジュアル / リード -->
         <section class="page-hero">
             <div class="page-hero-inner">
                 <span class="page-hero-en">E X P E R I E N C E</span>
@@ -219,7 +216,7 @@
         </section>
         
         <main class="main">
-            <!-- 01. 水辺の自然 (メインスライダー) -->
+            <!-- 01. 水辺の自然 (Swiperスライダー化) -->
             <section class="experience-section">
                 <div class="container">
                     <div class="section-header">
@@ -228,36 +225,37 @@
                         <p class="section-header__subtitle">移り変わる静寂のグラデーション</p>
                     </div>
 
-                    <div class="lake-slider-wrapper">
-                        <div class="lake-slider">
-                            <div class="lake-slide is-active">
-                                <img
-                                    src="../images/top_moning_lake.webp"
-                                    alt="朝の澄み切った静けさに包まれる湖畔"
-                                />
-                                <span class="lake-slide__caption"
-                                    >Morning — 澄んだ光と湖面の静寂</span
-                                >
+                    <div class="swiper exp-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="slide-img-wrap">
+                                    <img
+                                        src="../images/top_moning_lake.webp"
+                                        alt="朝の澄み切った静けさに包まれる湖畔"
+                                    />
+                                </div>
+                                <span class="lake-slide__caption">Morning — 澄んだ光と湖面の静寂</span>
                             </div>
-                            <div class="lake-slide">
-                                <img
-                                    src="../images/sunset.webp"
-                                    alt="夕暮れ時に黄金色へ染まる水面"
-                                />
-                                <span class="lake-slide__caption"
-                                    >Evening — 暮れゆく空と温もりの影</span
-                                >
+                            <div class="swiper-slide">
+                                <div class="slide-img-wrap">
+                                    <img
+                                        src="../images/sunset.webp"
+                                        alt="夕暮れ時に黄金色へ染まる水面"
+                                    />
+                                </div>
+                                <span class="lake-slide__caption">Evening — 暮れゆく空と温もりの影</span>
                             </div>
-                            <div class="lake-slide">
-                                <img
-                                    src="../images/top_night.webp"
-                                    alt="満天の星と水面に映る月明かり"
-                                />
-                                <span class="lake-slide__caption"
-                                    >Night — 静寂に包まれる星と水面</span
-                                >
+                            <div class="swiper-slide">
+                                <div class="slide-img-wrap">
+                                    <img
+                                        src="../images/top_night.webp"
+                                        alt="満天の星と水面に映る月明かり"
+                                    />
+                                </div>
+                                <span class="lake-slide__caption">Night — 静寂に包まれる星と水面</span>
                             </div>
                         </div>
+                        <div class="swiper-pagination"></div>
                     </div>
 
                     <p class="experience-desc">
@@ -267,7 +265,7 @@
                 </div>
             </section>
 
-            <!-- 02. フリースペース & ライブラリー (ギャラリー型) -->
+            <!-- 02. フリースペース & ライブラリー -->
             <section class="experience-section">
                 <div class="container">
                     <div class="section-header">
@@ -276,60 +274,30 @@
                         <p class="section-header__subtitle">思いのままに佇む、寛ぎの余白</p>
                     </div>
 
-                    <div class="photo-grid photo-grid--4col">
+                    <div class="photo-grid">
                         <div class="photo-item">
-                            <button
-                                type="button"
-                                class="popover-trigger"
-                                aria-label="フリースペースの画像を拡大表示"
-                            >
-                                <img
-                                    src="../images/freespace1.webp"
-                                    alt="自然光が差し込む館内フリースペース"
-                                />
+                            <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                <img src="../images/freespace1.webp" alt="フリースペース" />
                             </button>
                             <span class="photo-item__caption">ラウンジ / 自由にくつろぐ空間</span>
                         </div>
                         <div class="photo-item">
-                            <button
-                                type="button"
-                                class="popover-trigger"
-                                aria-label="暖炉とソファの画像を拡大表示"
-                            >
-                                <img
-                                    src="../images/danro.webp"
-                                    alt="暖炉のぬくもりが包むくつろぎエリア"
-                                />
+                            <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                <img src="../images/danro.webp" alt="暖炉エリア" />
                             </button>
                             <span class="photo-item__caption">暖炉エリア / 火を眺める時間</span>
                         </div>
                         <div class="photo-item">
-                            <button
-                                type="button"
-                                class="popover-trigger"
-                                aria-label="図書館の画像を拡大表示"
-                            >
-                                <img
-                                    src="../images/library_swiper.webp"
-                                    alt="壁一面に本が並ぶ静かな図書館"
-                                />
+                            <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                <img src="../images/library_swiper.webp" alt="図書館" />
                             </button>
                             <span class="photo-item__caption">館内ライブラリー / 思考を深める</span>
                         </div>
                         <div class="photo-item">
-                            <button
-                                type="button"
-                                class="popover-trigger"
-                                aria-label="読書スペースの画像を拡大表示"
-                            >
-                                <img
-                                    src="../images/lounge_night.webp"
-                                    alt="おこもりスペース完備の夜のラウンジ"
-                                />
+                            <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                <img src="../images/lounge_night.webp" alt="夜のラウンジ" />
                             </button>
-                            <span class="photo-item__caption"
-                                >夜のラウンジ / 静かな夜のご褒美時間</span
-                            >
+                            <span class="photo-item__caption">夜のラウンジ / 静かな夜のご褒美時間</span>
                         </div>
                     </div>
                 </div>
@@ -344,56 +312,28 @@
                         <p class="section-header__subtitle">温もりに包まれ、深く「ととのう」</p>
                     </div>
 
-                    <div class="photo-grid photo-grid--4col">
+                    <div class="photo-grid">
                         <div class="photo-item">
-                            <button
-                                type="button"
-                                class="popover-trigger"
-                                aria-label="温泉大浴場の画像を拡大表示"
-                            >
-                                <img
-                                    src="../images/onsen_roten.webp"
-                                    alt="水辺を望む開放的な温泉"
-                                />
+                            <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                <img src="../images/onsen_roten.webp" alt="露天風呂" />
                             </button>
-                            <span class="photo-item__caption"
-                                >水辺の湯 / 景色と溶け込む露天風呂</span
-                            >
+                            <span class="photo-item__caption">水辺の湯 / 景色と溶け込む露天風呂</span>
                         </div>
                         <div class="photo-item">
-                            <button
-                                type="button"
-                                class="popover-trigger"
-                                aria-label="洗い場の画像を拡大表示"
-                            >
-                                <img src="../images/onsen_araiba.webp" alt="清潔な洗い場" />
+                            <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                <img src="../images/onsen_araiba.webp" alt="洗い場" />
                             </button>
-                            <span class="photo-item__caption"
-                                >洗い場 / 広々としたパーソナルスペース</span
-                            >
+                            <span class="photo-item__caption">洗い場 / 広々としたパーソナルスペース</span>
                         </div>
                         <div class="photo-item">
-                            <button
-                                type="button"
-                                class="popover-trigger"
-                                aria-label="本格サウナの画像を拡大表示"
-                            >
-                                <img
-                                    src="../images/onsen_sauna.webp"
-                                    alt="木の香りが漂う本格サウナ"
-                                />
+                            <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                <img src="../images/onsen_sauna.webp" alt="サウナ" />
                             </button>
-                            <span class="photo-item__caption"
-                                >セルフロウリュサウナ / 木とアロマの香り</span
-                            >
+                            <span class="photo-item__caption">セルフロウリュサウナ / 木とアロマの香り</span>
                         </div>
                         <div class="photo-item">
-                            <button
-                                type="button"
-                                class="popover-trigger"
-                                aria-label="水風呂の画像を拡大表示"
-                            >
-                                <img src="../images/gaikiyoku.webp" alt="自然に包まれる外気浴" />
+                            <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                <img src="../images/gaikiyoku.webp" alt="外気浴" />
                             </button>
                             <span class="photo-item__caption">外気浴 / 五感で感じる自然</span>
                         </div>
@@ -413,15 +353,8 @@
                     <div class="dining-cards">
                         <article class="dining-card">
                             <div class="dining-card__image">
-                                <button
-                                    type="button"
-                                    class="popover-trigger"
-                                    aria-label="ディナーの画像を拡大表示"
-                                >
-                                    <img
-                                        src="../images/dinner.webp"
-                                        alt="北海道産食材を使用した彩り豊かなディナー"
-                                    />
+                                <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                    <img src="../images/dinner.webp" alt="ディナー" />
                                 </button>
                             </div>
                             <div class="dining-card__content">
@@ -435,25 +368,17 @@
 
                         <article class="dining-card">
                             <div class="dining-card__image">
-                                <button
-                                    type="button"
-                                    class="popover-trigger"
-                                    aria-label="ランチボックスの画像を拡大表示"
-                                >
-                                    <img
-                                        src="../images/lunchbox.webp"
-                                        alt="お好きな場所で食べられるランチボックス"
-                                    />
+                                <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                    <img src="../images/lunchbox.webp" alt="ランチボックス" />
                                 </button>
                             </div>
                             <div class="dining-card__content">
-                                <h3 class="dining-card__title">
-                                    自由なひとときを紡ぐ ランチボックス
-                                </h3>
+                                <h3 class="dining-card__title">自由なひとときを紡ぐ ランチボックス</h3>
                                 <p class="dining-card__desc">
                                     「決まった時間に食べる」縛りからも解放。<br />
                                     お部屋や湖畔のテラスなど、好きなタイミングで楽しめる4つのスタイルのランチボックスをご用意。
                                 </p>
+                                <!-- タグ風リスト -->
                                 <ul class="dining-card__tags">
                                     <li>和食スタイル</li>
                                     <li>洋食スタイル</li>
@@ -472,87 +397,66 @@
                     <div class="section-header">
                         <span class="section-header__num">05</span>
                         <h2 class="section-header__title">雨の日のご滞在</h2>
-                        <p class="section-header__subtitle">
-                            雨音を聴きながら、さらに深く静かな時間を
-                        </p>
+                        <p class="section-header__subtitle">雨音を聴きながら、さらに深く静かな時間を</p>
                     </div>
 
-                    <!-- 雨の日イメージ画像3枚 -->
                     <div class="rainy-service__images">
                         <div class="rainy-image-item">
-                            <button
-                                type="button"
-                                class="popover-trigger"
-                                aria-label="雨の窓辺の画像を拡大表示"
-                            >
-                                <img src="../images/top_rain.webp" alt="雨滴が伝う静かな窓辺" />
+                            <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                <img src="../images/top_rain.webp" alt="雨の窓辺" />
                             </button>
                         </div>
                         <div class="rainy-image-item">
-                            <button
-                                type="button"
-                                class="popover-trigger"
-                                aria-label="アフタヌーンティーの画像を拡大表示"
-                            >
-                                <img
-                                    src="../images/rainy_tea.webp"
-                                    alt="ラウンジで味わう温かいハーブティーと焼き菓子"
-                                />
+                            <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                <img src="../images/rainy_tea.webp" alt="ハーブティー" />
                             </button>
                         </div>
                         <div class="rainy-image-item">
-                            <button
-                                type="button"
-                                class="popover-trigger"
-                                aria-label="読書セットの画像を拡大表示"
-                            >
-                                <img
-                                    src="../images/rainy_set.webp"
-                                    alt="雨の日の読書セットとドリップコーヒー"
-                                />
+                            <button type="button" class="popover-trigger" aria-label="拡大表示">
+                                <img src="../images/rainy_set.webp" alt="読書セット" />
                             </button>
                         </div>
                     </div>
 
-                    <!-- テキストサービス案内 -->
+                    <!-- エレガントなリスト型案内 -->
                     <div class="rainy-service">
-                        <div class="rainy-service__content">
-                            <p class="rainy-service__desc">
-                                「YOHAKU」では、雨の日こそ「何もしない贅沢」をより深く味わえる特別な日だと考えています。<br />
-                                雨音に包まれる静寂のひとときを、心ゆくまでお愉しみいただくための特別なおもてなしをご用意しております。
-                            </p>
-                            <ul class="rainy-service__list">
-                                <li>
-                                    <strong>レイトチェックアウト（1時間延長）</strong>
-                                    <span
-                                        >通常11時のチェックアウトを12時まで無料でご延長。朝の雨音をベッドでまどろみながらお聞きください。</span
-                                    >
-                                </li>
-                                <li>
-                                    <strong>ラウンジ アフタヌーンサービス</strong>
-                                    <span
-                                        >雨の日の午後限定で、ラウンジにて温かいハーブティーと特製焼き菓子をご提供いたします。</span
-                                    >
-                                </li>
-                                <li>
-                                    <strong>雨の日の読書セットお貸出し</strong>
-                                    <span
-                                        >雨の情景に合う小説や詩集、温かいブランケット、お部屋用の特別なドリップコーヒーのセットをお持ちします。</span
-                                    >
-                                </li>
-                            </ul>
+                        <p class="rainy-service__desc">
+                            「YOHAKU」では、雨の日こそ「何もしない贅沢」をより深く味わえる特別な日だと考えています。<br />
+                            雨音に包まれる静寂のひとときを、心ゆくまでお愉しみいただくための特別なおもてなしをご用意しております。
+                        </p>
+                        
+                        <div class="rainy-cards">
+                            <div class="rainy-card">
+                                <span class="rainy-card__num">01</span>
+                                <div class="rainy-card__text">
+                                    <h4 class="rainy-card__title">レイトチェックアウト（1時間延長）</h4>
+                                    <p>通常11時のチェックアウトを12時まで無料でご延長。朝の雨音をベッドでまどろみながらお聞きください。</p>
+                                </div>
+                            </div>
+                            <div class="rainy-card">
+                                <span class="rainy-card__num">02</span>
+                                <div class="rainy-card__text">
+                                    <h4 class="rainy-card__title">ラウンジ アフタヌーンサービス</h4>
+                                    <p>雨の日の午後限定で、ラウンジにて温かいハーブティーと特製焼き菓子をご提供いたします。</p>
+                                </div>
+                            </div>
+                            <div class="rainy-card">
+                                <span class="rainy-card__num">03</span>
+                                <div class="rainy-card__text">
+                                    <h4 class="rainy-card__title">雨の日の読書セットお貸出し</h4>
+                                    <p>雨の情景に合う小説や詩集、温かいブランケット、お部屋用の特別なドリップコーヒーのセットをお持ちします。</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 下部コンバージョン動線 -->
+            <!-- 下部コンバージョン動線（フッター被り防止の十分な下余白を追加） -->
             <section class="experience-cta">
                 <div class="container">
                     <h2 class="experience-cta__title">「何もしない」旅へ出かけませんか</h2>
-                    <p class="experience-cta__text">
-                        あなただけの静かな余白の時間が、ここでお待ちしています。
-                    </p>
+                    <p class="experience-cta__text">あなただけの静かな余白の時間が、ここでお待ちしています。</p>
                     <a href="reservation.html" class="btn">ご予約・空室検索</a>
                 </div>
             </section>
@@ -561,14 +465,7 @@
         <!-- 拡大表示用 Popover モーダル -->
         <dialog id="image-popover" class="image-popover">
             <div class="image-popover__inner">
-                <button
-                    type="button"
-                    class="image-popover__close"
-                    id="js-popover-close"
-                    aria-label="閉じる"
-                >
-                    ✕
-                </button>
+                <button type="button" class="image-popover__close" id="js-popover-close" aria-label="閉じる">✕</button>
                 <img src="" alt="" id="js-popover-img" />
             </div>
         </dialog>
@@ -582,29 +479,11 @@
                 <div id="starField" class="star-field"></div>
                 <div id="footerContent" class="footer-content">
                     <div class="footer-brand">
-                        <a
-                            href="../index.html"
-                            class="footer-logo-link"
-                            aria-label="YOHAKU トップページへ"
-                        >
-                            <svg
-                                class="footer-logo-svg"
-                                viewBox="0 0 160 32"
-                                width="150"
-                                height="30"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
+                        <a href="../index.html" class="footer-logo-link" aria-label="YOHAKU トップページへ">
+                            <svg class="footer-logo-svg" viewBox="0 0 160 32" width="150" height="30" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="16" cy="16" r="12" opacity="0.4" />
                                 <path d="M 16 6 A 10 10 0 0 0 16 26 C 20 22 20 10 16 6 Z" />
-                                <text
-                                    x="38"
-                                    y="22"
-                                    font-family="'Cormorant Garamond', serif"
-                                    font-size="20"
-                                    letter-spacing="0.25em"
-                                >
-                                    YOHAKU
-                                </text>
+                                <text x="38" y="22" font-family="'Cormorant Garamond', serif" font-size="20" letter-spacing="0.25em">YOHAKU</text>
                             </svg>
                         </a>
                     </div>
@@ -625,5 +504,22 @@
         <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
         <script src="../js/main.js" defer></script>
         <script src="../js/footer.js" defer></script>
+        
+        <!-- Swiper 初期化スクリプト -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                new Swiper('.exp-swiper', {
+                    loop: true,
+                    autoplay: {
+                        delay: 4000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+            });
+        </script>
     </body>
 </html>

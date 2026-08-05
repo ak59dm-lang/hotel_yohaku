@@ -30,11 +30,11 @@
             href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
         />
 
-        <!-- Original Stylesheet -->
-        <link rel="stylesheet" href="../css/reset.css" />
-        <link rel="stylesheet" href="../css/common.css" />
-        <link rel="stylesheet" href="../css/style.css" />
-        <link rel="stylesheet" href="../css/footer.css" />
+<!-- Original Stylesheet -->
+<link rel="stylesheet" href="../css/reset.css" />
+<link rel="stylesheet" href="../css/common.css" />
+<link rel="stylesheet" href="../css/reservation.css" />
+<link rel="stylesheet" href="../css/footer.css" />
     </head>
     <body>
         <!-- ==========================================
@@ -245,123 +245,128 @@
                     </div>
                 </section>
 
-                <!-- STEP 2: お部屋タイプ（全46室） -->
-                <section class="form-section">
-                    <h2 class="form-section__title">2. お部屋タイプ</h2>
+<!-- STEP 2: お部屋タイプ（全46室） -->
+<section class="form-section">
+    <h2 class="form-section__title">2. お部屋タイプ</h2>
 
-                    <!-- 特別室グループ -->
-                    <div class="room-group">
-                        <h3 class="room-group__title">特別室（全6室）</h3>
-                        <div class="room-options">
-                            <label class="room-card">
-                                <input
-                                    type="radio"
-                                    name="room"
-                                    value="58000"
-                                    data-room-name="Library Room (特別室)"
-                                    checked
-                                />
-                                <div class="room-card__content">
-                                    <div class="room-card__header">
-                                        <span class="room-card__name">Library Room</span>
-                                        <span class="room-card__price"
-                                            >¥58,000 〜 <small>/ 1泊1室</small></span
-                                        >
-                                    </div>
-                                    <p class="room-card__desc">
-                                        本と静寂に包まれる思索のための空間（限定2室）
-                                    </p>
-                                </div>
-                            </label>
-
-                            <label class="room-card">
-                                <input
-                                    type="radio"
-                                    name="room"
-                                    value="62000"
-                                    data-room-name="Sauna Room (特別室)"
-                                />
-                                <div class="room-card__content">
-                                    <div class="room-card__header">
-                                        <span class="room-card__name">Sauna Room</span>
-                                        <span class="room-card__price"
-                                            >¥62,000 〜 <small>/ 1泊1室</small></span
-                                        >
-                                    </div>
-                                    <p class="room-card__desc">
-                                        専用プライベートサウナとととのいテラスを備えた客室（限定2室）
-                                    </p>
-                                </div>
-                            </label>
-
-                            <label class="room-card">
-                                <input
-                                    type="radio"
-                                    name="room"
-                                    value="55000"
-                                    data-room-name="Retreat Room (特別室)"
-                                />
-                                <div class="room-card__content">
-                                    <div class="room-card__header">
-                                        <span class="room-card__name">Retreat Room</span>
-                                        <span class="room-card__price"
-                                            >¥55,000 〜 <small>/ 1泊1室</small></span
-                                        >
-                                    </div>
-                                    <p class="room-card__desc">
-                                        心身をゆるめ、余白を深く味わうリトリート客室（限定2室）
-                                    </p>
-                                </div>
-                            </label>
-                        </div>
+    <!-- 特別室グループ -->
+    <div class="room-group">
+        <h3 class="room-group__title">特別室（全6室）</h3>
+        <div class="room-options">
+            <label class="room-card">
+                <input
+                    type="radio"
+                    name="room"
+                    value="58000"
+                    data-room-name="Library Room (特別室)"
+                    checked
+                />
+                <div class="room-card__img-wrap">
+                    <img src="../images/rooms_library.webp" alt="Library Room" loading="lazy" />
+                </div>
+                <div class="room-card__content">
+                    <div class="room-card__header">
+                        <span class="room-card__name">Library Room</span>
+                        <span class="room-card__price">¥58,000 〜 <small>/ 1泊1室</small></span>
                     </div>
+                    <p class="room-card__desc">
+                        本と静寂に包まれる思索のための空間（限定2室）
+                    </p>
+                </div>
+            </label>
 
-                    <!-- 標準室グループ -->
-                    <div class="room-group room-group--standard">
-                        <h3 class="room-group__title">標準室（全40室）</h3>
-                        <div class="room-options">
-                            <label class="room-card">
-                                <input
-                                    type="radio"
-                                    name="room"
-                                    value="32000"
-                                    data-room-name="Standard Single (標準室)"
-                                />
-                                <div class="room-card__content">
-                                    <div class="room-card__header">
-                                        <span class="room-card__name">Standard Single</span>
-                                        <span class="room-card__price"
-                                            >¥32,000 〜 <small>/ 1泊1室</small></span
-                                        >
-                                    </div>
-                                    <p class="room-card__desc">
-                                        お一人で静かに自分と向き合う、上質なシングルルーム（全20室）
-                                    </p>
-                                </div>
-                            </label>
-
-                            <label class="room-card">
-                                <input
-                                    type="radio"
-                                    name="room"
-                                    value="38000"
-                                    data-room-name="Standard Twin (標準室)"
-                                />
-                                <div class="room-card__content">
-                                    <div class="room-card__header">
-                                        <span class="room-card__name">Standard Twin</span>
-                                        <span class="room-card__price"
-                                            >¥38,000 〜 <small>/ 1泊1室</small></span
-                                        >
-                                    </div>
-                                    <p class="room-card__desc">
-                                        木のぬくもりを感じる、ゆったりとしたツインルーム（全20室）
-                                    </p>
-                                </div>
-                            </label>
-                        </div>
+            <label class="room-card">
+                <input
+                    type="radio"
+                    name="room"
+                    value="62000"
+                    data-room-name="Sauna Room (特別室)"
+                />
+                <div class="room-card__img-wrap">
+                    <img src="../images/rooms_sauna.webp" alt="Sauna Room" loading="lazy" />
+                </div>
+                <div class="room-card__content">
+                    <div class="room-card__header">
+                        <span class="room-card__name">Sauna Room</span>
+                        <span class="room-card__price">¥62,000 〜 <small>/ 1泊1室</small></span>
                     </div>
-                </section>
+                    <p class="room-card__desc">
+                        専用プライベートサウナとととのいテラスを備えた客室（限定2室）
+                    </p>
+                </div>
+            </label>
+
+            <label class="room-card">
+                <input
+                    type="radio"
+                    name="room"
+                    value="55000"
+                    data-room-name="Retreat Room (特別室)"
+                />
+                <div class="room-card__img-wrap">
+                    <img src="../images/rooms_retreat.webp" alt="Retreat Room" loading="lazy" />
+                </div>
+                <div class="room-card__content">
+                    <div class="room-card__header">
+                        <span class="room-card__name">Retreat Room</span>
+                        <span class="room-card__price">¥55,000 〜 <small>/ 1泊1室</small></span>
+                    </div>
+                    <p class="room-card__desc">
+                        心身をゆるめ、余白を深く味わうリトリート客室（限定2室）
+                    </p>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <!-- 標準室グループ -->
+    <div class="room-group room-group--standard">
+        <h3 class="room-group__title">標準室（全40室）</h3>
+        <div class="room-options">
+            <label class="room-card">
+                <input
+                    type="radio"
+                    name="room"
+                    value="32000"
+                    data-room-name="Standard Single (標準室)"
+                />
+                <div class="room-card__img-wrap">
+                    <img src="../images/rooms_single.webp" alt="Standard Single" loading="lazy" />
+                </div>
+                <div class="room-card__content">
+                    <div class="room-card__header">
+                        <span class="room-card__name">Standard Single</span>
+                        <span class="room-card__price">¥32,000 〜 <small>/ 1泊1室</small></span>
+                    </div>
+                    <p class="room-card__desc">
+                        お一人で静かに自分と向き合う、上質なシングルルーム（全20室）
+                    </p>
+                </div>
+            </label>
+
+            <label class="room-card">
+                <input
+                    type="radio"
+                    name="room"
+                    value="38000"
+                    data-room-name="Standard Twin (標準室)"
+                />
+                <div class="room-card__img-wrap">
+                    <img src="../images/rooms_twin.webp" alt="Standard Twin" loading="lazy" />
+                </div>
+                <div class="room-card__content">
+                    <div class="room-card__header">
+                        <span class="room-card__name">Standard Twin</span>
+                        <span class="room-card__price">¥38,000 〜 <small>/ 1泊1室</small></span>
+                    </div>
+                    <p class="room-card__desc">
+                        木のぬくもりを感じる、ゆったりとしたツインルーム（全20室）
+                    </p>
+                </div>
+            </label>
+        </div>
+    </div>
+</section>
 
                 <!-- STEP 3: お客様情報 -->
                 <section class="form-section">
