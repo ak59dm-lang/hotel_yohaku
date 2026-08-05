@@ -286,6 +286,11 @@
     margin: 0;
 }
 
+/* フッターロゴの非表示 */
+.footer-brand {
+    display: none !important;
+}
+
 /* ==========================================================
    4. モバイル・レスポンシブ (Mobile 768px 以下)
    ========================================================== */
@@ -321,6 +326,22 @@
 
     .dining-style {
         padding: 36px 16px;
+    }
+
+    /* スマホでカテゴリタブを2列2行に整列 */
+    .category-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .tab-btn {
+        width: 100%;
+        padding: 10px 8px;
+        font-size: 0.78rem;
+        text-align: center;
+        box-sizing: border-box;
     }
 
     .panel-box {
