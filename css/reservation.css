@@ -51,6 +51,27 @@
     padding-bottom: 6rem;
 }
 
+/* 見出し・フォーム全般の基本フォント設定（数字の視認性向上） */
+.reservation-form,
+.reservation-form h2,
+.reservation-form h3,
+.section-title,
+.section-number,
+input,
+select,
+option {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+}
+
+/* ステップ数字などの強調用フォント */
+.section-header__num,
+.step-number,
+.reservation-section-title span {
+    font-family: "Cormorant Garamond", -apple-system, sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+}
+
 .form-section {
     background: #ffffff;
     border-radius: 12px;
@@ -92,8 +113,11 @@
     letter-spacing: 0.05em;
 }
 
-.form-control {
-    width: 100%;
+.form-control,
+.reservation-form input,
+.reservation-form select {
+    width: 100% !important;
+    max-width: 100% !important;
     padding: 0.85rem 1rem;
     font-size: 0.95rem;
     color: #333333;
@@ -101,7 +125,8 @@
     border: 1px solid #dcdfe4;
     border-radius: 6px;
     transition: all 0.3s ease;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
+    margin: 0;
 }
 
 .form-control:focus {
@@ -111,8 +136,36 @@
     box-shadow: 0 0 0 3px rgba(126, 149, 168, 0.15);
 }
 
+/* --- 日付フォーム（input[type="date"]）の崩れ・表示防止 --- */
+input[type="date"] {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(184, 178, 170, 0.4);
+    border-radius: 8px;
+    color: var(--color-main, #4a5560);
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.6;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-clear-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 /* ==========================================================
-   4. お部屋選択カード (Room Cards with Image)
+   4. お部屋選択カード (Room Cards)
    ========================================================== */
 .room-group {
     margin-bottom: 2rem;
@@ -136,75 +189,48 @@
     gap: 1.2rem;
 }
 
-/* カード風ラッパー */
+/* カード風ラッパー構造 */
 .room-card {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    background-color: #fafbfc;
-    border: 2px solid #e8ecf0;
-    border-radius: 10px;
-    padding: 1.2rem;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 1.5rem !important;
+    background-color: #ffffff !important;
+    border: 1px solid rgba(184, 178, 170, 0.4) !important;
+    border-radius: 12px !important;
+    gap: 1.2rem !important;
+    transition: all 0.3s ease !important;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-.room-card:hover {
-    border-color: #bdc8d2;
-    background-color: #ffffff;
-}
-
-/* ラジオボタンが選択された状態のスタイル */
-.room-card:has(input[type="radio"]:checked) {
-    border-color: var(--color-accent, #7e95a8);
-    background-color: #f4f7f9;
-    box-shadow: 0 4px 12px rgba(126, 149, 168, 0.12);
-}
-
-/* 標準ラジオボタンのデザインカスタマイズ */
-.room-card input[type="radio"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #b0b8c0;
-    border-radius: 50%;
-    outline: none;
-    flex-shrink: 0;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    position: relative;
-}
-
-.room-card input[type="radio"]:checked {
-    border-color: var(--color-accent, #7e95a8);
-    background-color: var(--color-accent, #7e95a8);
-}
-
-.room-card input[type="radio"]:checked::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    background-color: #ffffff;
-    border-radius: 50%;
+/* 元の標準ラジオボタン・セレクト要素を完全消去（iOS等での崩れ防止） */
+.room-card input[type="radio"],
+.room-card select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
 }
 
 /* お部屋画像 */
-.room-card__img-wrap {
-    width: 140px;
-    height: 95px;
-    flex-shrink: 0;
-    border-radius: 6px;
+.room-card__img-wrap,
+.room-card__img {
+    position: relative !important;
+    width: 100% !important;
+    height: 180px;
+    border-radius: 8px;
     overflow: hidden;
     background-color: #e0e0e0;
 }
 
-.room-card__img-wrap img {
+.room-card__img-wrap img,
+.room-card__img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -212,47 +238,108 @@
 }
 
 .room-card:hover .room-card__img-wrap img {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
-/* お部屋テキスト情報 */
-.room-card__content {
-    flex-grow: 1;
+/* お部屋テキスト情報領域 */
+.room-card__content,
+.room-card__info {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
 }
 
 .room-card__header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    width: 100%;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-bottom: 0.4rem;
 }
 
 .room-card__name {
     font-family: "Noto Serif JP", serif;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--color-main, #4a5560);
 }
 
-.room-card__price {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--color-main, #4a5560);
+/* 金額・「1泊1室」などの数字視認性強化 */
+.room-card__price,
+.room-card__price span,
+.room-card__info .price,
+.room-card__info .unit {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP", sans-serif !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: var(--color-main, #333333) !important;
+    letter-spacing: 0.02em !important;
 }
 
 .room-card__price small {
-    font-size: 0.75rem;
-    color: #888;
-    font-weight: normal;
+    font-size: 0.8rem !important;
+    color: #666666 !important;
+    font-weight: 500 !important;
 }
 
 .room-card__desc {
-    font-size: 0.825rem;
+    font-size: 0.85rem;
     line-height: 1.6;
     color: var(--color-sub, #697b85);
+}
+
+/* --- カード最下部のカスタム選択ボタン --- */
+.room-card label,
+.room-card .select-label,
+.room-card .room-select-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 12px 16px !important;
+    margin-top: 0.5rem !important;
+    background-color: #f7f6f2 !important;
+    border: 1px solid #697b85 !important;
+    border-radius: 8px !important;
+    color: #4a5560 !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    transition: all 0.25s ease !important;
+}
+
+.room-card label:hover,
+.room-card .select-label:hover {
+    background-color: #e8ecee !important;
+}
+
+/* --- お部屋選択時のハイライト（背景色・枠線・影） --- */
+.room-card:has(input[type="radio"]:checked),
+.room-card.is-selected {
+    background-color: #eef3f5 !important; /* はっきりと分かる落ち着いたくすみブルー */
+    border: 2px solid #697b85 !important;  /* ブランドカラーの太枠線 */
+    box-shadow: 0 6px 20px rgba(105, 123, 133, 0.18) !important;
+}
+
+/* 選択時のボタン変化（反転・チェックマーク付与） */
+.room-card:has(input[type="radio"]:checked) label,
+.room-card:has(input[type="radio"]:checked) .select-label,
+.room-card.is-selected label,
+.room-card.is-selected .select-label {
+    background-color: #697b85 !important;
+    color: #ffffff !important;
+    border-color: #697b85 !important;
+}
+
+.room-card:has(input[type="radio"]:checked) label::before,
+.room-card:has(input[type="radio"]:checked) .select-label::before {
+    content: "✓ " !important;
+    margin-right: 4px;
 }
 
 /* ==========================================================
@@ -307,15 +394,36 @@
 }
 
 /* ==========================================================
-   6. 完了モーダル (Modal)
+   6. 完了モーダル (Modal / Overlay)
    ========================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-content,
 .complete-modal {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 36px 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    text-align: center;
     border: none;
-    border-radius: 12px;
-    padding: 0;
-    max-width: 500px;
-    width: 90%;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .complete-modal::backdrop {
@@ -324,7 +432,7 @@
 }
 
 .modal__inner {
-    padding: 2.5rem 2rem;
+    padding: 1rem;
     text-align: center;
     background: #ffffff;
 }
@@ -362,103 +470,17 @@
     margin-bottom: 2rem;
 }
 
-.modal-close-btn {
-    padding: 0.8rem 2.5rem;
-    border-radius: 40px;
-    border: 1px solid var(--color-main, #4a5560);
-    background: transparent;
-    color: var(--color-main, #4a5560);
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.modal-close-btn:hover {
-    background: var(--color-main, #4a5560);
-    color: #ffffff;
-}
-
-/* ==========================================================
-   7. スマホ・レスポンシブ対応 (Mobile)
-   ========================================================== */
-@media (max-width: 640px) {
-    .reservation-form {
-        padding-inline: 1rem;
-        padding-top: 1.5rem;
-        padding-bottom: 8rem; /* フッター固定部分との重なり防止 */
-    }
-
-    .room-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.8rem;
-        padding: 1rem;
-    }
-
-    .room-card input[type="radio"] {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-    }
-
-    .room-card__img-wrap {
-        width: 100%;
-        height: 160px;
-    }
-
-    .room-card__header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.2rem;
-    }
-}
-
-/* ==========================================
-   予約完了モーダル・オーバーレイの修正
-========================================== */
-
-/* モーダルの背景（画面全体を覆う黒透過レイヤー） */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* 予約完了カード本体（中央配置・幅調整） */
-.modal-content,
-.complete-modal {
-    position: relative;
-    width: 100%;
-    max-width: 440px; /* カードの最大幅 */
-    margin: 0 auto;
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 36px 24px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    box-sizing: border-box;
-    text-align: center;
-}
-
-/* トップページへ戻るボタン（デザイン調整） */
 .modal-content .btn-primary,
 .complete-modal .btn-primary,
 .complete-modal a.btn,
-.complete-modal button {
+.complete-modal button,
+.modal-close-btn {
     display: block;
     width: 100%;
     max-width: 280px;
     margin: 24px auto 0;
     padding: 14px 20px;
-    background-color: #697b85; /* ブランドカラー */
+    background-color: #697b85;
     color: #ffffff;
     border: 1px solid #697b85;
     border-radius: 30px;
@@ -469,232 +491,42 @@
     text-align: center;
     box-sizing: border-box;
     transition: all 0.3s ease;
+    cursor: pointer;
     outline: none;
     -webkit-tap-highlight-color: transparent;
 }
 
-/* ボタンホバー・タップ時 */
 .modal-content .btn-primary:hover,
 .complete-modal .btn-primary:hover,
-.complete-modal a.btn:hover {
+.complete-modal a.btn:hover,
+.modal-close-btn:hover {
     background-color: #4a5560;
     border-color: #4a5560;
     color: #ffffff;
 }
 
-/* ==========================================
-   日付フォーム（input[type="date"]）の崩れ防止修正
-========================================== */
+/* ==========================================================
+   7. スマホ・レスポンシブ調整 (Mobile)
+   ========================================================== */
+@media (max-width: 640px) {
+    .reservation-form {
+        padding-inline: 1rem;
+        padding-top: 1.5rem;
+        padding-bottom: 8rem;
+    }
 
-/* 1. フォーム全般の幅と余白計算を安全に統一 */
-.reservation-form input,
-.reservation-form select,
-.reservation-form input[type="date"] {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important; /* paddingを含めたサイズ計算にする */
-    -webkit-appearance: none; /* iOS等のデフォルトスタイルをクリア */
-    appearance: none;
-    margin: 0;
-}
+    .room-card {
+        padding: 1.2rem !important;
+    }
 
-/* 2. 日付入力フォーム個別の崩れ防止 */
-input[type="date"] {
-    display: block;
-    width: 100%;
-    min-height: 48px; /* タップしやすい高さを確保 */
-    padding: 10px 14px;
-    font-size: 0.95rem;
-    font-family: inherit;
-    background-color: #ffffff;
-    border: 1px solid rgba(184, 178, 170, 0.4);
-    border-radius: 8px;
-    color: var(--color-main, #4a5560);
-}
+    .room-card__img-wrap,
+    .room-card__img {
+        height: 150px;
+    }
 
-/* 3. iOS/Safari特有の内部余白やアイコンの位置調整 */
-input[type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0.6;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-}
-
-input[type="date"]::-webkit-inner-spin-button,
-input[type="date"]::-webkit-clear-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* ==========================================
-   選択されたお部屋カードのハイライト（背景色変更）
-========================================== */
-
-/* 1. カード全体の基本遷移設定 */
-.room-card {
-    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* 2. ラジオボタンがチェックされたカードの背景色と枠線 */
-/* モダンブラウザ向け（CSS parent selector） */
-.room-card:has(input[type="radio"]:checked) {
-    background-color: #f2f5f6 !important; /* ほんのり上品なグレーブルー（お好みの色に調整可） */
-    border-color: #697b85 !important;      /* YOHAKUのブランドカラー枠線 */
-    box-shadow: 0 4px 12px rgba(105, 123, 133, 0.12); /* 軽く浮き上がる影 */
-}
-/* ==========================================
-   予約ページ 視認性・レイアウト修正
-========================================== */
-
-/* 1. 見出しやフォーム内の数字を読みやすいゴシック体に変更 */
-.reservation-form,
-.reservation-form h2,
-.reservation-form h3,
-.section-title,
-.section-number,
-input,
-select,
-option {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif !important;
-}
-
-/* 見出しの「1. 2. 3.」などの数字を強調して見やすく */
-.section-header__num,
-.step-number,
-.reservation-section-title span {
-    font-family: "Cormorant Garamond", -apple-system, sans-serif !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.05em !important;
-}
-
-/* 2. お部屋選択ボタン（ラジオボタン/選択ボタン）の横伸び防止 */
-.room-card__select,
-.room-card .select-btn,
-.room-card input[type="radio"] {
-    width: auto !important;
-    max-width: fit-content !important;
-    margin-left: 0;
-    margin-right: auto; /* または中央寄せにしたい場合は margin: 16px auto 0; */
-}
-
-/* ラベルボタン形式にしている場合の幅・位置調整 */
-.room-card label.select-label,
-.room-card .btn-select {
-    display: inline-block !important;
-    width: auto !important;
-    min-width: 140px; /* ボタンとして押しやすい最低限の幅 */
-    padding: 10px 24px !important;
-    text-align: center;
-    box-sizing: border-box !important;
-}
-
-/* お部屋カード内部のレイアウト調整（要素が横に引き伸ばされるのを防ぐ） */
-.room-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* 配下要素を必要以上に横いっぱいに広げない */
-}
-
-.room-card__img,
-.room-card__info {
-    width: 100% !important; /* 画像や説明文領域は100%を維持 */
-}
-
-/* ==========================================
-   お部屋カード：金額・数字の視認性向上＆ボタン位置調整
-========================================== */
-
-/* 1. 金額・「1泊1室」などの数字を太く・見やすく調整 */
-.room-card__price,
-.room-card__price span,
-.room-card__info .price,
-.room-card__info .unit {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP", sans-serif !important;
-    font-weight: 600 !important;
-    color: var(--color-main, #333333) !important;
-    letter-spacing: 0.02em !important;
-}
-
-/* 金額の数字部分を少し大きく強調 */
-.room-card__price-amount,
-.price-number {
-    font-size: 1.25rem !important;
-    font-weight: 700 !important;
-}
-
-
-/* 2. お部屋カードのレイアウト再構築（画像とボタンの被り解消） */
-.room-card {
-    position: relative !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    padding: 1.25rem !important;
-    background-color: #ffffff;
-    border: 1px solid rgba(184, 178, 170, 0.4);
-    border-radius: 12px;
-    gap: 1rem !important;
-}
-
-/* 画像領域は単体で配置（上にボタンを重ねない） */
-.room-card__img-wrap,
-.room-card__img {
-    position: relative !important;
-    width: 100% !important;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-/* 情報コンテンツ（タイトル・価格・選択ボタン）を整理 */
-.room-card__content,
-.room-card__info {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.8rem !important;
-    width: 100% !important;
-}
-
-/* 3. 選択ボタンを画像の外（テキストエリア側）の左寄りに配置 */
-.room-card__select,
-.room-card .select-btn-wrap,
-.room-card label.room-select-label {
-    position: static !important; /* 画像上の絶対配置(absolute)を解除 */
-    transform: none !important;
-    margin-top: 0.5rem !important;
-    align-self: flex-start !important; /* 左揃え */
-    width: auto !important;
-}
-
-/* 選択ボタン自体のスタイリング */
-.room-card input[type="radio"] {
-    position: static !important;
-    margin-right: 0.5rem !important;
-    accent-color: #697b85; /* ブランドカラーのチェックマーク */
-    transform: scale(1.2); /* ラジオボタン自体を少し大きくして押しやすく */
-    cursor: pointer;
-}
-
-/* ボタン形式（ラベル）の場合の表示調整 */
-.room-card .select-label,
-.room-card .btn-select {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 8px 20px !important;
-    background-color: #ffffff !important;
-    border: 1px solid #697b85 !important;
-    color: #4a5560 !important;
-    border-radius: 20px !important;
-    font-size: 0.88rem !important;
-    font-weight: 500 !important;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-/* 選択された時のボタン強調 */
-.room-card input[type="radio"]:checked + .select-label,
-.room-card:has(input[type="radio"]:checked) .select-label {
-    background-color: #697b85 !important;
-    color: #ffffff !important;
+    .room-card__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
 }
