@@ -397,19 +397,28 @@ input[type="date"]::-webkit-clear-button {
    6. 完了モーダル (Modal / Overlay)
    ========================================================== */
 
-/* 1. モーダル開閉時の画面全体横スクロールを防止 */
-body.modal-open {
-    overflow: hidden !important;
+/* 全体・ボディの横ブレを物理的に遮断 */
+html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    position: relative;
 }
 
-/* 2. デフォルト非表示の設定 */
+/* モーダル表示時に背後のスクロールをロック */
+body.modal-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+}
+
+/* デフォルト非表示 */
 .modal-overlay,
 .modal,
 .complete-modal {
     display: none;
 }
 
-/* 3. モーダル表示状態（100vwではなく100%を使用して横スクロールを確実に回避） */
+/* モーダル表示状態（iOS Safariの画面中央へ強制固定） */
 .modal-overlay.is-open,
 .modal-overlay.active,
 .modal-overlay[style*="display"],
@@ -418,35 +427,40 @@ dialog[open].complete-modal {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
-    width: 100% !important;  /* 100vwから100%に変更してスクロールバー分の食い違いを防止 */
+    bottom: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
     height: 100% !important;
-    max-width: 100vw !important;
+    /* iOS Dynamic Viewport Height対応 */
+    height: 100dvh !important; 
     background-color: rgba(0, 0, 0, 0.6) !important;
     justify-content: center !important;
     align-items: center !important;
-    z-index: 2000 !important;
-    padding: 16px !important; /* スマホ時の画面端パディング */
+    z-index: 9999 !important;
+    padding: 16px !important;
     box-sizing: border-box !important;
-    overflow-x: hidden !important; /* 横スクロールを強制停止 */
+    overflow: hidden !important;
 }
 
-/* 4. モーダルカード本体（サイズオーバーを防止） */
+/* モーダルカード本体（画面の中央に収まるよう高さを制御） */
 .modal-content,
 dialog[open].complete-modal {
-    position: relative;
+    position: relative !important;
     width: 100% !important;
-    max-width: 400px !important; /* 画面からはみ出さないサイズ感に調整 */
+    max-width: 380px !important;
     margin: auto !important;
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 28px 20px !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff !important;
+    border-radius: 16px !important;
+    padding: 24px 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
     box-sizing: border-box !important;
     text-align: center;
-    border: none;
-    max-height: 90vh; /* 高さも画面内に収まるよう調整 */
-    overflow-y: auto;  /* 内容が長い場合は縦のみスクロール */
+    border: none !important;
+    /* 上下のツールバーを考慮した最大高さ設定 */
+    max-height: 80dvh !important; 
+    overflow-y: auto !important; /* 中身が溢れた場合のみモーダル内スクロール */
     overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
 }
 
 .complete-modal::backdrop {
@@ -472,7 +486,7 @@ dialog[open].complete-modal {
 
 .modal__title {
     font-family: "Noto Serif JP", serif;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: var(--color-main, #4a5560);
     margin-bottom: 0.8rem;
 }
@@ -480,19 +494,19 @@ dialog[open].complete-modal {
 .modal__notice {
     font-size: 0.8rem;
     color: #e06d6d;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .modal__summary {
     background: #f8f9fa;
-    padding: 1rem;
+    padding: 0.8rem 1rem;
     border-radius: 8px;
     text-align: left;
     font-size: 0.85rem;
-    line-height: 1.7;
+    line-height: 1.6;
     color: #444;
-    margin-bottom: 1.5rem;
-    word-break: break-all; /* 文字長すぎによる横伸びを防止 */
+    margin-bottom: 1.2rem;
+    word-break: break-all;
 }
 
 .modal-content .btn-primary,
@@ -502,9 +516,9 @@ dialog[open].complete-modal {
 .modal-close-btn {
     display: block;
     width: 100%;
-    max-width: 260px;
-    margin: 16px auto 0;
-    padding: 12px 20px;
+    max-width: 240px;
+    margin: 12px auto 0;
+    padding: 12px 16px;
     background-color: #697b85;
     color: #ffffff;
     border: 1px solid #697b85;
@@ -534,6 +548,14 @@ dialog[open].complete-modal {
    7. スマホ・レスポンシブ調整 (Mobile)
    ========================================================== */
 @media (max-width: 640px) {
+    /* 画面全体の左右ブレを強力に抑え込み */
+    .reservation-form,
+    .form-section,
+    .room-card {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
     .reservation-form {
         padding-inline: 1rem;
         padding-top: 1.5rem;
