@@ -481,3 +481,47 @@
     border-color: #4a5560;
     color: #ffffff;
 }
+
+/* ==========================================
+   日付フォーム（input[type="date"]）の崩れ防止修正
+========================================== */
+
+/* 1. フォーム全般の幅と余白計算を安全に統一 */
+.reservation-form input,
+.reservation-form select,
+.reservation-form input[type="date"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important; /* paddingを含めたサイズ計算にする */
+    -webkit-appearance: none; /* iOS等のデフォルトスタイルをクリア */
+    appearance: none;
+    margin: 0;
+}
+
+/* 2. 日付入力フォーム個別の崩れ防止 */
+input[type="date"] {
+    display: block;
+    width: 100%;
+    min-height: 48px; /* タップしやすい高さを確保 */
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background-color: #ffffff;
+    border: 1px solid rgba(184, 178, 170, 0.4);
+    border-radius: 8px;
+    color: var(--color-main, #4a5560);
+}
+
+/* 3. iOS/Safari特有の内部余白やアイコンの位置調整 */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.6;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-clear-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
